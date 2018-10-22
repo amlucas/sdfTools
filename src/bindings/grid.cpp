@@ -8,7 +8,7 @@ using namespace pybind11::literals;
 
 void exportGrid(py::module& m)
 {
-    py::class_<Grid> (m, "Grid", R"(
+    py::class_<Grid> (m, "Uniform", R"(
         container to hold sdf grid data
 
     )")
