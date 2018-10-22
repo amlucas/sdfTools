@@ -7,6 +7,12 @@ build:
 	make -C build/ -j
 	cd ..
 
+install: build
+	$(PIP) install . --user --upgrade
+
+uninstall:
+	$(PIP) uninstall sdf
+
 clean:; rm -rf build
 
-.PHONY: install build clean
+.PHONY: install uninstall build clean

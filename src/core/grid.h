@@ -7,6 +7,7 @@ class Grid
 {
 public:
     Grid(int3 dimensions, real3 offsets, real3 extents);
+    Grid(PyInt3 dimensions, PyReal3 offsets, PyReal3 extents);
 
     const real* data() const { return field.data(); }
     real*       data()       { return field.data(); }
