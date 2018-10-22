@@ -1,0 +1,22 @@
+#pragma once
+
+#include <vector>
+#include "types.h"
+
+class Grid
+{
+public:
+    Grid(int3 dimensions, real3 extents);
+
+    const real* data() const { return field.data(); }
+    real*       data()       { return field.data(); }
+
+    int3 getDimensions() const;
+    real3 getExtents() const;
+
+private:
+    std::vector<real> field;
+
+    int3 dimensions;
+    real3 extents;
+};
