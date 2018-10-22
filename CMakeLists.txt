@@ -63,10 +63,10 @@ set_target_properties(${SDF} PROPERTIES PREFIX "${PYTHON_MODULE_PREFIX}"
                                         SUFFIX "${PYTHON_MODULE_EXTENSION}")
 
 # Setup compiler flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O3 -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O3 -Wall -fvisibility=hidden")
 
 # Linker flags
-set(CMAKE_LINK_FLAGS "${CMAKE_LINK_FLAGS} -rdynamic -flto -g")
+set(CMAKE_LINK_FLAGS "${CMAKE_LINK_FLAGS} -fvisibility=hidden")
 
 # Choose Release mode as default.
 if(NOT CMAKE_BUILD_TYPE)

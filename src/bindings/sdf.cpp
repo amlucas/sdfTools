@@ -8,11 +8,13 @@ using namespace pybind11::literals;
 
 void exportSdf(py::module& m)
 {
-    // py::class_<Sdf> pysdf(m, "Sdf", R"(
-    //     Base sdf class.
-    // )");
+    py::class_<Sdf> pysdf(m, "Sdf", R"(
+        Base sdf class.
+    )");
 
-    py::class_<SdfSphere> (m, "Sphere", R"(
+    pysdf.def("apply", &Sdf::apply);
+    
+    py::class_<SdfSphere> (m, "Sphere", pysdf, R"(
         sphere defined by center and radius
 
     )")

@@ -18,5 +18,6 @@ void exportGrid(py::module& m)
                 dimensions: number of cells along each dimension
                 offsets: start of the domain
                 extents: size of the domain
-        )");
+        )")
+        .def("get", &Grid::getData);
 }

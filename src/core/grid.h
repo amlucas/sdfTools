@@ -15,7 +15,7 @@ public:
     int3 getDimensions() const;
     real3 getExtents() const;
     real3 getOffsets() const;
-    std::vector<real> getData() const;
+    std::vector<real>& getData();
 
 private:
     std::vector<real> field;
