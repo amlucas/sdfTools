@@ -30,6 +30,7 @@ static void write_header(std::string basename, const Grid *grid)
     fprintf(f, "DATA_SIZE: %d %d %d\n", dim.x, dim.y, dim.z);
     fprintf(f, "DATA_FORMAT: %s\n", "FLOAT");
     fprintf(f, "CENTERING: %s\n", "zonal");
+    fprintf(f, "VARIABLE: %s\n", "sdf");
     fprintf(f, "BRICK_ORIGIN: %g %g %g\n", off.x, off.y, off.z);
     fprintf(f, "BRICK_SIZE: %g %g %g\n", ext.x, ext.y, ext.z);
     
