@@ -1,7 +1,7 @@
 #include "bindings.h"
 
-#include "core/sdf/interface.h"
-#include "core/sdf/sphere.h"
+#include "core/grid.h"
+#include "core/io/write_bov.h"
 
 namespace py = pybind11;
 using namespace pybind11::literals;
@@ -20,4 +20,11 @@ void exportGrid(py::module& m)
                 extents: size of the domain
         )")
         .def("get", &Grid::getData);
+
+    m.def("write_bov", &write_bov,
+          "basename"_a, "grid"_a, R"(
+          Args:
+              basename: base filename to dump to
+              grid: grid data to dump
+          )");
 }
