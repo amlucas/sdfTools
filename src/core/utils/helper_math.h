@@ -2,8 +2,7 @@
 
 #include <cmath>
 
-template<typename T3>
-inline real3& operator+=(real3 &a, T3 b)
+inline real3& operator+=(real3 &a, real3 b)
 {
     a.x += b.x;
     a.y += b.y;
@@ -11,15 +10,14 @@ inline real3& operator+=(real3 &a, T3 b)
     return a;
 }
 
-template<typename T3>
-inline real3 operator+(real3 a, T3 b)
+inline real2& operator+=(real2 &a, real2 b)
 {
-    a += b;
+    a.x += b.x;
+    a.y += b.y;
     return a;
 }
 
-template<typename T3>
-inline real3& operator-=(real3 &a, T3 b)
+inline real3& operator-=(real3 &a, real3 b)
 {
     a.x -= b.x;
     a.y -= b.y;
@@ -27,10 +25,10 @@ inline real3& operator-=(real3 &a, T3 b)
     return a;
 }
 
-template<typename T3>
-inline real3 operator-(real3 a, T3 b)
+inline real2& operator-=(real2 &a, real2 b)
 {
-    a -= b;
+    a.x -= b.x;
+    a.y -= b.y;
     return a;
 }
 
@@ -42,8 +40,14 @@ inline real3& operator*=(real3 &a, real b)
     return a;
 }
 
-template<typename T3>
-inline real3& operator*=(real3 &a, T3 b)
+inline real2& operator*=(real2 &a, real b)
+{
+    a.x *= b;
+    a.y *= b;
+    return a;
+}
+
+inline real3& operator*=(real3 &a, real3 b)
 {
     a.x *= b.x;
     a.y *= b.y;
@@ -51,15 +55,7 @@ inline real3& operator*=(real3 &a, T3 b)
     return a;
 }
 
-template<typename T3>
-inline real3 operator*(real3 a, T3 b)
-{
-    a *= b;
-    return a;
-}
-
-template<typename T3>
-inline real3& operator/=(real3 &a, T3 b)
+inline real3& operator/=(real3 &a, real3 b)
 {
     a.x /= b.x;
     a.y /= b.y;
@@ -67,20 +63,36 @@ inline real3& operator/=(real3 &a, T3 b)
     return a;
 }
 
-template<typename T3>
-inline real3 operator/(real3 a, T3 b)
+inline real3& operator/=(real3 &a, int3 b)
 {
-    a /= b;
+    a.x /= b.x;
+    a.y /= b.y;
+    a.z /= b.z;
     return a;
 }
+
+inline real3 operator+(real3 a, real3 b) { return a += b; }
+inline real2 operator+(real2 a, real2 b) { return a += b; }
+inline real3 operator-(real3 a, real3 b) { return a -= b; }
+inline real2 operator-(real2 a, real2 b) { return a -= b; }
+inline real3 operator*(real3 a, real3 b) { return a *= b; }
+inline real3 operator/(real3 a, real3 b) { return a /= b; }
+inline real3 operator/(real3 a, int3 b) { return a /= b; }
+inline real3 operator*(real3 a, real b) { return a *= b; }
+inline real2 operator*(real2 a, real b) { return a *= b; }
+inline real3 operator*(real a, real3 b) { return b *= a; }
+inline real2 operator*(real a, real2 b) { return b *= a; }
 
 inline real dot(real3 a, real3 b)
 {
     return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
-inline real length(real3 a)
+inline real dot(real2 a, real2 b)
 {
-    return sqrt(dot(a, a));
+    return a.x * b.x + a.y * b.y;
 }
+
+inline real length(real3 a) { return sqrt(dot(a, a)); }
+inline real length(real2 a) { return sqrt(dot(a, a));}
 

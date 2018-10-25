@@ -9,6 +9,14 @@ int3 make_int3(PyInt3 a)
     };
 }
 
+real2 make_real2(PyReal2 a)
+{
+    return {
+        std::get<0>(a),
+        std::get<1>(a),
+    };
+}
+
 real3 make_real3(PyReal3 a)
 {
     return {
