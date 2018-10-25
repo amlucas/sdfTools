@@ -6,8 +6,7 @@ endif()
 
 project(sdfTools LANGUAGES CXX)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-set(SDF "libsdf")
-set(SDF_MAIN "sdf_main")
+set(SDF "libsdfTools")
 
 # version
 execute_process(COMMAND
@@ -33,7 +32,7 @@ set(CMAKE_CXX_STANDARD  11)
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/src/ )
 set(CORE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/core/")
 set(BINDINGS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/bindings/")
-set(PYTHON_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/sdf")
+set(PYTHON_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/sdfTools")
 
 # generate version.cpp
 configure_file(
@@ -56,7 +55,6 @@ file(GLOB_RECURSE SOURCES_MAIN      RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CORE
 add_library(main_compiled OBJECT ${SOURCES_MAIN})
 set_property(TARGET main_compiled PROPERTY POSITION_INDEPENDENT_CODE 1)
 
-add_library(${SDF_MAIN} SHARED $<TARGET_OBJECTS:main_compiled>)
 add_library(${SDF} MODULE ${SOURCES_BINDINGS} $<TARGET_OBJECTS:main_compiled>)
 target_link_libraries(${SDF} PRIVATE pybind11::module)
 set_target_properties(${SDF} PROPERTIES PREFIX "${PYTHON_MODULE_PREFIX}"

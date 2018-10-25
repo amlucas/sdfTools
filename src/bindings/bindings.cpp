@@ -2,7 +2,7 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(libsdf, m)
+PYBIND11_MODULE(libsdfTools, m)
 {
     auto sdf = m.def_submodule("Sdf");
     exportSdf(sdf);
