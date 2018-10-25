@@ -1,12 +1,15 @@
 #pragma once
 
+#include <array>
+
 #include "interface.h"
 #include "macros.h"
 
 class SdfEdges : public Sdf
 {
 public:
-    SdfEdges();
+    SdfEdges(std::vector<real2> edges);
+    SdfEdges(std::vector<std::array<real, 2>> edges);
 
     GENERATE_DECL_OPERATIONS()
     

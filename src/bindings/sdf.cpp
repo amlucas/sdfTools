@@ -4,6 +4,7 @@
 
 #include "core/sdf/sphere.h"
 #include "core/sdf/plate.h"
+#include "core/sdf/edges.h"
 
 namespace py = pybind11;
 using namespace pybind11::literals;
@@ -85,6 +86,16 @@ void exportSdf(py::module& m)
             Args:
                 point: one point on the plane
                 normal: the normal vector (not necessarily normalized, but must be non-zero) pointing inside
+        )");
+
+    py::class_<SdfEdges> (m, "Edges", pysdf, R"(
+        closed edges
+
+    )")
+        .def(py::init <std::vector<std::array<real, 2>>> (),
+             "edges"_a, R"(
+            Args:
+                edges: list of vertices positions
         )");
 
 

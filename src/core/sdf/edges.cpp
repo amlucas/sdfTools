@@ -3,9 +3,16 @@
 
 #include "common.h"
 
-// TODO
-SdfEdges::SdfEdges()
+SdfEdges::SdfEdges(std::vector<real2> edges) :
+    edges(edges)
 {}
+
+SdfEdges::SdfEdges(std::vector<std::array<real, 2>> edges)
+{
+    for (const auto& r : edges)
+        this->edges.push_back({r[0], r[1]});
+}
+    
 
 static inline real distanceToEdge(real2 r, real2 a, real2 b)
 {
