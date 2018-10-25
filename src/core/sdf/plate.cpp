@@ -17,7 +17,7 @@ SdfPlate::SdfPlate(PyReal3 point, PyReal3 normal) :
 real SdfPlate::at(real3 r) const
 {
     real3 dr = r - point;
-    return dot(dr, normal);
+    return -dot(dr, normal);
 }
 
 #define CLASS_NAME SdfPlate

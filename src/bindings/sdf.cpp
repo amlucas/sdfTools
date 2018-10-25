@@ -21,6 +21,48 @@ void exportSdf(py::module& m)
         Args:
             grid: the grid to apply the sdf to
     )");
+
+    pysdf.def("applyComplement", &Sdf::applyComplement,
+              "grid"_a, R"(
+        Compute the complement of the given sdf shape for each point of the given grid
+
+        Args:
+            grid: the grid to apply the complement sdf to
+    )");
+    
+    pysdf.def("interiorUnion", &Sdf::interiorUnion,
+              "grid"_a, R"(
+        Compute the interior union of the given sdf with the given grid
+
+        Args:
+            grid: the grid to apply the union to
+    )");
+
+    pysdf.def("interiorIntersection", &Sdf::interiorIntersection,
+              "grid"_a, R"(
+        Compute the interior intersection of the given sdf with the given grid
+
+        Args:
+            grid: the grid to apply the intersection to
+    )");
+
+    pysdf.def("interiorSubtractToGrid", &Sdf::interiorSubtractToGrid,
+              "grid"_a, R"(
+        Compute the interior subtraction of the given grid by the given sdf
+
+        Args:
+            grid: the grid to apply the subtraction to
+    )");
+
+    pysdf.def("interiorSubtractGrid", &Sdf::interiorSubtractGrid,
+              "grid"_a, R"(
+        Compute the interior subtraction of the given sdf by the given grid
+
+        Args:
+            grid: the grid to subtract
+    )");
+
+
     
     py::class_<SdfSphere> (m, "Sphere", pysdf, R"(
         sphere defined by center and radius
