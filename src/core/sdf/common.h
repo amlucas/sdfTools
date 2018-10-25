@@ -1,8 +1,7 @@
 namespace common
-{
-    
-    template <typename SDF>
-    void apply(const SDF *sdf, Grid *grid)
+{    
+    template <typename SDF, typename Op>
+    static void merge(const SDF *sdf, Grid *grid, Op op)
     {
         auto dims = grid->getDimensions();
         auto exts = grid->getExtents();
@@ -19,8 +18,45 @@ namespace common
                     r.y = offs.y + iy * d.y;
                     r.z = offs.z + iz * d.z;
 
-                    data[ix + dims.x * (iy + dims.y * iz)] = sdf->at(r);
+                    const int i = ix + dims.x * (iy + dims.y * iz);
+                    
+                    data[i] = op(sdf->at(r), data[i]);
                 }    
     }
 
+    template <typename SDF>
+    void apply(const SDF *sdf, Grid *grid)
+    {
+        merge(sdf, grid, [](real s, real g){return s;});
+    }
+
+    template <typename SDF>
+    void applyComplement(const SDF *sdf, Grid *grid)
+    {
+        merge(sdf, grid, [](real s, real g){return -s;});
+    }
+
+    template <typename SDF>
+    void interiorUnion(const SDF *sdf, Grid *grid)
+    {
+        merge(sdf, grid, [](real s, real g){return std::max(s, g);});
+    }
+
+    template <typename SDF>
+    void interiorIntersection(const SDF *sdf, Grid *grid)
+    {
+        merge(sdf, grid, [](real s, real g){return std::min(s, g);});
+    }
+
+    template <typename SDF>
+    void interiorSubtractToGrid(const SDF *sdf, Grid *grid)
+    {
+        merge(sdf, grid, [](real s, real g){return std::max(-s, g);});
+    }
+
+    template <typename SDF>
+    void interiorSubtractGrid(const SDF *sdf, Grid *grid)
+    {
+        merge(sdf, grid, [](real s, real g){return std::max(s, -g);});
+    }
 }
