@@ -20,7 +20,7 @@ static inline real distanceToEdge(real2 r, real2 a, real2 b)
     real2 ar = r - a;
     real alpha = dot(ab, ar) / length(ab);
 
-    alpha = std::min((real) 0, std::max((real) 1, alpha));
+    alpha = std::max((real) 0, std::min((real) 1, alpha));
     
     real2 p = a + alpha * ab;
     return length(r - p);
@@ -29,8 +29,14 @@ static inline real distanceToEdge(real2 r, real2 a, real2 b)
 static inline int sideOfEdge(real2 r, real2 a, real2 b)
 {
     real2 ab = b - a;
+    real2  n = {ab.y, -ab.x};
     real2 ar = r - a;
-    return ab.y * ar.x - ab.x * ar.y > 0;
+    return dot(ar, n) > 0;
+}
+
+static inline int insideTriangle(real2 r, real2 a, real2 b, real2 c)
+{
+    return sideOfEdge(r, a, b) && sideOfEdge(r, b, c) && sideOfEdge(r, c, b);
 }
 
 real SdfEdges::at(real3 pos) const
@@ -40,6 +46,7 @@ real SdfEdges::at(real3 pos) const
 
     // TODO: for now assume xy plane
     real2 r = {pos.x, pos.y};
+    real2 orig = {0.f, 0.f};
     
     for (int i = 0; i < edges.size(); ++i) {
 
@@ -48,9 +55,9 @@ real SdfEdges::at(real3 pos) const
         auto b = edges[inext];
         
         mind = std::min(mind, distanceToEdge(r, a, b));
-        count += sideOfEdge(r, a, b);
+        count += insideTriangle(r, orig, a, b);
     }
-    int sign = (count % 2) ? 1 : -1;
+    int sign = (count % 2) ? -1 : 1;
     return mind * sign;
 }
 
