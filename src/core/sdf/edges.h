@@ -8,8 +8,8 @@
 class SdfEdges : public Sdf
 {
 public:
-    SdfEdges(std::vector<real2> edges);
-    SdfEdges(std::vector<std::array<real, 2>> edges);
+    SdfEdges(std::vector<real2> edges, bool inside);
+    SdfEdges(std::vector<std::array<real, 2>> edges, bool inside);
 
     GENERATE_DECL_OPERATIONS()
     
@@ -17,4 +17,5 @@ public:
     
 protected:
     std::vector<real2> edges;
+    int insideSign;
 };

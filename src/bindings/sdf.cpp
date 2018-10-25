@@ -92,10 +92,11 @@ void exportSdf(py::module& m)
         closed edges
 
     )")
-        .def(py::init <std::vector<std::array<real, 2>>> (),
-             "edges"_a, R"(
+        .def(py::init <std::vector<std::array<real, 2>>, bool> (),
+             "edges"_a, "inside"_a, R"(
             Args:
                 edges: list of vertices positions
+                inside: True if the interior is inside the loop of edges
         )");
 
 
