@@ -83,8 +83,8 @@ void exportSdf(py::module& m)
         .def(py::init <PyReal3, PyReal3> (),
              "point"_a, "normal"_a, R"(
             Args:
-                point: one point inside the plane
-                normal: the normal vector (not necessarily normalized, but must be non-zero)
+                point: one point on the plane
+                normal: the normal vector (not necessarily normalized, but must be non-zero) pointing inside
         )");
 
 
