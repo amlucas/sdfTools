@@ -14,7 +14,13 @@ void exportSdf(py::module& m)
         Base sdf class.
     )");
 
-    pysdf.def("apply", &Sdf::apply);
+    pysdf.def("apply", &Sdf::apply,
+              "grid"_a, R"(
+        Compute the given sdf shape for each point of the given grid
+
+        Args:
+            grid: the grid to apply the sdf to
+    )");
     
     py::class_<SdfSphere> (m, "Sphere", pysdf, R"(
         sphere defined by center and radius
