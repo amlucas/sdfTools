@@ -3,7 +3,7 @@
 import numpy as np
 import sdfTools
 
-n = 32
+n = 8
 
 offs = (0., 0., 0.)
 dims = (n, n, 1)
@@ -17,4 +17,11 @@ sphere = sdfTools.Sdf.Sphere(center, radius, inside=True)
 
 sphere.apply(grid)
 
-grid.dumpBov("sphere2d")
+np.savetxt("grid.txt", grid.get())
+
+# TEST: analytical.2d
+# cd analytical
+# rm -rf *.txt
+# ./2d.py
+# mv grid.txt grid.out.txt
+
