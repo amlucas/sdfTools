@@ -6,7 +6,7 @@
 static const char ExtBov[] = ".bov";
 static const char ExtVal[] = ".values";
 
-static std::string extract_filename(std::string basename)
+static std::string extractFilename(std::string basename)
 {
     auto pos = basename.find_last_of('/');
     if (pos == std::string::npos)
@@ -15,7 +15,7 @@ static std::string extract_filename(std::string basename)
     return std::string(basename.begin() + pos, basename.end());
 }
 
-static void write_header(std::string basename, const Grid *grid)
+static void writeHeader(std::string basename, const Grid *grid)
 {
     FILE *f = fopen((basename + ExtBov).c_str(), "w");
 
@@ -23,7 +23,7 @@ static void write_header(std::string basename, const Grid *grid)
     auto off = grid->getOffsets();
     auto ext = grid->getExtents();
 
-    auto val_name = extract_filename(basename) + ExtVal;
+    auto val_name = extractFilename(basename) + ExtVal;
 
     fprintf(f, "DATA_FILE: %s\n", val_name.c_str());
     fprintf(f, "DATA_ENDIAN: %s\n", "LITTLE");
@@ -37,7 +37,7 @@ static void write_header(std::string basename, const Grid *grid)
     fclose(f);
 }
 
-static void write_values(std::string basename, const Grid *grid)
+static void writeValues(std::string basename, const Grid *grid)
 {
     FILE *f = fopen((basename + ExtVal).c_str(), "wb");
 
@@ -48,8 +48,8 @@ static void write_values(std::string basename, const Grid *grid)
     fclose(f);
 }
 
-void write_bov(std::string basename, const Grid *grid)
+void writeBov(std::string basename, const Grid *grid)
 {
-    write_header(basename, grid);
-    write_values(basename, grid);
+    writeHeader(basename, grid);
+    writeValues(basename, grid);
 }

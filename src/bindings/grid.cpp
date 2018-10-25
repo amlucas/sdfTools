@@ -19,12 +19,14 @@ void exportGrid(py::module& m)
                 offsets: start of the domain
                 extents: size of the domain
         )")
-        .def("get", &Grid::getData);
 
-    m.def("write_bov", &write_bov,
-          "basename"_a, "grid"_a, R"(
+        .def("get", &Grid::getData, R"(
+            returns a list of all values in a flatten array.
+        )")
+        
+        .def("dumpBov", &Grid::dumpBov,
+          "basename"_a, R"(
           Args:
               basename: base filename to dump to
-              grid: grid data to dump
-          )");
+        )");
 }

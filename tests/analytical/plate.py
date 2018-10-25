@@ -14,4 +14,4 @@ plate = sdfTools.Sdf.Plate(point  = [0.1*exts[0], 0, 0],
 
 plate.apply(grid)
 
-sdfTools.Grid.write_bov("plate", grid)
+grid.dumpBov("plate")

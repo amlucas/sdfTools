@@ -1,4 +1,5 @@
 #include "grid.h"
+#include "io/write_bov.h"
 
 Grid::Grid(int3 dimensions, real3 offsets, real3 extents) :
     dimensions(dimensions), offsets(offsets), extents(extents)
@@ -18,4 +19,9 @@ real3 Grid::getOffsets() const { return offsets; }
 std::vector<real>& Grid::getData()
 {
     return field;
+}
+
+void Grid::dumpBov(std::string basename) const
+{
+    writeBov(basename, this);
 }

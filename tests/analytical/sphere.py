@@ -17,4 +17,4 @@ sphere = sdfTools.Sdf.Sphere(center, radius, inside=True)
 
 sphere.apply(grid)
 
-sdfTools.Grid.write_bov("sphere", grid)
+grid.dumpBov("sphere")

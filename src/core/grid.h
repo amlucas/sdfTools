@@ -1,6 +1,8 @@
 #pragma once
 
 #include <vector>
+#include <string>
+
 #include "types.h"
 
 class Grid
@@ -16,6 +18,8 @@ public:
     real3 getExtents() const;
     real3 getOffsets() const;
     std::vector<real>& getData();
+
+    void dumpBov(std::string basename) const;
 
 private:
     std::vector<real> field;

@@ -4,4 +4,4 @@
 
 #include "core/grid.h"
 
-void write_bov(std::string basename, const Grid *grid);
+void writeBov(std::string basename, const Grid *grid);
