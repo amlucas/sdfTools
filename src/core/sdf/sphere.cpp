@@ -12,12 +12,10 @@ SdfSphere::SdfSphere(PyReal3 center, real radius, bool inside) :
     SdfSphere(make_real3(center), radius, inside)
 {}
 
-void SdfSphere::apply(Grid *grid) const
-{
-    common::apply(this, grid);
-}
-
 real SdfSphere::at(real3 r) const
 {
     return sign * (length(r - center) - radius);
 }
+
+#define CLASS_NAME SdfSphere
+GENERATE_IMPL_OPERATIONS()

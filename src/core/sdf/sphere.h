@@ -1,15 +1,16 @@
 #pragma once
 
 #include "interface.h"
+#include "macros.h"
 
 class SdfSphere : public Sdf
 {
 public:
     SdfSphere(real3 center, real radius, bool inside);
     SdfSphere(PyReal3 center, real radius, bool inside);
-    
-    void apply(Grid *grid) const override;
 
+    GENERATE_DECL_OPERATIONS()
+    
     real at(real3 r) const;
     
 protected:

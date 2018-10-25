@@ -1,6 +1,7 @@
 #pragma once
 
 #include "interface.h"
+#include "macros.h"
 
 class SdfPlate : public Sdf
 {
@@ -8,7 +9,7 @@ public:
     SdfPlate(real3 point, real3 normal);
     SdfPlate(PyReal3 point, PyReal3 normal);
     
-    void apply(Grid *grid) const override;
+    GENERATE_DECL_OPERATIONS()
 
     real at(real3 r) const;
     

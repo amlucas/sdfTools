@@ -14,13 +14,11 @@ SdfPlate::SdfPlate(PyReal3 point, PyReal3 normal) :
     SdfPlate(make_real3(point), make_real3(normal))
 {}
 
-void SdfPlate::apply(Grid *grid) const
-{
-    common::apply(this, grid);
-}
-
 real SdfPlate::at(real3 r) const
 {
     real3 dr = r - point;
     return dot(dr, normal);
 }
+
+#define CLASS_NAME SdfPlate
+GENERATE_IMPL_OPERATIONS()
