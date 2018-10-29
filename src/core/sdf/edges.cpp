@@ -36,7 +36,8 @@ static inline real distanceToEdge(real2 r, real2 a, real2 b)
 static inline int sameSideOfEdge(real2 r1, real2 r2, real2 a, real2 b)
 {
     real2 ab = b - a;
-    real2  n = {ab.y, -ab.x};
+    int sign = ab.y > 0 ? 1 : -1;
+    real2  n = {sign * ab.y, -sign * ab.x};
     real2 ar1 = r1 - a;
     real2 ar2 = r2 - a;
     return dot(ar1, n) * dot(ar2, n) > 0;
