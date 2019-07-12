@@ -2,6 +2,7 @@
 
 #include <core/io/write_bov.h>
 #include <core/io/write_sdf.h>
+#include <core/utils/error.h>
 
 Grid::Grid(int3 dimensions, real3 offsets, real3 extents) :
     dimensions(dimensions),
@@ -73,6 +74,27 @@ inline void applyBinaryOperation(Grid *grid1, const Grid *grid2, Op op)
             }
 }
 
+template <class T>
+inline bool equal3(T a, T b)
+{
+    return
+        a.x == b.x &&
+        a.y == b.y &&
+        a.z == b.z;
+}
+
+inline void checkCompatibility(const Grid *a, const Grid *b)
+{
+    if (!equal3(a->getDimensions(), b->getDimensions()))
+        error("Incompatible dimensions");
+
+    if (!equal3(a->getExtents(), b->getExtents()))
+        error("Incompatible extents");
+
+    if (!equal3(a->getOffsets(), b->getOffsets()))
+        error("Incompatible offsets");
+}
+
 void Grid::applySdfComplement()
 {
     applyUnaryOperation(this, [](real a){return -a;});
@@ -80,16 +102,19 @@ void Grid::applySdfComplement()
 
 void Grid::applySdfInteriorUnion(const Grid *other)
 {
+    checkCompatibility(this, other);
     applyBinaryOperation(this, other, [](real a, real b){return std::max(a, b);});
 }
 
 void Grid::applySdfInteriorIntersection(const Grid *other)
 {
+    checkCompatibility(this, other);
     applyBinaryOperation(this, other, [](real a, real b){return std::min(a, b);});
 }
 
 void Grid::applySdfSubtract(const Grid *other)
 {
+    checkCompatibility(this, other);
     applyBinaryOperation(this, other, [](real a, real b){return std::max(a, -b);});
 }
 
