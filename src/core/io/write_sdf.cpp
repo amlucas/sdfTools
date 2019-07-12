@@ -7,6 +7,17 @@
 
 static const std::string ext = ".sdf";
 
+static std::vector<float> getFloatData(const Grid *grid)
+{
+    const auto& data = grid->getData();
+    std::vector<float> d;
+    d.reserve(data.size());
+
+    for (auto val : data) d.push_back(val);
+
+    return d;
+}
+
 void writeSdf(std::string basename, const Grid *grid)
 {
     std::string fname = basename + ext;
@@ -17,7 +28,7 @@ void writeSdf(std::string basename, const Grid *grid)
 
     auto h = grid->getSpacing();
     auto n = grid->getDimensions();
-    auto ntot = n.x * n.y * n.z;
+    auto data = getFloatData(grid);
         
     ss << h.x << ' ' << h.y << ' ' << h.z << '\n';
     ss << n.x << ' ' << n.y << ' ' << n.z << '\n';
@@ -26,7 +37,7 @@ void writeSdf(std::string basename, const Grid *grid)
 
     fwrite(headerData.c_str(), sizeof(char), headerData.size(), f);
     fseek(f, sizeof(char) * headerData.size(), SEEK_CUR);
-    fwrite(grid->data(), sizeof(real), ntot, f);
+    fwrite(data.data(), sizeof(data[0]), data.size(), f);
     
     fclose(f);
 }
