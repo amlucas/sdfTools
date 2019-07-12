@@ -4,6 +4,7 @@
 #include <core/sdf/edges.h>
 #include <core/sdf/interface.h>
 #include <core/sdf/plate.h>
+#include <core/sdf/segment.h>
 #include <core/sdf/sphere.h>
 
 namespace py = pybind11;
@@ -85,6 +86,19 @@ void exportSdf(py::module& m)
                 point: one point on the plane
                 normal: the normal vector (not necessarily normalized, but must be non-zero) 
                         pointing inside
+        )");
+
+    py::class_<SdfSegment> (m, "Segment", pysdf, R"(
+        segment defined by end points and radius
+
+    )")
+        .def(py::init <PyReal3, PyReal3, real, bool> (),
+             "start"_a, "end"_a, "radius"_a, "inside"_a, R"(
+            Args:
+                start: first end of the segment
+                end:  second end of the segment
+                radius: radius of the segment
+                inside: whether the domain is inside the sphere or outside of it
         )");
 
     py::class_<SdfSphere> (m, "Sphere", pysdf, R"(
