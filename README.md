@@ -8,6 +8,7 @@ Installing the tool requires:
 
 - unix environment
 - compiler supporting `c++11` or higher
+- cmake 3.8 or higher
 - python interpreter 3.6 or higher
 - pip
 
