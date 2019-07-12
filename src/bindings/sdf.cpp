@@ -89,14 +89,13 @@ void exportSdf(py::module& m)
         )");
 
     py::class_<SdfEdges> (m, "Edges", pysdf, R"(
-        closed edges
-
+        closed polygon defined from edges
     )")
         .def(py::init <std::vector<std::array<real, 2>>, bool> (),
              "edges"_a, "inside"_a, R"(
             Args:
-                edges: list of vertices positions
-                inside: True if the interior is inside the loop of edges
+                edges: list of vertices positions (2D)
+                inside: ``True`` if the interior is inside the given shape
         )");
 
 

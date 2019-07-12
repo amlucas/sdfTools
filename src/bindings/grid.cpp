@@ -9,7 +9,7 @@ using namespace pybind11::literals;
 void exportGrid(py::module& m)
 {
     py::class_<Grid> (m, "Uniform", R"(
-        container to hold sdf grid data
+        container to hold SDF grid data
 
     )")
         .def(py::init <PyInt3, PyReal3, PyReal3> (),
@@ -26,6 +26,14 @@ void exportGrid(py::module& m)
         
         .def("dumpBov", &Grid::dumpBov,
           "basename"_a, R"(
+          Dump the data in ``bov`` format
+          Args:
+              basename: base filename to dump to
+        )")
+
+        .def("dumpSdf", &Grid::dumpSdf,
+          "basename"_a, R"(
+          Dump data in custom ``.sdf`` format
           Args:
               basename: base filename to dump to
         )");
