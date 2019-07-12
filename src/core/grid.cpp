@@ -34,6 +34,11 @@ std::vector<real>& Grid::getData()
     return field;
 }
 
+const std::vector<real>& Grid::getData() const
+{
+    return field;
+}
+
 void Grid::dumpBov(std::string basename) const
 {
     writeBov(basename, this);

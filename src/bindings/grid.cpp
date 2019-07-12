@@ -20,8 +20,11 @@ void exportGrid(py::module& m)
                 extents: size of the domain
         )")
 
-        .def("get", &Grid::getData, R"(
+        .def("get", (std::vector<real>& (Grid::*)()) &Grid::getData, R"(
             returns a list of all values in a flatten array.
+        )")
+        .def("get", (const std::vector<real>& (Grid::*)() const) &Grid::getData, R"(
+            returns a list of all values in a flatten array (const).
         )")
         
         .def("dumpBov", &Grid::dumpBov,

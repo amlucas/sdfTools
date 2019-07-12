@@ -20,6 +20,7 @@ public:
     real3 getSpacing() const;
     
     std::vector<real>& getData();
+    const std::vector<real>& getData() const;
 
     void dumpBov(std::string basename) const;
     void dumpSdf(std::string basename) const;
