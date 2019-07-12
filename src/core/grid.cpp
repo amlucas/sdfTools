@@ -103,13 +103,13 @@ void Grid::applySdfComplement()
 void Grid::applySdfInteriorUnion(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, [](real a, real b){return std::max(a, b);});
+    applyBinaryOperation(this, other, [](real a, real b){return std::min(a, b);});
 }
 
 void Grid::applySdfInteriorIntersection(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, [](real a, real b){return std::min(a, b);});
+    applyBinaryOperation(this, other, [](real a, real b){return std::max(a, b);});
 }
 
 void Grid::applySdfSubtract(const Grid *other)
