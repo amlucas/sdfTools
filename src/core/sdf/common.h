@@ -42,13 +42,13 @@ namespace common
     template <typename SDF>
     void interiorUnion(const SDF *sdf, Grid *grid)
     {
-        applyOperation(sdf, grid, [](real s, real g){return std::max(s, g);});
+        applyOperation(sdf, grid, [](real s, real g){return std::min(s, g);});
     }
 
     template <typename SDF>
     void interiorIntersection(const SDF *sdf, Grid *grid)
     {
-        applyOperation(sdf, grid, [](real s, real g){return std::min(s, g);});
+        applyOperation(sdf, grid, [](real s, real g){return std::max(s, g);});
     }
 
     template <typename SDF>
