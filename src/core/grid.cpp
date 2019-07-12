@@ -48,3 +48,48 @@ void Grid::dumpSdf(std::string basename) const
 {
     writeSdf(basename, this);
 }
+
+
+template <typename Op>
+inline void applyUnaryOperation(Grid *grid, Op op)
+{
+    for (auto& val : grid->getData())
+        val = op(val);
+}
+
+template <typename Op>
+inline void applyBinaryOperation(Grid *grid1, const Grid *grid2, Op op)
+{
+    auto dims = grid1->getDimensions();
+    real *data1 = grid1->data();
+    const real *data2 = grid2->data();
+
+    for (int iz = 0; iz < dims.z; ++iz)
+        for (int iy = 0; iy < dims.y; ++iy)
+            for (int ix = 0; ix < dims.x; ++ix) {
+                *data1 = op(*data1, *data2);
+                ++data1;
+                ++data2;
+            }
+}
+
+void Grid::applySdfComplement()
+{
+    applyUnaryOperation(this, [](real a){return -a;});
+}
+
+void Grid::applySdfInteriorUnion(const Grid *other)
+{
+    applyBinaryOperation(this, other, [](real a, real b){return std::max(a, b);});
+}
+
+void Grid::applySdfInteriorIntersection(const Grid *other)
+{
+    applyBinaryOperation(this, other, [](real a, real b){return std::min(a, b);});
+}
+
+void Grid::applySdfSubtract(const Grid *other)
+{
+    applyBinaryOperation(this, other, [](real a, real b){return std::max(a, -b);});
+}
+

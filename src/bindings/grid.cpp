@@ -33,11 +33,33 @@ void exportGrid(py::module& m)
           Args:
               basename: base filename to dump to
         )")
-
         .def("dumpSdf", &Grid::dumpSdf,
           "basename"_a, R"(
           Dump data in custom ``.sdf`` format
           Args:
               basename: base filename to dump to
+        )")
+
+        .def("applySdfComplement", &Grid::applySdfComplement,
+          R"(
+          apply complement unary operation 
+        )")
+        .def("applySdfInteriorUnion", &Grid::applySdfInteriorUnion,
+             "other"_a, R"(
+          apply interior union between this grid and another given grid 
+          Args:
+              other: the other grid 
+        )")
+        .def("applySdfInteriorIntersection", &Grid::applySdfInteriorIntersection,
+             "other"_a, R"(
+          apply interior intersection between this grid and another given grid 
+          Args:
+              other: the other grid 
+        )")
+        .def("applySdfSubtract", &Grid::applySdfSubtract,
+             "other"_a, R"(
+          apply interior subtract between this grid and another given grid 
+          Args:
+              other: the other grid 
         )");
 }

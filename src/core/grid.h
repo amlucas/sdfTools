@@ -19,11 +19,17 @@ public:
     real3 getOffsets() const;
     real3 getSpacing() const;
     
-    std::vector<real>& getData();
+    std::vector<real>&       getData();
     const std::vector<real>& getData() const;
 
     void dumpBov(std::string basename) const;
     void dumpSdf(std::string basename) const;
+
+    void applySdfComplement();
+    void applySdfInteriorUnion(const Grid *other);
+    void applySdfInteriorIntersection(const Grid *other);
+    void applySdfSubtract(const Grid *other);
+    
 
 private:
     std::vector<real> field;
