@@ -13,7 +13,7 @@ sdfTools.Sdf.Plate(point  = [0.1*exts[0], 0, 0],
                    normal = [ 1, 0, 0]).apply(grid)
 
 sdfTools.Sdf.Plate(point  = [0.9*exts[0], 0, 0],
-                   normal = [-1, 0, 0]).interiorUnion(grid)
+                   normal = [-1, 0, 0]).interiorIntersection(grid)
 
 
 np.savetxt("grid.txt", grid.get())
