@@ -1,6 +1,7 @@
 #include "write_sdf.h"
 
-#include <cstdio>
+#include <core/utils/file.h>
+
 #include <sstream>
 #include <type_traits>
 #include <vector>
@@ -22,7 +23,7 @@ void writeSdf(std::string basename, const Grid *grid)
 {
     std::string fname = basename + ext;
     
-    FILE *f = fopen(fname.c_str(), "wb");
+    FILE *f = safeOpen(fname.c_str(), "wb");
 
     std::stringstream ss;
 

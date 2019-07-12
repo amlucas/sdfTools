@@ -1,6 +1,7 @@
 #include "write_bov.h"
 
-#include <cstdio>
+#include <core/utils/file.h>
+
 #include <type_traits>
 
 static const char ExtBov[] = ".bov";
@@ -17,7 +18,7 @@ static std::string extractFilename(std::string basename)
 
 static void writeHeader(std::string basename, const Grid *grid)
 {
-    FILE *f = fopen((basename + ExtBov).c_str(), "w");
+    FILE *f = safeOpen((basename + ExtBov).c_str(), "w");
 
     auto dim = grid->getDimensions();
     auto off = grid->getOffsets();
@@ -39,7 +40,7 @@ static void writeHeader(std::string basename, const Grid *grid)
 
 static void writeValues(std::string basename, const Grid *grid)
 {
-    FILE *f = fopen((basename + ExtVal).c_str(), "wb");
+    FILE *f = safeOpen((basename + ExtVal).c_str(), "wb");
 
     auto n = grid->getDimensions();
     
