@@ -1,10 +1,10 @@
 #include "bindings.h"
 
 #include <core/grid.h>
-#include <core/sdf/interface.h>
-#include <core/sdf/sphere.h>
-#include <core/sdf/plate.h>
 #include <core/sdf/edges.h>
+#include <core/sdf/interface.h>
+#include <core/sdf/plate.h>
+#include <core/sdf/sphere.h>
 
 namespace py = pybind11;
 using namespace pybind11::literals;
@@ -65,16 +65,14 @@ void exportSdf(py::module& m)
 
 
     
-    py::class_<SdfSphere> (m, "Sphere", pysdf, R"(
-        sphere defined by center and radius
-
+    py::class_<SdfEdges> (m, "Edges", pysdf, R"(
+        closed polygon defined from edges
     )")
-        .def(py::init <PyReal3, real, bool> (),
-             "center"_a, "radius"_a, "inside"_a, R"(
+        .def(py::init <std::vector<std::array<real, 2>>, bool> (),
+             "edges"_a, "inside"_a, R"(
             Args:
-                center: center of the sphere
-                radius: radius of the sphere
-                inside: whether the domain is inside the sphere or outside of it
+                edges: list of vertices positions (2D)
+                inside: ``True`` if the interior is inside the given shape
         )");
 
     py::class_<SdfPlate> (m, "Plate", pysdf, R"(
@@ -85,17 +83,20 @@ void exportSdf(py::module& m)
              "point"_a, "normal"_a, R"(
             Args:
                 point: one point on the plane
-                normal: the normal vector (not necessarily normalized, but must be non-zero) pointing inside
+                normal: the normal vector (not necessarily normalized, but must be non-zero) 
+                        pointing inside
         )");
 
-    py::class_<SdfEdges> (m, "Edges", pysdf, R"(
-        closed polygon defined from edges
+    py::class_<SdfSphere> (m, "Sphere", pysdf, R"(
+        sphere defined by center and radius
+
     )")
-        .def(py::init <std::vector<std::array<real, 2>>, bool> (),
-             "edges"_a, "inside"_a, R"(
+        .def(py::init <PyReal3, real, bool> (),
+             "center"_a, "radius"_a, "inside"_a, R"(
             Args:
-                edges: list of vertices positions (2D)
-                inside: ``True`` if the interior is inside the given shape
+                center: center of the sphere
+                radius: radius of the sphere
+                inside: whether the domain is inside the sphere or outside of it
         )");
 
 
