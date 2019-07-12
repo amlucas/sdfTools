@@ -1,13 +1,13 @@
 #pragma once
 
-#include "core/grid.h"
+class Grid;
 
 class Sdf
 {
 public:
 
     Sdf();
-    virtual ~Sdf() = default;
+    virtual ~Sdf();
 
     virtual void apply           (Grid *grid) const = 0;
     virtual void applyComplement (Grid *grid) const = 0;

@@ -1,9 +1,9 @@
 #pragma once
 
+#include "types.h"
+
 #include <vector>
 #include <string>
-
-#include "types.h"
 
 class Grid
 {
@@ -22,6 +22,7 @@ public:
     std::vector<real>& getData();
 
     void dumpBov(std::string basename) const;
+    void dumpSdf(std::string basename) const;
 
 private:
     std::vector<real> field;

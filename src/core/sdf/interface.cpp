@@ -1,4 +1,4 @@
 #include "interface.h"
 
-Sdf::Sdf()
-{}
+Sdf::Sdf()  = default;
+Sdf::~Sdf() = default;

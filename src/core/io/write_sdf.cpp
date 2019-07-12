@@ -7,19 +7,7 @@
 
 static const std::string ext = ".sdf";
 
-
-// static void writeValues(std::string basename, const Grid *grid)
-// {
-//     FILE *f = fopen((basename + ExtVal).c_str(), "wb");
-
-//     auto n = grid->getDimensions();
-    
-//     fwrite((const void*) grid->data(), sizeof(real), n.x * n.y * n.z, f);
-    
-//     fclose(f);
-// }
-
-void writeBov(std::string basename, const Grid *grid)
+void writeSdf(std::string basename, const Grid *grid)
 {
     std::string fname = basename + ext;
     

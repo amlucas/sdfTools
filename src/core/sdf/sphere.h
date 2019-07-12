@@ -3,6 +3,8 @@
 #include "interface.h"
 #include "macros.h"
 
+#include <core/types.h>
+
 class SdfSphere : public Sdf
 {
 public:

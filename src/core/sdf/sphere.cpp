@@ -1,10 +1,13 @@
 #include "sphere.h"
-#include "core/utils/helper_math.h"
-
 #include "common.h"
 
+#include <core/utils/helper_math.h>
+#include <core/grid.h>
+
+
 SdfSphere::SdfSphere(real3 center, real radius, bool inside) :
-    center(center), radius(radius),
+    center(center),
+    radius(radius),
     sign(inside ? 1 : -1)
 {}
 

@@ -1,10 +1,10 @@
 #include "bindings.h"
 
-#include "core/sdf/interface.h"
-
-#include "core/sdf/sphere.h"
-#include "core/sdf/plate.h"
-#include "core/sdf/edges.h"
+#include <core/grid.h>
+#include <core/sdf/interface.h>
+#include <core/sdf/sphere.h>
+#include <core/sdf/plate.h>
+#include <core/sdf/edges.h>
 
 namespace py = pybind11;
 using namespace pybind11::literals;

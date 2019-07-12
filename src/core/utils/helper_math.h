@@ -1,4 +1,6 @@
-#include "core/types.h"
+#pragma once
+
+#include <core/types.h>
 
 #include <cmath>
 

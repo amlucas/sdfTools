@@ -1,7 +1,7 @@
+#include "write_bov.h"
+
 #include <cstdio>
 #include <type_traits>
-
-#include "write_bov.h"
 
 static const char ExtBov[] = ".bov";
 static const char ExtVal[] = ".values";

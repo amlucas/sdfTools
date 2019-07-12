@@ -1,9 +1,12 @@
 #pragma once
 
-#include <array>
-
 #include "interface.h"
 #include "macros.h"
+
+#include <core/types.h>
+
+#include <array>
+#include <vector>
 
 class SdfEdges : public Sdf
 {

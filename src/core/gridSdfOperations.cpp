@@ -1,8 +1,9 @@
 #include "gridSdfOperations.h"
-#include "grid.h"
+
+#include <core/grid.h>
 
 template <typename Op>
-static void applyOperation(Grid *grid, Op op)
+inline void applyOperation(Grid *grid, Op op)
 {
     auto dims = grid->getDimensions();
     real *data = grid->data();
@@ -21,7 +22,7 @@ void gridSdfComplement(Grid *grid)
 }
 
 template <typename Op>
-static void applyBinaryOperation(Grid *grid1, const Grid *grid2, Op op)
+inline void applyBinaryOperation(Grid *grid1, const Grid *grid2, Op op)
 {
     auto dims = grid1->getDimensions();
     real *data1 = grid1->data();

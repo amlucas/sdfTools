@@ -1,3 +1,6 @@
+#include <core/grid.h>
+#include <core/utils/helper_math.h>
+
 namespace common
 {    
     template <typename SDF, typename Op>

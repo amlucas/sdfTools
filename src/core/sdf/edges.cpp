@@ -1,10 +1,12 @@
 #include "edges.h"
-#include "core/utils/helper_math.h"
-
 #include "common.h"
 
+#include <core/grid.h>
+#include <core/utils/helper_math.h>
+
 SdfEdges::SdfEdges(std::vector<real2> edges, bool inside) :
-    edges(edges), insideSign(inside ? 1 : -1)
+    edges(edges),
+    insideSign(inside ? 1 : -1)
 {}
 
 static std::vector<real2> convert(std::vector<std::array<real, 2>> src)
