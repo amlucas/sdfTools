@@ -17,6 +17,8 @@ public:
     int3 getDimensions() const;
     real3 getExtents() const;
     real3 getOffsets() const;
+    real3 getSpacing() const;
+    
     std::vector<real>& getData();
 
     void dumpBov(std::string basename) const;

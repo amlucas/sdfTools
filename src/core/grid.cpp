@@ -16,6 +16,13 @@ int3 Grid::getDimensions() const { return dimensions; }
 real3 Grid::getExtents() const { return extents; }
 real3 Grid::getOffsets() const { return offsets; }
 
+real3 Grid::getSpacing() const
+{
+    return {extents.x / dimensions.x,
+            extents.y / dimensions.y,
+            extents.z / dimensions.z};
+}
+
 std::vector<real>& Grid::getData()
 {
     return field;
