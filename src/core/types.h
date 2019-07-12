@@ -4,6 +4,11 @@
 
 typedef float real;
 
+constexpr inline real operator "" _r (const long double a)
+{
+    return (real) a;
+}
+
 struct int3
 {
     int x, y, z;
