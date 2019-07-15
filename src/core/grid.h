@@ -2,14 +2,23 @@
 
 #include "types.h"
 
-#include <vector>
+#include <array>
 #include <string>
+#include <vector>
 
 class Grid
 {
 public:
     Grid(int3 dimensions, real3 offsets, real3 extents);
     Grid(PyInt3 dimensions, PyReal3 offsets, PyReal3 extents);
+
+    Grid(const Grid& other);
+    Grid(Grid&& other);
+    Grid& operator=(Grid other);
+    
+    ~Grid();
+    
+    friend void swap(Grid& a, Grid& b);
 
     const real* data() const { return field.data(); }
     real*       data()       { return field.data(); }
@@ -29,8 +38,10 @@ public:
     void applySdfInteriorUnion(const Grid *other);
     void applySdfInteriorIntersection(const Grid *other);
     void applySdfSubtract(const Grid *other);
-    
 
+    using FlipMap = std::array<char,3>;
+    void flip(const FlipMap& map);
+    
 private:
     std::vector<real> field;
 

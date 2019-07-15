@@ -18,6 +18,34 @@ Grid::Grid(PyInt3 dimensions, PyReal3 offsets, PyReal3 extents) :
          make_real3(extents))
 {}
 
+Grid::Grid(const Grid& other) :
+    field(other.field),
+    dimensions(other.dimensions),
+    offsets(other.offsets),
+    extents(other.extents)   
+{}
+
+Grid::Grid(Grid&& other)
+{
+    swap(*this, other);
+}
+
+Grid& Grid::operator=(Grid other)
+{
+    swap(*this, other);
+    return *this;
+}
+
+Grid::~Grid() = default;
+
+void swap(Grid& a, Grid& b)
+{
+    std::swap(a.field,      b.field);
+    std::swap(a.dimensions, b.dimensions);
+    std::swap(a.offsets,    b.offsets);
+    std::swap(a.extents,    b.extents);
+}
+
 int3 Grid::getDimensions() const { return dimensions; }
 
 real3 Grid::getExtents() const { return extents; }
@@ -118,3 +146,76 @@ void Grid::applySdfSubtract(const Grid *other)
     applyBinaryOperation(this, other, [](real a, real b){return std::max(a, -b);});
 }
 
+constexpr Grid::FlipMap identityFlipMap = {'x', 'y', 'z'};
+using IntFlipMap = std::array<int, 3>;
+
+inline void checkMap(const Grid::FlipMap& map)
+{
+    std::array<bool,3> valid {false, false, false};
+    
+    for (auto c : map)
+    {
+        if      (c == 'x') valid[0] = true;
+        else if (c == 'y') valid[1] = true;
+        else if (c == 'z') valid[2] = true;
+        else
+            error("invalid map: wrong character '%c' (must be 'x', 'y' or 'z')", c);
+    }
+
+    for (int i = 0; i < map.size(); ++i)
+        if (!valid[i])
+            error("invalid map: missing '%c'", identityFlipMap[i]);
+}
+
+inline IntFlipMap convertMap(const Grid::FlipMap& map)
+{
+    auto getComp = [&](char c)
+    {
+        if      (c == 'x') return 0;
+        else if (c == 'y') return 1;
+        else               return 2;
+    };
+
+    return {getComp(map[0]),
+            getComp(map[1]),
+            getComp(map[2])};
+}
+
+template<typename T>
+inline T flip3(const T& v0, const IntFlipMap& map)
+{
+    
+    auto getComp = [&](char c)
+    {
+        if      (c == 0) return v0.x;
+        else if (c == 1) return v0.y;
+        else             return v0.z;
+    };
+
+    return {getComp(map[0]),
+            getComp(map[1]),
+            getComp(map[2])};
+}
+
+void Grid::flip(const Grid::FlipMap& map)
+{
+    checkMap(map);
+    auto imap = convertMap(map);
+    const Grid original(*this);
+
+    dimensions = flip3(original.getDimensions(), imap);
+    offsets    = flip3(original.getOffsets(),    imap);
+    extents    = flip3(original.getExtents(),    imap);
+
+    auto origDim = original.getDimensions();
+    auto srcData = original.data();
+    
+    for (int iz = 0; iz < origDim.z; ++iz)
+        for (int iy = 0; iy < origDim.y; ++iy)
+            for (int ix = 0; ix < origDim.x; ++ix) {
+                int3 dst = flip3(int3{ix, iy, iz}, imap);
+                int dstId = dst.x + dimensions.x * (dst.y + dimensions.y * dst.z);
+                field[dstId] = *srcData;
+                ++srcData;
+            }
+}
