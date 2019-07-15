@@ -36,4 +36,15 @@ struct SubtractGrid
     inline real operator()(real s, real g) const {return std::max(s, -g);}
 };
 
+template<typename... Operations>
+struct Chain
+{
+    inline real operator()(real s, real g)
+    {
+        using ApplyChain = real[];
+        ApplyChain{ s = Operations{}(s, g)...};
+        return s;
+    }
+};
+
 } // namespace SdfOperation
