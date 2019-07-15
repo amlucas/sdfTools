@@ -17,4 +17,8 @@ public:
 
     virtual void interiorSubtractToGrid (Grid *grid) const = 0;
     virtual void interiorSubtractGrid   (Grid *grid) const = 0;
+
+    
+    virtual void applyPeriodic           (Grid *grid) const = 0;
+    virtual void applyComplementPeriodic (Grid *grid) const = 0;
 };

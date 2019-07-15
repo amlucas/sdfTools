@@ -36,13 +36,19 @@ struct SubtractGrid
     inline real operator()(real s, real g) const {return std::max(s, -g);}
 };
 
+namespace detail
+{
+using ApplyChain = real[];
+// in order to suppress warnings
+inline void unused(ApplyChain) {}
+}
+
 template<typename... Operations>
 struct Chain
 {
     inline real operator()(real s, real g)
     {
-        using ApplyChain = real[];
-        ApplyChain{ s = Operations{}(s, g)...};
+        detail::unused(detail::ApplyChain{ 0.0_r, s = Operations{}(s, g)...});
         return s;
     }
 };

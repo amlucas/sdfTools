@@ -95,9 +95,24 @@ void applyComplement(const SDF *sdf, Grid *grid)
 }
 
 template <typename SDF>
+void applyComplementPeriodic(const SDF *sdf, Grid *grid)
+{
+    applyOperationPeriodic(sdf, grid,
+                           SdfOperation::Complement{},
+                           SdfOperation::Chain<SdfOperation::Complement,
+                                               SdfOperation::Union>{});
+}
+
+template <typename SDF>
 void interiorUnion(const SDF *sdf, Grid *grid)
 {
     applyOperation(sdf, grid, SdfOperation::Union{});
+}
+
+template <typename SDF>
+void interiorUnionPeriodic(const SDF *sdf, Grid *grid)
+{
+    applyOperationPeriodic(sdf, grid, SdfOperation::Union{}, SdfOperation::Union{});
 }
 
 template <typename SDF>

@@ -24,6 +24,14 @@ void exportSdf(py::module& m)
             grid: the grid to apply the sdf to
     )");
 
+    pysdf.def("applyPeriodic", &Sdf::applyPeriodic,
+              "grid"_a, R"(
+        Compute the given sdf shape for each point of the given grid and its periodic images
+
+        Args:
+            grid: the grid to apply the sdf to
+    )");
+
     pysdf.def("applyComplement", &Sdf::applyComplement,
               "grid"_a, R"(
         Compute the complement of the given sdf shape for each point of the given grid

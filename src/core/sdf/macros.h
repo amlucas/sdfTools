@@ -4,7 +4,9 @@
     _(interiorUnion) \
     _(interiorIntersection) \
     _(interiorSubtractToGrid) \
-    _(interiorSubtractGrid)
+    _(interiorSubtractGrid) \
+    _(applyPeriodic) \
+    _(applyComplementPeriodic)
 
 #define GENERATE_IMPL(op)                                 \
     void CLASS_NAME::op(Grid *grid) const                 \
