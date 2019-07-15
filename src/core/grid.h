@@ -40,6 +40,7 @@ public:
 
     using FlipMap = std::string;
     void flip(const FlipMap& map);
+    void extrude(real zoffset, real zextent, int nz);
     
 private:
     std::vector<real> field;

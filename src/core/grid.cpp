@@ -227,3 +227,20 @@ void Grid::flip(const Grid::FlipMap& map)
                 ++srcData;
             }
 }
+
+void Grid::extrude(real zoffset, real zextent, int nz)
+{
+    if (dimensions.z != 1)
+        error("can only extrude sdf from 'xy' plane (number of gridpoints along z must be 1)");
+
+    extents.z = zextent;
+    offsets.z = zoffset;
+
+    const auto xySdf = field;
+
+    field.resize(xySdf.size() * nz);
+
+    for (int iz = 0; iz < nz; ++iz)
+        std::copy(xySdf.begin(), xySdf.end(),
+                  field.begin() + xySdf.size() * iz);
+}

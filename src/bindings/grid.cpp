@@ -73,5 +73,13 @@ void exportGrid(py::module& m)
               * map = 'xyz' does not flip anything
               * map = 'yxz' flip x and y axes
               * map = 'zxy' z -> x, y -> z, x -> y
+        )")
+        .def("extrude", &Grid::extrude,
+             "zoffset"_a, "zextent"_a, "nz"_a, R"(
+          extrude a SDF from 'xy' plane to 3 dimensions
+          Args:
+              zoffset: offset in new direction
+              zextent: extent in new direction
+              nz: resolution in new direction
         )");
 }
