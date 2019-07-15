@@ -4,6 +4,8 @@
 #include <core/io/write_sdf.h>
 #include <core/utils/error.h>
 
+#include <array>
+
 Grid::Grid(int3 dimensions, real3 offsets, real3 extents) :
     dimensions(dimensions),
     offsets(offsets),
@@ -146,12 +148,16 @@ void Grid::applySdfSubtract(const Grid *other)
     applyBinaryOperation(this, other, [](real a, real b){return std::max(a, -b);});
 }
 
-constexpr Grid::FlipMap identityFlipMap = {'x', 'y', 'z'};
+static const Grid::FlipMap identityFlipMap = "xyz";
 using IntFlipMap = std::array<int, 3>;
 
 inline void checkMap(const Grid::FlipMap& map)
 {
     std::array<bool,3> valid {false, false, false};
+
+    if (map.size() != 3)
+        error("invalid map '%s': must be of size 3",
+              map.c_str());
     
     for (auto c : map)
     {
@@ -159,12 +165,14 @@ inline void checkMap(const Grid::FlipMap& map)
         else if (c == 'y') valid[1] = true;
         else if (c == 'z') valid[2] = true;
         else
-            error("invalid map: wrong character '%c' (must be 'x', 'y' or 'z')", c);
+            error("invalid map '%s': wrong character '%c' (must be 'x', 'y' or 'z')",
+                  map.c_str(), c);
     }
 
     for (int i = 0; i < map.size(); ++i)
         if (!valid[i])
-            error("invalid map: missing '%c'", identityFlipMap[i]);
+            error("invalid map '%s': missing '%c'",
+                  map.c_str(), identityFlipMap[i]);
 }
 
 inline IntFlipMap convertMap(const Grid::FlipMap& map)

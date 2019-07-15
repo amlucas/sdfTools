@@ -2,7 +2,6 @@
 
 #include "types.h"
 
-#include <array>
 #include <string>
 #include <vector>
 
@@ -39,7 +38,7 @@ public:
     void applySdfInteriorIntersection(const Grid *other);
     void applySdfSubtract(const Grid *other);
 
-    using FlipMap = std::array<char,3>;
+    using FlipMap = std::string;
     void flip(const FlipMap& map);
     
 private:

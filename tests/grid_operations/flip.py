@@ -2,11 +2,16 @@
 
 import numpy as np
 import sdfTools
+import argparse
 
-n0 = 32
+parser = argparse.ArgumentParser()
+parser.add_argument('--map',  type=str, required=True)
+args = parser.parse_args()
+
+n0 = 8
 
 offs = (0., 0., 0.)
-dims = (n0, 3*n, 2*n)
+dims = (n0, 3*n0, 2*n0)
 exts = (1.0, 3.0, 2.0)
 
 center = (0.35, 0.75, 0.5)
@@ -18,15 +23,27 @@ sphere = sdfTools.Sdf.Sphere(center, radius, inside=True)
 
 sphere.apply(grid)
 
-grid.flip('xyz')
+grid.flip(args.map)
 
 grid.dumpBov("sphere");
 
-np.savetxt("grid.txt", grid1.get())
+np.savetxt("grid.txt", grid.get())
 
 # TEST: grid_operations.flip.xyz
 # cd grid_operations
 # rm -rf *.txt
-# ./flip.py
+# ./flip.py --map 'xyz'
+# mv grid.txt grid.out.txt
+
+# TEST: grid_operations.flip.yxz
+# cd grid_operations
+# rm -rf *.txt
+# ./flip.py --map 'yxz'
+# mv grid.txt grid.out.txt
+
+# TEST: grid_operations.flip.zxy
+# cd grid_operations
+# rm -rf *.txt
+# ./flip.py --map 'zxy'
 # mv grid.txt grid.out.txt
 
