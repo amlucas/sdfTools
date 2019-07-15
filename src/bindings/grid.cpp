@@ -61,5 +61,17 @@ void exportGrid(py::module& m)
           apply interior subtract between this grid and another given grid 
           Args:
               other: the other grid 
+        )")
+
+        .def("flip", &Grid::flip,
+             "map"_a, R"(
+          flip axes of the grid according to map.
+          Args:
+              map: flip map
+
+          examples:
+              * map = 'xyz' does not flip anything
+              * map = 'yxz' flip x and y axes
+              * map = 'zxy' z -> x, y -> z, x -> y
         )");
 }
