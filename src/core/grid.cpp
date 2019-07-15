@@ -2,6 +2,7 @@
 
 #include <core/io/write_bov.h>
 #include <core/io/write_sdf.h>
+#include <core/sdf/operations.h>
 #include <core/utils/error.h>
 
 #include <array>
@@ -127,25 +128,25 @@ inline void checkCompatibility(const Grid *a, const Grid *b)
 
 void Grid::applySdfComplement()
 {
-    applyUnaryOperation(this, [](real a){return -a;});
+    applyUnaryOperation(this, SdfOperation::Complement{});
 }
 
 void Grid::applySdfInteriorUnion(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, [](real a, real b){return std::min(a, b);});
+    applyBinaryOperation(this, other, SdfOperation::Union{});
 }
 
 void Grid::applySdfInteriorIntersection(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, [](real a, real b){return std::max(a, b);});
+    applyBinaryOperation(this, other, SdfOperation::Intersection{});
 }
 
 void Grid::applySdfSubtract(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, [](real a, real b){return std::max(a, -b);});
+    applyBinaryOperation(this, other, SdfOperation::SubtractGrid{});
 }
 
 static const Grid::FlipMap identityFlipMap = "xyz";
