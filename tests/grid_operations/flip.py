@@ -25,8 +25,6 @@ sphere.apply(grid)
 
 grid.flip(args.map)
 
-grid.dumpBov("sphere");
-
 np.savetxt("grid.txt", grid.get())
 
 # TEST: grid_operations.flip.xyz

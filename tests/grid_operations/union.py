@@ -25,8 +25,6 @@ sphere2.apply(grid2)
 
 grid1.applySdfInteriorUnion(grid2)
 
-grid1.dumpBov("spheres");
-
 np.savetxt("grid.txt", grid1.get())
 
 # TEST: grid_operations.union
