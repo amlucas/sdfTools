@@ -235,6 +235,7 @@ void Grid::extrude(real zoffset, real zextent, int nz)
 
     extents.z = zextent;
     offsets.z = zoffset;
+    dimensions.z = nz;
 
     const auto xySdf = field;
 
