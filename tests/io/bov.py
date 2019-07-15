@@ -16,9 +16,7 @@ sphere = sdfTools.Sdf.Sphere(center, radius, inside=True)
 sphere.apply(grid)
 
 basename="sphere"
-
 grid.dumpBov(basename)
-
 rawdata = open(basename+".values", "rb").read()
 
 nfloats = dims[0]*dims[1]*dims[2]
@@ -31,7 +29,7 @@ np.savetxt("bov_values.txt", data)
 # cd io
 # rm -rf *.txt sphere.bov sphere.values
 # ./bov.py
-# cat   sphere.bov     > bov.out.txt
+# cat sphere.bov > bov.out.txt
 
 # TEST: io.bov.values
 # cd io
