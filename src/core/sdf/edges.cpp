@@ -62,9 +62,9 @@ real SdfEdges::at(real3 pos) const
     real2 r = {pos.x, pos.y};
     real2 orig = {0.25f, 0.33f}; // TODO no hardcoded, choose a suitable point
     
-    for (int i = 0; i < edges.size(); ++i) {
-
-        int inext = (i+1) % edges.size();
+    for (size_t i = 0; i < edges.size(); ++i)
+    {
+        auto inext = (i+1) % edges.size();
         auto a = edges[i    ];
         auto b = edges[inext];
         

@@ -169,7 +169,7 @@ inline void checkMap(const Grid::FlipMap& map)
                   map.c_str(), c);
     }
 
-    for (int i = 0; i < map.size(); ++i)
+    for (size_t i = 0; i < map.size(); ++i)
         if (!valid[i])
             error("invalid map '%s': missing '%c'",
                   map.c_str(), identityFlipMap[i]);
