@@ -21,4 +21,7 @@ public:
     
     virtual void applyPeriodic           (Grid *grid) const = 0;
     virtual void applyComplementPeriodic (Grid *grid) const = 0;
+
+    virtual void interiorUnionPeriodic        (Grid *grid) const = 0;
+    virtual void interiorIntersectionPeriodic (Grid *grid) const = 0;
 };

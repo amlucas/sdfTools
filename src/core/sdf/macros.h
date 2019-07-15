@@ -6,7 +6,9 @@
     _(interiorSubtractToGrid) \
     _(interiorSubtractGrid) \
     _(applyPeriodic) \
-    _(applyComplementPeriodic)
+    _(applyComplementPeriodic) \
+    _(interiorUnionPeriodic) \
+    _(interiorIntersectionPeriodic)
 
 #define GENERATE_IMPL(op)                                 \
     void CLASS_NAME::op(Grid *grid) const                 \

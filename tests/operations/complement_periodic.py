@@ -14,9 +14,10 @@ radius = 0.3
 
 grid = sdfTools.Grid.Uniform(dims, offs, exts)
 
-sphere = sdfTools.Sdf.Sphere(center, radius, inside=False)
+sphere = sdfTools.Sdf.Sphere(center, radius, inside=True)
 
 sphere.applyComplementPeriodic(grid)
+grid.applySdfComplement()
 
 np.savetxt("grid.txt", grid.get())
 

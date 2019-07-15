@@ -31,8 +31,8 @@ inline void applyOperation(const SDF *sdf, Grid *grid, Op op)
             }    
 }
 
-template <typename SDF, typename Op0, typename OpP>
-void applyOperationPeriodic(const SDF *sdf, Grid *grid, Op0 opInit, OpP opPeriodic)
+template <typename SDF, typename Op>
+void applyOperationPeriodic(const SDF *sdf, Grid *grid, Op op)
 {
     auto dims = grid->getDimensions();
     auto exts = grid->getExtents();
@@ -50,7 +50,7 @@ void applyOperationPeriodic(const SDF *sdf, Grid *grid, Op0 opInit, OpP opPeriod
 
                 const int i = ix + dims.x * (iy + dims.y * iz);
 
-                auto val = opInit(sdf->at(r0), data[i]);
+                auto val = sdf->at(r0);
                     
                 for (int dirz = -1; dirz < 2; ++dirz) {
                     for (int diry = -1; diry < 2; ++diry) {
@@ -65,11 +65,11 @@ void applyOperationPeriodic(const SDF *sdf, Grid *grid, Op0 opInit, OpP opPeriod
                             r.y += diry * exts.y;
                             r.z += dirz * exts.z;
                                 
-                            val = opPeriodic(sdf->at(r), val);
+                            val = SdfOperation::Union{}(sdf->at(r), val);
                         }
                     }
                 }
-                data[i] = val;
+                data[i] = op(val, data[i]);
             }
         }
     }
@@ -85,7 +85,7 @@ void apply(const SDF *sdf, Grid *grid)
 template <typename SDF>
 void applyPeriodic(const SDF *sdf, Grid *grid)
 {
-    applyOperationPeriodic(sdf, grid, SdfOperation::Identity{}, SdfOperation::Union{});
+    applyOperationPeriodic(sdf, grid, SdfOperation::Identity{});
 }
 
 template <typename SDF>
@@ -97,10 +97,7 @@ void applyComplement(const SDF *sdf, Grid *grid)
 template <typename SDF>
 void applyComplementPeriodic(const SDF *sdf, Grid *grid)
 {
-    applyOperationPeriodic(sdf, grid,
-                           SdfOperation::Complement{},
-                           SdfOperation::Chain<SdfOperation::Complement,
-                                               SdfOperation::Union>{});
+    applyOperationPeriodic(sdf, grid, SdfOperation::Complement{});
 }
 
 template <typename SDF>
@@ -112,13 +109,19 @@ void interiorUnion(const SDF *sdf, Grid *grid)
 template <typename SDF>
 void interiorUnionPeriodic(const SDF *sdf, Grid *grid)
 {
-    applyOperationPeriodic(sdf, grid, SdfOperation::Union{}, SdfOperation::Union{});
+    applyOperationPeriodic(sdf, grid, SdfOperation::Union{});
 }
 
 template <typename SDF>
 void interiorIntersection(const SDF *sdf, Grid *grid)
 {
     applyOperation(sdf, grid, SdfOperation::Intersection{});
+}
+
+template <typename SDF>
+void interiorIntersectionPeriodic(const SDF *sdf, Grid *grid)
+{
+    applyOperationPeriodic(sdf, grid, SdfOperation::Intersection{});
 }
 
 template <typename SDF>
