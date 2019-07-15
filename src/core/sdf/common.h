@@ -1,8 +1,12 @@
+#pragma once
+
+#include "operations.h"
+
 #include <core/grid.h>
 #include <core/utils/helper_math.h>
 
 namespace common
-{    
+{
 template <typename SDF, typename Op>
 inline void applyOperation(const SDF *sdf, Grid *grid, Op op)
 {
@@ -75,44 +79,42 @@ void applyOperationPeriodic(const SDF *sdf, Grid *grid, Op0 opInit, OpP opPeriod
 template <typename SDF>
 void apply(const SDF *sdf, Grid *grid)
 {
-    applyOperation(sdf, grid, [](real s, real g){return s;});
+    applyOperation(sdf, grid, SdfOperation::Identity{});
 }
 
 template <typename SDF>
 void applyPeriodic(const SDF *sdf, Grid *grid)
 {
-    applyOperationPeriodic(sdf, grid,
-                           [](real s, real g){return s;},
-                           [](real s, real g){return std::min(s, g);});
+    applyOperationPeriodic(sdf, grid, SdfOperation::Identity{}, SdfOperation::Union{});
 }
 
 template <typename SDF>
 void applyComplement(const SDF *sdf, Grid *grid)
 {
-    applyOperation(sdf, grid, [](real s, real g){return -s;});
+    applyOperation(sdf, grid, SdfOperation::Complement{});
 }
 
 template <typename SDF>
 void interiorUnion(const SDF *sdf, Grid *grid)
 {
-    applyOperation(sdf, grid, [](real s, real g){return std::min(s, g);});
+    applyOperation(sdf, grid, SdfOperation::Union{});
 }
 
 template <typename SDF>
 void interiorIntersection(const SDF *sdf, Grid *grid)
 {
-    applyOperation(sdf, grid, [](real s, real g){return std::max(s, g);});
+    applyOperation(sdf, grid, SdfOperation::Intersection{});
 }
 
 template <typename SDF>
 void interiorSubtractToGrid(const SDF *sdf, Grid *grid)
 {
-    applyOperation(sdf, grid, [](real s, real g){return std::max(-s, g);});
+    applyOperation(sdf, grid, SdfOperation::SubtractToGrid{});
 }
 
 template <typename SDF>
 void interiorSubtractGrid(const SDF *sdf, Grid *grid)
 {
-    applyOperation(sdf, grid, [](real s, real g){return std::max(s, -g);});
+    applyOperation(sdf, grid, SdfOperation::SubtractGrid{});
 }
 }
