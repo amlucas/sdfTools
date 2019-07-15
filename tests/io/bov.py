@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 import numpy as np
-import sdfTools
+import sdfTools, struct
 
 offs = (0., 0., 0.)
 dims = (3, 4, 5)
@@ -15,7 +15,17 @@ sphere = sdfTools.Sdf.Sphere(center, radius, inside=True)
 
 sphere.apply(grid)
 
-grid.dumpBov("sphere")
+basename="sphere"
+
+grid.dumpBov(basename)
+
+rawdata = open(basename+".values", "rb").read()
+
+nfloats = dims[0]*dims[1]*dims[2]
+data = np.array(struct.unpack("@" + "f" * nfloats, rawdata))
+
+np.savetxt("bov_values.txt", data)
+
 
 # TEST: io.bov.header
 # cd io
@@ -27,5 +37,5 @@ grid.dumpBov("sphere")
 # cd io
 # rm -rf *.txt sphere.bov sphere.values
 # ./bov.py
-# od -f sphere.values > bov.out.txt
+# cat bov_values.txt > bov.out.txt
 
