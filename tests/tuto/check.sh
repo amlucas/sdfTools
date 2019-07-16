@@ -23,3 +23,9 @@ cd tuto
 rm -f exit.out.txt
 ./prism.py
 echo $? > exit.out.txt
+
+# TEST: tuto.cheese
+cd tuto
+rm -f exit.out.txt
+./cheese.py
+echo $? > exit.out.txt
