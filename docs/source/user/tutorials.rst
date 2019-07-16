@@ -31,3 +31,38 @@ The resulting files ``sphere.bov`` and ``sphere.values`` can be visualiszed with
     :width: 90%
 
     Isosurfaces of the sphere SDF obtained from :ref:`sphere-py`.
+
+
+Binary operations
+*****************
+
+It is possible to apply operations between several shapes.
+Let us create the union of a ball and a capsule (see :any:`Segment`).
+
+.. literalinclude:: ../../../tests/tuto/union.py
+   :name: union-py
+   :caption: `union.py`
+
+.. figure:: ../images/union.png
+    :figclass: align-center
+    :width: 90%
+
+    0 - Isosurface of the SDF obtained from :ref:`union-py`.
+
+
+More complex geometries
+***********************
+
+It is very easy to extend the previous example to create more complex geometries.
+An example is shown here:
+
+
+.. literalinclude:: ../../../tests/tuto/three.py
+   :name: three-py
+   :caption: `three.py`
+
+.. figure:: ../images/three.png
+    :figclass: align-center
+    :width: 90%
+
+    0 - Isosurface of the SDF obtained from :ref:`three-py`.
