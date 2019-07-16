@@ -1,20 +1,15 @@
-.. sdfTools documentation master file, created by
-   sphinx-quickstart on Tue Jul 16 10:53:06 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+sdfTools
+========
 
-Welcome to sdfTools's documentation!
-====================================
+A simple tool to create complex geometries from simple shapes, with python bindings.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: User guide
+   
+   user/installation
+   user/grid
+   user/sdf
 
 
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
