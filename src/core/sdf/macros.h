@@ -1,14 +1,16 @@
-#define LIST_OPERATIONS(_) \
-    _(apply) \
-    _(applyComplement) \
-    _(interiorUnion) \
-    _(interiorIntersection) \
-    _(interiorSubtractToGrid) \
-    _(interiorSubtractGrid) \
-    _(applyPeriodic) \
-    _(applyComplementPeriodic) \
-    _(interiorUnionPeriodic) \
-    _(interiorIntersectionPeriodic)
+#define LIST_OPERATIONS(_)                      \
+    _(apply)                                    \
+    _(applyComplement)                          \
+    _(interiorUnion)                            \
+    _(interiorIntersection)                     \
+    _(interiorSubtractToGrid)                   \
+    _(interiorSubtractGrid)                     \
+    _(applyPeriodic)                            \
+    _(applyComplementPeriodic)                  \
+    _(interiorUnionPeriodic)                    \
+    _(interiorIntersectionPeriodic)             \
+    _(interiorSubtractToGridPeriodic)           \
+    _(interiorSubtractGridPeriodic)
 
 #define GENERATE_IMPL(op)                                 \
     void CLASS_NAME::op(Grid *grid) const                 \

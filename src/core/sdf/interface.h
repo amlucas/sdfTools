@@ -24,4 +24,7 @@ public:
 
     virtual void interiorUnionPeriodic        (Grid *grid) const = 0;
     virtual void interiorIntersectionPeriodic (Grid *grid) const = 0;
+
+    virtual void interiorSubtractToGridPeriodic (Grid *grid) const = 0;
+    virtual void interiorSubtractGridPeriodic   (Grid *grid) const = 0;
 };

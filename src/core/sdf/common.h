@@ -131,8 +131,21 @@ void interiorSubtractToGrid(const SDF *sdf, Grid *grid)
 }
 
 template <typename SDF>
+void interiorSubtractToGridPeriodic(const SDF *sdf, Grid *grid)
+{
+    applyOperationPeriodic(sdf, grid, SdfOperation::SubtractToGrid{});
+}
+
+template <typename SDF>
 void interiorSubtractGrid(const SDF *sdf, Grid *grid)
 {
     applyOperation(sdf, grid, SdfOperation::SubtractGrid{});
 }
+
+template <typename SDF>
+void interiorSubtractGridPeriodic(const SDF *sdf, Grid *grid)
+{
+    applyOperationPeriodic(sdf, grid, SdfOperation::SubtractGrid{});
 }
+
+} // namespace common

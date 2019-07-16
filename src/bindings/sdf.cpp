@@ -18,7 +18,7 @@ void exportSdf(py::module& m)
 
     pysdf.def("apply", &Sdf::apply,
               "grid"_a, R"(
-        Compute the given sdf shape for each point of the given grid
+        Compute the given sdf shape for each point of the given grid.
 
         Args:
             grid: the grid to apply the sdf to
@@ -26,7 +26,7 @@ void exportSdf(py::module& m)
 
     pysdf.def("applyPeriodic", &Sdf::applyPeriodic,
               "grid"_a, R"(
-        Compute the given sdf shape and its periodic images for each point of the given grid
+        Compute the given sdf shape and its periodic images for each point of the given grid.
 
         Args:
             grid: the grid to apply the sdf to
@@ -34,7 +34,7 @@ void exportSdf(py::module& m)
 
     pysdf.def("applyComplement", &Sdf::applyComplement,
               "grid"_a, R"(
-        Compute the complement of the given sdf shape for each point of the given grid
+        Compute the complement of the given sdf shape for each point of the given grid.
 
         Args:
             grid: the grid to apply the complement sdf to
@@ -42,7 +42,8 @@ void exportSdf(py::module& m)
     
     pysdf.def("applyComplementPeriodic", &Sdf::applyComplementPeriodic,
               "grid"_a, R"(
-        Compute the complement of the given sdf shape and its periodic images for each point of the given grid
+        Compute the complement of the given sdf shape and its periodic images for each point
+        of the given grid.
 
         Args:
             grid: the grid to apply the complement sdf to
@@ -50,7 +51,15 @@ void exportSdf(py::module& m)
     
     pysdf.def("interiorUnion", &Sdf::interiorUnion,
               "grid"_a, R"(
-        Compute the interior union of the given sdf with the given grid
+        Compute the interior union of the given sdf with the given grid.
+
+        Args:
+            grid: the grid to apply the union to
+    )");
+
+    pysdf.def("interiorUnionPeriodic", &Sdf::interiorUnionPeriodic,
+              "grid"_a, R"(
+        Compute the interior union of the given sdf and its periodic images with the given grid.
 
         Args:
             grid: the grid to apply the union to
@@ -58,7 +67,16 @@ void exportSdf(py::module& m)
 
     pysdf.def("interiorIntersection", &Sdf::interiorIntersection,
               "grid"_a, R"(
-        Compute the interior intersection of the given sdf with the given grid
+        Compute the interior intersection of the given sdf with the given grid.
+
+        Args:
+            grid: the grid to apply the intersection to
+    )");
+
+    pysdf.def("interiorIntersectionPeriodic", &Sdf::interiorIntersectionPeriodic,
+              "grid"_a, R"(
+        Compute the interior intersection of the given sdf and its periodic images 
+        with the given grid.
 
         Args:
             grid: the grid to apply the intersection to
@@ -66,7 +84,16 @@ void exportSdf(py::module& m)
 
     pysdf.def("interiorSubtractToGrid", &Sdf::interiorSubtractToGrid,
               "grid"_a, R"(
-        Compute the interior subtraction of the given grid by the given sdf
+        Compute the interior subtraction of the given grid by the given sdf.
+
+        Args:
+            grid: the grid to apply the subtraction to
+    )");
+
+    pysdf.def("interiorSubtractToGridPeriodic", &Sdf::interiorSubtractToGridPeriodic,
+              "grid"_a, R"(
+        Compute the interior subtraction of the given grid by the given sdf and its 
+        periodic images.
 
         Args:
             grid: the grid to apply the subtraction to
@@ -74,7 +101,16 @@ void exportSdf(py::module& m)
 
     pysdf.def("interiorSubtractGrid", &Sdf::interiorSubtractGrid,
               "grid"_a, R"(
-        Compute the interior subtraction of the given sdf by the given grid
+        Compute the interior subtraction of the given sdf by the given grid.
+
+        Args:
+            grid: the grid to subtract
+    )");
+
+    pysdf.def("interiorSubtractGridPeriodic", &Sdf::interiorSubtractGridPeriodic,
+              "grid"_a, R"(
+        Compute the interior subtraction of the given sdf and its periodic images by the given
+        grid.
 
         Args:
             grid: the grid to subtract
