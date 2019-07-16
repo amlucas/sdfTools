@@ -66,3 +66,20 @@ An example is shown here:
     :width: 90%
 
     0 - Isosurface of the SDF obtained from :ref:`three-py`.
+
+
+Edges and extrusion
+*******************
+
+It is also possible to create SDF in 2 dimensions from arbutrary polygons.
+This can be also extruded to get a prism in 3 dimensions:
+
+.. literalinclude:: ../../../tests/tuto/prism.py
+   :name: prism-py
+   :caption: `prism.py`
+
+.. figure:: ../images/prism.png
+    :figclass: align-center
+    :width: 90%
+
+    0 - Isosurface of the SDF obtained from :ref:`prism-py`.
