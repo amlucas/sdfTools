@@ -18,8 +18,6 @@ segment = sdfTools.Sdf.Segment(start, end, radius, inside=True)
 
 segment.apply(grid)
 
-grid.dumpBov("out");
-
 np.savetxt("grid.txt", grid.get())
 
 # TEST: analytical.segment

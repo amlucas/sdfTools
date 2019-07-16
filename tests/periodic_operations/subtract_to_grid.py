@@ -22,7 +22,6 @@ sphere2 = sdfTools.Sdf.Sphere(center2, radius2, inside=True)
 sphere1.applyPeriodic(grid)
 sphere2.interiorSubtractToGridPeriodic(grid)
 
-grid.dumpBov("test")
 np.savetxt("grid.txt", grid.get())
 
 # TEST: periodic_operations.subtract_to_grid
