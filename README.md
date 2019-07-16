@@ -1,5 +1,7 @@
 # sdfTools
 
+[![Documentation Status](https://readthedocs.org/projects/sdftools/badge/?version=latest)](https://sdftools.readthedocs.io/en/latest/?badge=latest)
+
 A simple tool with python interface to create signed distance function based geometries.
 
 ## Installation
@@ -26,27 +28,3 @@ make test
 ```
 
 This operation requires [atest](https://gitlab.ethz.ch/mavt-cse/atest).
-
-
-## Usage
-
-```python
-import sdfTools
-
-offs = (0., 0., 0.)
-dims = (64, 64, 64)
-exts = (1.0, 1.0, 1.0)
-center = (0.5, 0.5, 0.5)
-radius = 0.4
-
-# create a grid
-grid = sdfTools.Grid.Uniform(dims, offs, exts)
-
-# create SDF shape representation and apply it to the grid
-sphere = sdfTools.Sdf.Sphere(center, radius, inside=True)
-sphere.apply(grid)
-
-# dump to a file in .bov format
-grid.dumpBov("sphere")
-```
-
