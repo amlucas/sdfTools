@@ -8,6 +8,7 @@ A simple tool to create complex geometries from simple shapes, with python bindi
    :caption: User guide
    
    user/installation
+   user/tutorials
    user/grid
    user/sdf
 
