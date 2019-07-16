@@ -39,3 +39,16 @@ The procedure for installing sdfTools is as follows:
         
       import sdfTools
    
+Testing
+*******
+
+It is possible to test the installation by typing
+
+   .. code-block:: console
+
+      $ cd tests
+      $ make test
+
+.. note::
+
+   This operation requires `atest <https://gitlab.ethz.ch/mavt-cse/atest.git>`_ to be installed on your machine
