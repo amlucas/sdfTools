@@ -8,6 +8,8 @@ class Uniform:
         r"""__init__(dimensions: Tuple[int, int, int], offsets: Tuple[float, float, float], extents: Tuple[float, float, float]) -> None
 
 
+            Create an empty uniform grid of given size.
+
             Args:
                 dimensions: number of cells along each dimension
                 offsets: start of the domain
@@ -32,6 +34,7 @@ class Uniform:
 
 
           apply interior intersection between this grid and another given grid 
+
           Args:
               other: the other grid 
         
@@ -44,6 +47,7 @@ class Uniform:
 
 
           apply interior union between this grid and another given grid 
+
           Args:
               other: the other grid 
         
@@ -68,6 +72,7 @@ class Uniform:
 
 
           Dump the data in ``bov`` format
+
           Args:
               basename: base filename to dump to
         
@@ -80,6 +85,7 @@ class Uniform:
 
 
           Dump data in custom ``.sdf`` format
+
           Args:
               basename: base filename to dump to
         
@@ -92,6 +98,7 @@ class Uniform:
 
 
           extrude a SDF from 'xy' plane to 3 dimensions
+
           Args:
               zoffset: offset in new direction
               zextent: extent in new direction
@@ -106,6 +113,7 @@ class Uniform:
 
 
           flip axes of the grid according to map.
+
           Args:
               map: flip map
 
