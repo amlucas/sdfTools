@@ -21,9 +21,9 @@ grid.applySdfComplement()
 
 np.savetxt("grid.txt", grid.get())
 
-# TEST: operations.complement_periodic
-# cd operations
+# TEST: periodic_operations.complement
+# cd periodic_operations
 # rm -rf *.txt
-# ./complement_periodic.py
+# ./complement.py
 # mv grid.txt grid.out.txt
 
