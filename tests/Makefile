@@ -1,4 +1,4 @@
 test:
-	atest `find . -name *.py`
+	atest `find . \( -name "*.py" -o -name "*.sh" \)`
 
 .PHONY: test
