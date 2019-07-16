@@ -8,13 +8,12 @@ The :any:`Grid.Uniform` object is the central data structure in sdfTools.
 Summary
 ========
 
-.. automodsumm:: libsdfTools.Grid
-.. automod-diagram:: libsdfTools.Grid
+.. automodsumm:: _sdftools.Grid
 
 Details
 =======
 
-.. automodule:: libsdfTools.Grid
+.. automodule:: _sdftools.Grid
    :members:
    :undoc-members:
    :special-members: __init__

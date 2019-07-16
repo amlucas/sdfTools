@@ -9,14 +9,13 @@ It allows to create various shapes.
 Summary
 ========
 
-.. automodsumm:: libsdfTools.Sdf
-.. automod-diagram:: libsdfTools.Sdf
+.. automodsumm:: _sdftools.Sdf
 
 		 
 Details
 =======
 
-.. automodule:: libsdfTools.Sdf
+.. automodule:: _sdftools.Sdf
    :members:
    :undoc-members:
    :special-members: __init__
