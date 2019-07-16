@@ -1,6 +1,7 @@
 #include "bindings.h"
 
 #include <core/grid.h>
+#include <core/sdf/box.h>
 #include <core/sdf/edges.h>
 #include <core/sdf/interface.h>
 #include <core/sdf/plate.h>
@@ -118,11 +119,24 @@ void exportSdf(py::module& m)
 
 
     
+    py::class_<SdfBox> (m, "Box", pysdf, R"(
+        Box aligned with axes
+    )")
+        .def(py::init <PyReal3, PyReal3, bool> (),
+             "lower_bound"_a, "upper_bound"_a, "inside"_a, R"(
+
+            Args:
+                lower_bound: lower corner of the box
+                upper_bound: upper corner of the box
+                inside: ``True`` if the interior is inside the given shape
+        )");
+
     py::class_<SdfEdges> (m, "Edges", pysdf, R"(
         closed polygon defined from edges
     )")
         .def(py::init <std::vector<std::array<real, 2>>, bool> (),
              "edges"_a, "inside"_a, R"(
+
             Args:
                 edges: list of vertices positions (2D)
                 inside: ``True`` if the interior is inside the given shape
@@ -146,6 +160,7 @@ void exportSdf(py::module& m)
     )")
         .def(py::init <PyReal3, PyReal3, real, bool> (),
              "start"_a, "end"_a, "radius"_a, "inside"_a, R"(
+
             Args:
                 start: first end of the segment
                 end:  second end of the segment
@@ -159,6 +174,7 @@ void exportSdf(py::module& m)
     )")
         .def(py::init <PyReal3, real, bool> (),
              "center"_a, "radius"_a, "inside"_a, R"(
+
             Args:
                 center: center of the sphere
                 radius: radius of the sphere
