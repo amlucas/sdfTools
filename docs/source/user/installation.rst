@@ -24,7 +24,7 @@ The procedure for installing sdfTools is as follows:
 
    .. code-block:: console
       
-      $ git clone git@github.com:amlucas/sdfTools.git
+      $ git clone git@github.com:amlucas/sdfTools.git --recursive
       
 #. Compile and install the code through ``pip``
    
