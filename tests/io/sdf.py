@@ -18,7 +18,7 @@ sphere.apply(grid)
 
 basename="sphere"
 grid.dumpSdf(basename)
-rawdata = open(basename+".values", "rb").read()
+rawdata = open(basename+".sdf", "rb").read()
 
 nfloats = dims[0]*dims[1]*dims[2]
 start = len(rawdata) - nfloats * 4
