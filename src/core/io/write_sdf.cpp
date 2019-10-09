@@ -21,20 +21,20 @@ static std::vector<float> getFloatData(const Grid *grid)
 
 void writeSdf(std::string basename, const Grid *grid)
 {
-    std::string fname = basename + ext;
+    const std::string fname = basename + ext;
     
     FILE *f = safeOpen(fname.c_str(), "wb");
 
     std::stringstream ss;
 
-    auto h = grid->getSpacing();
-    auto n = grid->getDimensions();
-    auto data = getFloatData(grid);
+    const auto l = grid->getExtents();
+    const auto n = grid->getDimensions();
+    const auto data = getFloatData(grid);
         
-    ss << h.x << ' ' << h.y << ' ' << h.z << '\n';
+    ss << l.x << ' ' << l.y << ' ' << l.z << '\n';
     ss << n.x << ' ' << n.y << ' ' << n.z << '\n';
 
-    std::string headerData = ss.str();
+    const std::string headerData = ss.str();
 
     fwrite(headerData.c_str(), sizeof(char), headerData.size(), f);
     fseek(f, sizeof(char) * headerData.size(), SEEK_CUR);
