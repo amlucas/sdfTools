@@ -1,5 +1,4 @@
 #include "sphere.h"
-#include "common.h"
 
 #include <core/utils/helper_math.h>
 #include <core/grid.h>
@@ -20,5 +19,3 @@ real SdfSphere::at(real3 r) const
     return sign * (length(r - center) - radius);
 }
 
-#define CLASS_NAME SdfSphere
-GENERATE_IMPL_OPERATIONS()

@@ -1,5 +1,4 @@
 #include "segment.h"
-#include "common.h"
 
 #include <core/utils/error.h>
 #include <core/utils/helper_math.h>
@@ -36,6 +35,3 @@ real SdfSegment::at(real3 r) const
 
     return sign * (length(r - p) - radius);
 }
-
-#define CLASS_NAME SdfSegment
-GENERATE_IMPL_OPERATIONS()

@@ -1,5 +1,4 @@
 #include "edges.h"
-#include "common.h"
 
 #include <core/grid.h>
 #include <core/utils/helper_math.h>
@@ -74,6 +73,3 @@ real SdfEdges::at(real3 pos) const
     int sign = (count % 2) ? -1 : 1;
     return mind * sign * insideSign;
 }
-
-#define CLASS_NAME SdfEdges
-GENERATE_IMPL_OPERATIONS()

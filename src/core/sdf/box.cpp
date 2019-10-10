@@ -1,5 +1,4 @@
 #include "box.h"
-#include "common.h"
 
 #include <core/utils/helper_math.h>
 #include <core/grid.h>
@@ -26,6 +25,3 @@ real SdfBox::at(real3 r) const
              
     return sign * std::max(d.x, std::max(d.y, d.z));
 }
-
-#define CLASS_NAME SdfBox
-GENERATE_IMPL_OPERATIONS()

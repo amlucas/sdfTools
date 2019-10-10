@@ -1,18 +1,15 @@
 #pragma once
 
-#include "interface.h"
-#include "macros.h"
+#include "sdf_impl.h"
 
 #include <core/types.h>
 
-class SdfSphere : public Sdf
+class SdfSphere : public SdfImpl<SdfSphere>
 {
 public:
     SdfSphere(real3 center, real radius, bool inside);
     SdfSphere(PyReal3 center, real radius, bool inside);
 
-    GENERATE_DECL_OPERATIONS()
-    
     real at(real3 r) const;
     
 protected:

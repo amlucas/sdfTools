@@ -1,5 +1,7 @@
 #pragma once
 
+#include <core/types.h>
+
 #include <algorithm>
 
 namespace SdfOperation

@@ -1,14 +1,14 @@
 #pragma once
 
+#include "interface.h"
 #include "operations.h"
 
 #include <core/grid.h>
 #include <core/utils/helper_math.h>
 
-namespace common
-{
+
 template <typename SDF, typename Op>
-inline void applyOperation(const SDF *sdf, Grid *grid, Op op)
+static inline void applyOperation(const SDF *sdf, Grid *grid, Op op)
 {
     auto dims = grid->getDimensions();
     auto exts = grid->getExtents();
@@ -32,7 +32,7 @@ inline void applyOperation(const SDF *sdf, Grid *grid, Op op)
 }
 
 template <typename SDF, typename Op>
-void applyOperationPeriodic(const SDF *sdf, Grid *grid, Op op)
+static inline void applyOperationPeriodic(const SDF *sdf, Grid *grid, Op op)
 {
     auto dims = grid->getDimensions();
     auto exts = grid->getExtents();
@@ -75,77 +75,76 @@ void applyOperationPeriodic(const SDF *sdf, Grid *grid, Op op)
     }
 }
 
-
-template <typename SDF>
-void apply(const SDF *sdf, Grid *grid)
+template <class SDF>
+class SdfImpl : public Sdf
 {
-    applyOperation(sdf, grid, SdfOperation::Identity{});
-}
+public:
+    SdfImpl() = default;
+    ~SdfImpl() = default;
 
-template <typename SDF>
-void applyPeriodic(const SDF *sdf, Grid *grid)
-{
-    applyOperationPeriodic(sdf, grid, SdfOperation::Identity{});
-}
+    const SDF* self() const
+    {
+        return static_cast<const SDF*>(this);
+    }
+    
+    void apply(Grid *grid) const override
+    {
+        applyOperation(self(), grid, SdfOperation::Identity{});
+    }
+    
+    void applyComplement (Grid *grid) const override
+    {
+        applyOperation(self(), grid, SdfOperation::Complement{});
+    }
 
-template <typename SDF>
-void applyComplement(const SDF *sdf, Grid *grid)
-{
-    applyOperation(sdf, grid, SdfOperation::Complement{});
-}
+    void interiorUnion(Grid *grid) const
+    {
+        applyOperation(self(), grid, SdfOperation::Union{});
+    }
+    
+    void interiorIntersection(Grid *grid) const
+    {
+        applyOperation(self(), grid, SdfOperation::Intersection{});
+    }
 
-template <typename SDF>
-void applyComplementPeriodic(const SDF *sdf, Grid *grid)
-{
-    applyOperationPeriodic(sdf, grid, SdfOperation::Complement{});
-}
+    void interiorSubtractToGrid(Grid *grid) const
+    {
+        applyOperation(self(), grid, SdfOperation::SubtractToGrid{});
+    }
+    
+    void interiorSubtractGrid(Grid *grid) const
+    {
+        applyOperation(self(), grid, SdfOperation::SubtractGrid{});
+    }
 
-template <typename SDF>
-void interiorUnion(const SDF *sdf, Grid *grid)
-{
-    applyOperation(sdf, grid, SdfOperation::Union{});
-}
+    
+    void applyPeriodic(Grid *grid) const
+    {
+        applyOperationPeriodic(self(), grid, SdfOperation::Identity{});
+    }
+    
+    void applyComplementPeriodic(Grid *grid) const
+    {
+        applyOperationPeriodic(self(), grid, SdfOperation::Complement{});
+    }
 
-template <typename SDF>
-void interiorUnionPeriodic(const SDF *sdf, Grid *grid)
-{
-    applyOperationPeriodic(sdf, grid, SdfOperation::Union{});
-}
+    void interiorUnionPeriodic(Grid *grid) const
+    {
+        applyOperationPeriodic(self(), grid, SdfOperation::Union{});
+    }
+    
+    void interiorIntersectionPeriodic(Grid *grid) const
+    {
+        applyOperationPeriodic(self(), grid, SdfOperation::Intersection{});
+    }
 
-template <typename SDF>
-void interiorIntersection(const SDF *sdf, Grid *grid)
-{
-    applyOperation(sdf, grid, SdfOperation::Intersection{});
-}
-
-template <typename SDF>
-void interiorIntersectionPeriodic(const SDF *sdf, Grid *grid)
-{
-    applyOperationPeriodic(sdf, grid, SdfOperation::Intersection{});
-}
-
-template <typename SDF>
-void interiorSubtractToGrid(const SDF *sdf, Grid *grid)
-{
-    applyOperation(sdf, grid, SdfOperation::SubtractToGrid{});
-}
-
-template <typename SDF>
-void interiorSubtractToGridPeriodic(const SDF *sdf, Grid *grid)
-{
-    applyOperationPeriodic(sdf, grid, SdfOperation::SubtractToGrid{});
-}
-
-template <typename SDF>
-void interiorSubtractGrid(const SDF *sdf, Grid *grid)
-{
-    applyOperation(sdf, grid, SdfOperation::SubtractGrid{});
-}
-
-template <typename SDF>
-void interiorSubtractGridPeriodic(const SDF *sdf, Grid *grid)
-{
-    applyOperationPeriodic(sdf, grid, SdfOperation::SubtractGrid{});
-}
-
-} // namespace common
+    void interiorSubtractToGridPeriodic(Grid *grid) const
+    {
+        applyOperationPeriodic(self(), grid, SdfOperation::SubtractToGrid{});
+    }
+    
+    void interiorSubtractGridPeriodic(Grid *grid) const
+    {
+        applyOperationPeriodic(self(), grid, SdfOperation::SubtractGrid{});
+    }
+};

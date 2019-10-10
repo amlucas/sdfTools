@@ -6,8 +6,8 @@ class Sdf
 {
 public:
 
-    Sdf();
-    virtual ~Sdf();
+    Sdf() = default;
+    virtual ~Sdf() = default;
 
     virtual void apply           (Grid *grid) const = 0;
     virtual void applyComplement (Grid *grid) const = 0;
