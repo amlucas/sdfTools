@@ -17,8 +17,12 @@ public:
     real at(real3 r) const;
     
 protected:
+    real2 findOrigin();
+    
+protected:
     std::vector<real2> edges;
     int insideSign;
     int nsamples {10};
     mutable std::mt19937 gen{424242L};
+    real2 origin;
 };
