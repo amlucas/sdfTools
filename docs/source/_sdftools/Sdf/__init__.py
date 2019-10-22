@@ -348,13 +348,14 @@ class Edges(Sdf):
     
     """
     def __init__():
-        r"""__init__(edges: List[List[float[2]]], inside: bool) -> None
+        r"""__init__(edges: List[List[float[2]]], inside: bool, nsamples: int = 20) -> None
 
 
 
             Args:
                 edges: list of vertices positions (2D)
                 inside: ``True`` if the interior is inside the given shape
+                nsamples: number of samples to find the sign of the SDF (more is more accurate)
         
 
         """
