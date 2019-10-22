@@ -10,8 +10,8 @@
 class SdfEdges : public SdfImpl<SdfEdges>
 {
 public:
-    SdfEdges(std::vector<real2> edges, bool inside);
-    SdfEdges(std::vector<std::array<real, 2>> edges, bool inside);
+    SdfEdges(const std::vector<real2>& edges, bool inside);
+    SdfEdges(const std::vector<std::array<real, 2>>& edges, bool inside);
 
     real at(real3 r) const;
     

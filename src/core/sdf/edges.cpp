@@ -3,12 +3,12 @@
 #include <core/grid.h>
 #include <core/utils/helper_math.h>
 
-SdfEdges::SdfEdges(std::vector<real2> edges, bool inside) :
+SdfEdges::SdfEdges(const std::vector<real2>& edges, bool inside) :
     edges(edges),
     insideSign(inside ? 1 : -1)
 {}
 
-static std::vector<real2> convert(std::vector<std::array<real, 2>> src)
+static std::vector<real2> convert(const std::vector<std::array<real, 2>>& src)
 {
     std::vector<real2> dst;
     for (const auto& r : src)
@@ -16,7 +16,7 @@ static std::vector<real2> convert(std::vector<std::array<real, 2>> src)
     return dst;
 }
 
-SdfEdges::SdfEdges(std::vector<std::array<real, 2>> edges, bool inside) :
+SdfEdges::SdfEdges(const std::vector<std::array<real, 2>>& edges, bool inside) :
     SdfEdges(convert(edges), inside)
 {}
     
@@ -58,14 +58,14 @@ real SdfEdges::at(real3 pos) const
     real mind = 1e9;
 
     // TODO: for now assume xy plane
-    real2 r = {pos.x, pos.y};
-    real2 orig = {0.25f, 0.33f}; // TODO no hardcoded, choose a suitable point
+    const real2 r = {pos.x, pos.y};
+    const real2 orig = {0.25f, 0.33f}; // TODO no hardcoded, choose a suitable point
     
     for (size_t i = 0; i < edges.size(); ++i)
     {
-        auto inext = (i+1) % edges.size();
-        auto a = edges[i    ];
-        auto b = edges[inext];
+        const size_t inext = (i+1) % edges.size();
+        const real2 a = edges[i    ];
+        const real2 b = edges[inext];
         
         mind = std::min(mind, distanceToEdge(r, a, b));
         count += insideTriangle(r, orig, a, b);
