@@ -11,6 +11,7 @@ install: build
 	$(PIP) install . --user --upgrade
 
 uninstall:
+	$(PIP) uninstall sdftools
 	$(PIP) uninstall sdf
 
 clean:; rm -rf build
