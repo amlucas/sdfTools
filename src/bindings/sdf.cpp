@@ -134,12 +134,13 @@ void exportSdf(py::module& m)
     py::class_<SdfEdges> (m, "Edges", pysdf, R"(
         closed polygon defined from edges
     )")
-        .def(py::init <const std::vector<std::array<real, 2>>&, bool> (),
-             "edges"_a, "inside"_a, R"(
+        .def(py::init <const std::vector<std::array<real, 2>>&, bool, int> (),
+             "edges"_a, "inside"_a, "nsamples"_a = 20, R"(
 
             Args:
                 edges: list of vertices positions (2D)
                 inside: ``True`` if the interior is inside the given shape
+                nsamples: number of samples to find the sign of the SDF (more is more accurate)
         )");
 
     py::class_<SdfPlate> (m, "Plate", pysdf, R"(

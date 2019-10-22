@@ -3,9 +3,10 @@
 #include <core/grid.h>
 #include <core/utils/helper_math.h>
 
-SdfEdges::SdfEdges(const std::vector<real2>& edges, bool inside) :
+SdfEdges::SdfEdges(const std::vector<real2>& edges, bool inside, int nsamples) :
     edges(edges),
-    insideSign(inside ? 1 : -1)
+    insideSign(inside ? 1 : -1),
+    nsamples(nsamples)
 {}
 
 static std::vector<real2> convert(const std::vector<std::array<real, 2>>& src)
@@ -16,8 +17,8 @@ static std::vector<real2> convert(const std::vector<std::array<real, 2>>& src)
     return dst;
 }
 
-SdfEdges::SdfEdges(const std::vector<std::array<real, 2>>& edges, bool inside) :
-    SdfEdges(convert(edges), inside)
+SdfEdges::SdfEdges(const std::vector<std::array<real, 2>>& edges, bool inside, int nsamples) :
+    SdfEdges(convert(edges), inside, nsamples)
 {}
     
 
@@ -52,15 +53,41 @@ static inline int insideTriangle(real2 r, real2 a, real2 b, real2 c)
         sameSideOfEdge(r, b, c, a);
 }
 
+static inline std::vector<real2> generateOrigin(int nsamples, std::mt19937& gen)
+{
+    std::vector<real2> origins;
+    origins.reserve(nsamples);
+    std::uniform_real_distribution<real> dist(-1.0, 1.0);
+
+    for (int i = 0; i < nsamples; ++i)
+    {
+        real2 r;
+        r.x = dist(gen);
+        r.y = dist(gen);
+        origins.push_back(r);
+    }
+    return origins;
+}
+
+static inline int getSignMC(const std::vector<int>& counts)
+{
+    int sumSigns = 0;
+
+    for (auto c : counts)
+        sumSigns += (c % 2) ? -1 : 1;
+    
+    return (sumSigns >= 0) ? 1 : -1;
+}
+
 real SdfEdges::at(real3 pos) const
 {
-    int count = 0;
+    std::vector<int> counts(nsamples, 0);
     real mind = 1e9;
 
     // TODO: for now assume xy plane
     const real2 r = {pos.x, pos.y};
-    const real2 orig = {0.25f, 0.33f}; // TODO no hardcoded, choose a suitable point
-    
+    const auto origins = generateOrigin(nsamples, gen);
+
     for (size_t i = 0; i < edges.size(); ++i)
     {
         const size_t inext = (i+1) % edges.size();
@@ -68,8 +95,10 @@ real SdfEdges::at(real3 pos) const
         const real2 b = edges[inext];
         
         mind = std::min(mind, distanceToEdge(r, a, b));
-        count += insideTriangle(r, orig, a, b);
+
+        for (int j = 0; j < nsamples; ++j)
+            counts[j] += insideTriangle(r, origins[j], a, b);
     }
-    int sign = (count % 2) ? -1 : 1;
+    const int sign = getSignMC(counts);
     return mind * sign * insideSign;
 }
