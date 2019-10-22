@@ -12,7 +12,7 @@ class SdfEdges : public SdfImpl<SdfEdges>
 {
 public:
     SdfEdges(const std::vector<real2>& edges, bool inside, int nsamples);
-    SdfEdges(const std::vector<std::array<real, 2>>& edges, bool inside, int nsamples);
+    SdfEdges(const std::vector<std::array<real,2>>& edges, bool inside, int nsamples);
 
     real at(real3 r) const;
     
@@ -22,7 +22,7 @@ protected:
 protected:
     std::vector<real2> edges;
     int insideSign;
-    int nsamples {10};
+    int nsamples;
     mutable std::mt19937 gen{424242L};
     real2 origin;
 };

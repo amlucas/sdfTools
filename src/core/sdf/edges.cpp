@@ -11,7 +11,7 @@ SdfEdges::SdfEdges(const std::vector<real2>& edges, bool inside, int nsamples) :
     origin = findOrigin();
 }
 
-static std::vector<real2> convert(const std::vector<std::array<real, 2>>& src)
+static std::vector<real2> convert(const std::vector<std::array<real,2>>& src)
 {
     std::vector<real2> dst;
     for (const auto& r : src)
