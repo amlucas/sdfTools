@@ -1,5 +1,1 @@
 build
-tests/*/*.txt
-tests/*/*.bov
-tests/*/*.sdf
-tests/*/*.values
