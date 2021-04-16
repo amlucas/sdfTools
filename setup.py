@@ -7,11 +7,6 @@ from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
 from distutils.version import LooseVersion
 
-import sys
-sys.path.insert(0, 'src/sdfTools')
-import version
-
-
 class BinaryExtension(Extension):
     def __init__(self, name, sourcedir=''):
         Extension.__init__(self, name, sources=[])
@@ -28,7 +23,7 @@ class CopyLibrary(build_ext):
         library = glob.glob(ext.sourcedir + '/build/libsdfTools.cpython*.so')
 
         if (len(library) == 0):
-            raise ValueError('No pre-build library found in folder ' + 
+            raise ValueError('No pre-build library found in folder ' +
                     ext.sourcedir + '/build/')
 
         shutil.copy2(library[0], extdir)
@@ -36,7 +31,7 @@ class CopyLibrary(build_ext):
 
 setup(
     name='sdfTools',
-    version=version.sdf_version,
+    version="0.0",
     author='Lucas Amoudruz',
     author_email='amlucas@ethz.ch',
     description='tools to build signed distance functions',

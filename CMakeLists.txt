@@ -8,20 +8,6 @@ project(sdfTools LANGUAGES CXX)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 set(SDF "libsdfTools")
 
-# version
-execute_process(COMMAND
-  git describe --abbrev=0
-  WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-  OUTPUT_VARIABLE SDF_VERSION
-  ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
-
-# the commit's SHA1, and whether the building workspace was dirty or not
-execute_process(COMMAND
-  git describe --match=NeVeRmAtCh --always --abbrev=40 --dirty
-  WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-  OUTPUT_VARIABLE GIT_SHA1
-  ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
-
 # Add the pybind11
 add_subdirectory(src/extern/pybind11)
 
@@ -34,22 +20,10 @@ set(CORE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/core/")
 set(BINDINGS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/bindings/")
 set(PYTHON_LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src/sdfTools")
 
-# generate version.cpp
-configure_file(
-  "${CORE_DIR}/version.cpp.in"
-  "${CORE_DIR}/version.cpp"
-  )
-
-#generate version.py
-configure_file(
-  "${PYTHON_LIB_DIR}/version.py.in"
-  "${PYTHON_LIB_DIR}/version.py"
-  )
-
 # Find sources
 file(GLOB_RECURSE SOURCES_BINDINGS  RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${BINDINGS_DIR}/*.cpp")
 file(GLOB_RECURSE SOURCES_MAIN      RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CORE_DIR}/*.cpp")
-   
+
 # Define the main executable
 #add_executable(udevicex ../apps/udevicex/main.cu ${CXX_SOURCES} ${CUDA_SOURCES})
 add_library(main_compiled OBJECT ${SOURCES_MAIN})
