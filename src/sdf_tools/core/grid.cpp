@@ -1,7 +1,5 @@
 #include "grid.h"
 
-#include <sdf_tools/core/io/write_bov.h>
-#include <sdf_tools/core/io/write_sdf.h>
 #include <sdf_tools/core/sdf/operations.h>
 #include <sdf_tools/core/utils/error.h>
 
@@ -72,17 +70,6 @@ const std::vector<real>& Grid::getData() const
 {
     return field;
 }
-
-void Grid::dumpBov(std::string basename) const
-{
-    io::writeBov(basename, this);
-}
-
-void Grid::dumpSdf(std::string basename) const
-{
-    io::writeSdf(basename, this);
-}
-
 
 template <typename Op>
 inline void applyUnaryOperation(Grid *grid, Op op)

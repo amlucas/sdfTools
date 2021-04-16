@@ -1,7 +1,9 @@
 #include "bindings.h"
 
 #include <sdf_tools/core/grid.h>
+
 #include <sdf_tools/core/io/write_bov.h>
+#include <sdf_tools/core/io/write_sdf.h>
 
 namespace py = pybind11;
 using namespace pybind11::literals;
@@ -31,14 +33,14 @@ void exportGrid(py::module& m)
             returns a list of all values in a flatten array (const).
         )")
 
-        .def("dumpBov", &Grid::dumpBov,
+        .def("dumpBov", [](const Grid *g, std::string basename) {io::writeBov(std::move(basename), g);},
           "basename"_a, R"(
           Dump the data in ``bov`` format
 
           Args:
               basename: base filename to dump to
         )")
-        .def("dumpSdf", &Grid::dumpSdf,
+        .def("dumpSdf", [](const Grid *g, std::string basename) {io::writeSdf(std::move(basename), g);},
           "basename"_a, R"(
           Dump data in custom ``.sdf`` format
 

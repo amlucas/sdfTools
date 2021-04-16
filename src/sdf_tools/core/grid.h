@@ -32,9 +32,6 @@ public:
     std::vector<real>&       getData();
     const std::vector<real>& getData() const;
 
-    void dumpBov(std::string basename) const;
-    void dumpSdf(std::string basename) const;
-
     void applySdfComplement();
     void applySdfInteriorUnion(const Grid *other);
     void applySdfInteriorIntersection(const Grid *other);
