@@ -8,14 +8,14 @@ namespace SdfOperation
 {
 struct Identity
 {
-    inline real operator()(real s)         const {return s;}
-    inline real operator()(real s, real g) const {return s;}
+    inline real operator()(real s) const {return s;}
+    inline real operator()(real s, real /* g */) const {return s;}
 };
 
 struct Complement
 {
-    inline real operator()(real s)         const {return -s;}
-    inline real operator()(real s, real g) const {return -s;}
+    inline real operator()(real s) const {return -s;}
+    inline real operator()(real s, real /* g */) const {return -s;}
 };
 
 struct Union
