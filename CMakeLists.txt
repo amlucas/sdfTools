@@ -4,6 +4,6 @@ if(POLICY CMP0060)
     cmake_policy(SET CMP0060 NEW)
 endif()
 
-project(pysdf LANGUAGES CXX)
+project(sdf_tools LANGUAGES CXX)
 
 add_subdirectory(src)
