@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
+#include <sdf/core/grid.h>
 
-#include "core/grid.h"
+#include <string>
 
 void writeBov(std::string basename, const Grid *grid);

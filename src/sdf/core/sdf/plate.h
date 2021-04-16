@@ -2,7 +2,7 @@
 
 #include "sdf_impl.h"
 
-#include <core/types.h>
+#include <sdf/core/types.h>
 
 class SdfPlate : public SdfImpl<SdfPlate>
 {
@@ -11,7 +11,7 @@ public:
     SdfPlate(PyReal3 point, PyReal3 normal);
 
     real at(real3 r) const;
-    
+
 protected:
     real3 point, normal;
 };

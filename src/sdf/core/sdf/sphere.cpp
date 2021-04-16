@@ -1,7 +1,7 @@
 #include "sphere.h"
 
-#include <core/utils/helper_math.h>
-#include <core/grid.h>
+#include <sdf/core/utils/helper_math.h>
+#include <sdf/core/grid.h>
 
 
 SdfSphere::SdfSphere(real3 center, real radius, bool inside) :
@@ -18,4 +18,3 @@ real SdfSphere::at(real3 r) const
 {
     return sign * (length(r - center) - radius);
 }
-

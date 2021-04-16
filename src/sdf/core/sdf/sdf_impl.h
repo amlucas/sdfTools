@@ -3,8 +3,8 @@
 #include "interface.h"
 #include "operations.h"
 
-#include <core/grid.h>
-#include <core/utils/helper_math.h>
+#include <sdf/core/grid.h>
+#include <sdf/core/utils/helper_math.h>
 
 template <class SDF>
 class SdfImpl : public Sdf

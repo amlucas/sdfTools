@@ -1,7 +1,7 @@
 #include "plate.h"
 
-#include <core/grid.h>
-#include <core/utils/helper_math.h>
+#include <sdf/core/grid.h>
+#include <sdf/core/utils/helper_math.h>
 
 SdfPlate::SdfPlate(real3 point, real3 normal) :
     point(point), normal(normal)

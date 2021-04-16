@@ -1,6 +1,6 @@
 #include "write_bov.h"
 
-#include <core/utils/file.h>
+#include <sdf/core/utils/file.h>
 
 #include <type_traits>
 
@@ -34,7 +34,7 @@ static void writeHeader(std::string basename, const Grid *grid)
     fprintf(f, "VARIABLE: %s\n", "sdf");
     fprintf(f, "BRICK_ORIGIN: %g %g %g\n", off.x, off.y, off.z);
     fprintf(f, "BRICK_SIZE: %g %g %g\n", ext.x, ext.y, ext.z);
-    
+
     fclose(f);
 }
 
@@ -43,9 +43,9 @@ static void writeValues(std::string basename, const Grid *grid)
     FILE *f = safeOpen((basename + ExtVal).c_str(), "wb");
 
     auto n = grid->getDimensions();
-    
+
     fwrite((const void*) grid->data(), sizeof(real), n.x * n.y * n.z, f);
-    
+
     fclose(f);
 }
 

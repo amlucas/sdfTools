@@ -2,7 +2,7 @@
 
 #include "sdf_impl.h"
 
-#include <core/types.h>
+#include <sdf/core/types.h>
 
 class SdfSegment : public SdfImpl<SdfSegment>
 {
@@ -11,7 +11,7 @@ public:
     SdfSegment(PyReal3 start, PyReal3 end, real radius, bool inside);
 
     real at(real3 r) const;
-    
+
 protected:
     real3 start, seg;
     real radius, invSegSq;

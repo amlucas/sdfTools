@@ -2,7 +2,7 @@
 
 #include "sdf_impl.h"
 
-#include <core/types.h>
+#include <sdf/core/types.h>
 
 #include <array>
 #include <random>
@@ -15,10 +15,10 @@ public:
     SdfEdges(const std::vector<std::array<real,2>>& edges, bool inside, int nsamples);
 
     real at(real3 r) const;
-    
+
 protected:
     real2 findOrigin();
-    
+
 protected:
     std::vector<real2> edges;
     int insideSign;

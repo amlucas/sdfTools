@@ -1,7 +1,7 @@
 #include "box.h"
 
-#include <core/utils/helper_math.h>
-#include <core/grid.h>
+#include <sdf/core/utils/helper_math.h>
+#include <sdf/core/grid.h>
 
 
 SdfBox::SdfBox(real3 lowerBound, real3 upperBound, bool inside) :
@@ -22,6 +22,6 @@ real SdfBox::at(real3 r) const
     real3 d {std::max(r.x - halfExtents.x, -r.x - halfExtents.x),
              std::max(r.y - halfExtents.y, -r.y - halfExtents.y),
              std::max(r.z - halfExtents.z, -r.z - halfExtents.z)};
-             
+
     return sign * std::max(d.x, std::max(d.y, d.z));
 }

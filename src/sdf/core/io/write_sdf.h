@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/grid.h>
+#include <sdf/core/grid.h>
 
 #include <string>
 

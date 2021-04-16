@@ -1,7 +1,7 @@
 #include "edges.h"
 
-#include <core/grid.h>
-#include <core/utils/helper_math.h>
+#include <sdf/core/grid.h>
+#include <sdf/core/utils/helper_math.h>
 
 SdfEdges::SdfEdges(const std::vector<real2>& edges, bool inside, int nsamples) :
     edges(edges),
@@ -31,7 +31,7 @@ static inline real distanceToEdge(real2 r, real2 a, real2 b)
     real alpha = dot(ab, ar) / ab_length;
 
     alpha = std::max((real) 0, std::min(ab_length, alpha));
-    
+
     const real2 p = a + (alpha / ab_length) * ab;
     return length(r - p);
 }
@@ -57,13 +57,13 @@ static inline int insideTriangle(real2 r, real2 a, real2 b, real2 c)
 static inline real distanceToEdges(const std::vector<real2>& edges, real2 r)
 {
     real mind = 1e9;
-    
+
     for (size_t i = 0; i < edges.size(); ++i)
     {
         const size_t inext = (i+1) % edges.size();
         const real2 a = edges[i    ];
         const real2 b = edges[inext];
-        
+
         mind = std::min(mind, distanceToEdge(r, a, b));
     }
     return mind;
@@ -102,7 +102,7 @@ static inline int getSignInsideEdges(const std::vector<real2>& edges, real dista
     const auto samples = generateSamples(r, distance * delta, nSamples, gen);
 
     std::vector<int> counts(nSamples, 0);
-    
+
     for (size_t i = 0; i < edges.size(); ++i)
     {
         const size_t inext = (i+1) % edges.size();
@@ -142,7 +142,7 @@ static inline bool isColinearWithAnyEdge(const std::vector<real2>& edges, const 
         const size_t inext = (i+1) % edges.size();
         const real2 a = edges[i    ];
         const real2 b = edges[inext];
-        
+
         if (areColinear(a, b, origin, tolerance))
             return true;
     }
@@ -170,4 +170,3 @@ real2 SdfEdges::findOrigin()
 
     return r;
 }
-

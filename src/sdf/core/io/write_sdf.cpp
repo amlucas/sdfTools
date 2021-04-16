@@ -1,6 +1,6 @@
 #include "write_sdf.h"
 
-#include <core/utils/file.h>
+#include <sdf/core/utils/file.h>
 
 #include <sstream>
 #include <type_traits>
@@ -22,7 +22,7 @@ static std::vector<float> getFloatData(const Grid *grid)
 void writeSdf(std::string basename, const Grid *grid)
 {
     const std::string fname = basename + ext;
-    
+
     FILE *f = safeOpen(fname.c_str(), "wb");
 
     std::stringstream ss;
@@ -30,7 +30,7 @@ void writeSdf(std::string basename, const Grid *grid)
     const auto l = grid->getExtents();
     const auto n = grid->getDimensions();
     const auto data = getFloatData(grid);
-        
+
     ss << l.x << ' ' << l.y << ' ' << l.z << '\n';
     ss << n.x << ' ' << n.y << ' ' << n.z << '\n';
 
@@ -39,6 +39,6 @@ void writeSdf(std::string basename, const Grid *grid)
     fwrite(headerData.c_str(), sizeof(char), headerData.size(), f);
     fseek(f, sizeof(char) * headerData.size(), SEEK_CUR);
     fwrite(data.data(), sizeof(data[0]), data.size(), f);
-    
+
     fclose(f);
 }

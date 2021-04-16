@@ -1,9 +1,9 @@
 #include "grid.h"
 
-#include <core/io/write_bov.h>
-#include <core/io/write_sdf.h>
-#include <core/sdf/operations.h>
-#include <core/utils/error.h>
+#include <sdf/core/io/write_bov.h>
+#include <sdf/core/io/write_sdf.h>
+#include <sdf/core/sdf/operations.h>
+#include <sdf/core/utils/error.h>
 
 #include <array>
 
@@ -25,7 +25,7 @@ Grid::Grid(const Grid& other) :
     field(other.field),
     dimensions(other.dimensions),
     offsets(other.offsets),
-    extents(other.extents)   
+    extents(other.extents)
 {}
 
 Grid::Grid(Grid&& other)
@@ -159,7 +159,7 @@ inline void checkMap(const Grid::FlipMap& map)
     if (map.size() != 3)
         error("invalid map '%s': must be of size 3",
               map.c_str());
-    
+
     for (auto c : map)
     {
         if      (c == 'x') valid[0] = true;
@@ -193,7 +193,7 @@ inline IntFlipMap convertMap(const Grid::FlipMap& map)
 template<typename T>
 inline T flip3(const T& v0, const IntFlipMap& map)
 {
-    
+
     auto getComp = [&](char c)
     {
         if      (c == 0) return v0.x;
@@ -218,7 +218,7 @@ void Grid::flip(const Grid::FlipMap& map)
 
     auto origDim = original.getDimensions();
     auto srcData = original.data();
-    
+
     for (int iz = 0; iz < origDim.z; ++iz)
         for (int iy = 0; iy < origDim.y; ++iy)
             for (int ix = 0; ix < origDim.x; ++ix) {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <core/types.h>
+#include <sdf/core/types.h>
 
 #include <cmath>
 
@@ -97,4 +97,3 @@ inline real dot(real2 a, real2 b)
 
 inline real length(real3 a) { return sqrt(dot(a, a)); }
 inline real length(real2 a) { return sqrt(dot(a, a));}
-

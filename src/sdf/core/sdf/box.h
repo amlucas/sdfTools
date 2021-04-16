@@ -2,7 +2,7 @@
 
 #include "sdf_impl.h"
 
-#include <core/types.h>
+#include <sdf/core/types.h>
 
 class SdfBox : public SdfImpl<SdfBox>
 {
@@ -11,7 +11,7 @@ public:
     SdfBox(PyReal3 lowerBound, PyReal3 upperBound, bool inside);
 
     real at(real3 r) const;
-    
+
 protected:
     real3 center, halfExtents;
     int sign;

@@ -1,8 +1,8 @@
 #include "segment.h"
 
-#include <core/utils/error.h>
-#include <core/utils/helper_math.h>
-#include <core/grid.h>
+#include <sdf/core/utils/error.h>
+#include <sdf/core/utils/helper_math.h>
+#include <sdf/core/grid.h>
 
 
 SdfSegment::SdfSegment(real3 start, real3 end, real radius, bool inside) :
@@ -13,7 +13,7 @@ SdfSegment::SdfSegment(real3 start, real3 end, real radius, bool inside) :
 {
     constexpr real eps = 1e-6;
     real segSq = dot(seg, seg);
-    
+
     if (segSq < eps)
         error("SdfSegment: Start and End points must be different");
 
