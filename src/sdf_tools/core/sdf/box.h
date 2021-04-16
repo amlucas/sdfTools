@@ -4,6 +4,9 @@
 
 #include <sdf_tools/core/types.h>
 
+namespace sdf_tools {
+namespace sdf {
+
 class SdfBox : public SdfImpl<SdfBox>
 {
 public:
@@ -16,3 +19,6 @@ protected:
     real3 center, halfExtents;
     int sign;
 };
+
+} // namespace sdf
+} // namespace sdf_tools

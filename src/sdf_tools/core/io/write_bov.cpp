@@ -4,6 +4,9 @@
 
 #include <type_traits>
 
+namespace sdf_tools {
+namespace io {
+
 static const char ExtBov[] = ".bov";
 static const char ExtVal[] = ".values";
 
@@ -54,3 +57,6 @@ void writeBov(std::string basename, const Grid *grid)
     writeHeader(basename, grid);
     writeValues(basename, grid);
 }
+
+} // namespace io
+} // namespace sdf_tools

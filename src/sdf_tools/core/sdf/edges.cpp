@@ -3,6 +3,9 @@
 #include <sdf_tools/core/grid.h>
 #include <sdf_tools/core/utils/helper_math.h>
 
+namespace sdf_tools {
+namespace sdf {
+
 SdfEdges::SdfEdges(const std::vector<real2>& edges, bool inside, int nsamples) :
     edges(edges),
     insideSign(inside ? 1 : -1),
@@ -170,3 +173,6 @@ real2 SdfEdges::findOrigin()
 
     return r;
 }
+
+} // namespace sdf
+} // namespace sdf_tools

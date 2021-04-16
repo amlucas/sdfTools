@@ -8,6 +8,9 @@
 #include <random>
 #include <vector>
 
+namespace sdf_tools {
+namespace sdf {
+
 class SdfEdges : public SdfImpl<SdfEdges>
 {
 public:
@@ -26,3 +29,6 @@ protected:
     mutable std::mt19937 gen{424242L};
     real2 origin;
 };
+
+} // namespace sdf
+} // namespace sdf_tools

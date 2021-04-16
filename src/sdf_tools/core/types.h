@@ -2,6 +2,8 @@
 
 #include <tuple>
 
+namespace sdf_tools {
+
 typedef float real;
 
 constexpr inline real operator "" _r (const long double a)
@@ -53,3 +55,5 @@ inline real3 make_real3(PyReal3 a)
         std::get<2>(a)
     };
 }
+
+} // namespace sdf_tools

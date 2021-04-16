@@ -6,6 +6,9 @@
 #include <sdf_tools/core/grid.h>
 #include <sdf_tools/core/utils/helper_math.h>
 
+namespace sdf_tools {
+namespace sdf {
+
 template <class SDF>
 class SdfImpl : public Sdf
 {
@@ -148,3 +151,6 @@ protected:
         }
     }
 };
+
+} // namespace sdf
+} // namespace sdf_tools

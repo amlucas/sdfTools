@@ -1,6 +1,10 @@
 #pragma once
 
+namespace sdf_tools {
+
 class Grid;
+
+namespace sdf {
 
 class Sdf
 {
@@ -18,7 +22,7 @@ public:
     virtual void interiorSubtractToGrid (Grid *grid) const = 0;
     virtual void interiorSubtractGrid   (Grid *grid) const = 0;
 
-    
+
     virtual void applyPeriodic           (Grid *grid) const = 0;
     virtual void applyComplementPeriodic (Grid *grid) const = 0;
 
@@ -28,3 +32,6 @@ public:
     virtual void interiorSubtractToGridPeriodic (Grid *grid) const = 0;
     virtual void interiorSubtractGridPeriodic   (Grid *grid) const = 0;
 };
+
+} // namespace sdf
+} // namespace sdf_tools

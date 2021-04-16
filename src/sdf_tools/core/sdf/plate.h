@@ -4,6 +4,9 @@
 
 #include <sdf_tools/core/types.h>
 
+namespace sdf_tools {
+namespace sdf {
+
 class SdfPlate : public SdfImpl<SdfPlate>
 {
 public:
@@ -15,3 +18,6 @@ public:
 protected:
     real3 point, normal;
 };
+
+} // namespace sdf
+} // namespace sdf_tools

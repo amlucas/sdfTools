@@ -6,6 +6,8 @@
 namespace py = pybind11;
 using namespace pybind11::literals;
 
+using namespace sdf_tools;
+
 void exportGrid(py::module& m)
 {
     py::class_<Grid> (m, "Uniform", R"(

@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+namespace sdf_tools {
+
 class Grid
 {
 public:
@@ -14,9 +16,9 @@ public:
     Grid(const Grid& other);
     Grid(Grid&& other);
     Grid& operator=(Grid other);
-    
+
     ~Grid();
-    
+
     friend void swap(Grid& a, Grid& b);
 
     const real* data() const { return field.data(); }
@@ -26,7 +28,7 @@ public:
     real3 getExtents() const;
     real3 getOffsets() const;
     real3 getSpacing() const;
-    
+
     std::vector<real>&       getData();
     const std::vector<real>& getData() const;
 
@@ -41,7 +43,7 @@ public:
     using FlipMap = std::string;
     void flip(const FlipMap& map);
     void extrude(real zoffset, real zextent, int nz);
-    
+
 private:
     std::vector<real> field;
 
@@ -49,3 +51,5 @@ private:
     real3 offsets;
     real3 extents;
 };
+
+} // namespace sdf_tools

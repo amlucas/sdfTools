@@ -11,6 +11,9 @@
 namespace py = pybind11;
 using namespace pybind11::literals;
 
+using namespace sdf_tools;
+using namespace sdf_tools::sdf;
+
 void exportSdf(py::module& m)
 {
     py::class_<Sdf> pysdf(m, "Sdf", R"(

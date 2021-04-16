@@ -7,6 +7,8 @@
 
 #include <array>
 
+namespace sdf_tools {
+
 Grid::Grid(int3 dimensions, real3 offsets, real3 extents) :
     dimensions(dimensions),
     offsets(offsets),
@@ -73,12 +75,12 @@ const std::vector<real>& Grid::getData() const
 
 void Grid::dumpBov(std::string basename) const
 {
-    writeBov(basename, this);
+    io::writeBov(basename, this);
 }
 
 void Grid::dumpSdf(std::string basename) const
 {
-    writeSdf(basename, this);
+    io::writeSdf(basename, this);
 }
 
 
@@ -128,25 +130,25 @@ inline void checkCompatibility(const Grid *a, const Grid *b)
 
 void Grid::applySdfComplement()
 {
-    applyUnaryOperation(this, SdfOperation::Complement{});
+    applyUnaryOperation(this, sdf::SdfOperation::Complement{});
 }
 
 void Grid::applySdfInteriorUnion(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, SdfOperation::Union{});
+    applyBinaryOperation(this, other, sdf::SdfOperation::Union{});
 }
 
 void Grid::applySdfInteriorIntersection(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, SdfOperation::Intersection{});
+    applyBinaryOperation(this, other, sdf::SdfOperation::Intersection{});
 }
 
 void Grid::applySdfSubtract(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, SdfOperation::SubtractGrid{});
+    applyBinaryOperation(this, other, sdf::SdfOperation::SubtractGrid{});
 }
 
 static const Grid::FlipMap identityFlipMap = "xyz";
@@ -246,3 +248,5 @@ void Grid::extrude(real zoffset, real zextent, int nz)
         std::copy(xySdf.begin(), xySdf.end(),
                   field.begin() + xySdf.size() * iz);
 }
+
+} // namespace sdf_tools

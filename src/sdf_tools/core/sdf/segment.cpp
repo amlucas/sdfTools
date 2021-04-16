@@ -4,6 +4,8 @@
 #include <sdf_tools/core/utils/helper_math.h>
 #include <sdf_tools/core/grid.h>
 
+namespace sdf_tools {
+namespace sdf {
 
 SdfSegment::SdfSegment(real3 start, real3 end, real radius, bool inside) :
     start(start),
@@ -35,3 +37,6 @@ real SdfSegment::at(real3 r) const
 
     return sign * (length(r - p) - radius);
 }
+
+} // namespace sdf
+} // namespace sdf_tools

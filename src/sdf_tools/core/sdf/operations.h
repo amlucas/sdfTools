@@ -4,8 +4,10 @@
 
 #include <algorithm>
 
-namespace SdfOperation
-{
+namespace sdf_tools {
+namespace sdf {
+namespace SdfOperation {
+
 struct Identity
 {
     inline real operator()(real s) const {return s;}
@@ -56,3 +58,5 @@ struct Chain
 };
 
 } // namespace SdfOperation
+} // namespace sdf
+} // namespace sdf_tools

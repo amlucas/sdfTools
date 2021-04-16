@@ -6,6 +6,9 @@
 #include <type_traits>
 #include <vector>
 
+namespace sdf_tools {
+namespace io {
+
 static const std::string ext = ".sdf";
 
 static std::vector<float> getFloatData(const Grid *grid)
@@ -42,3 +45,6 @@ void writeSdf(std::string basename, const Grid *grid)
 
     fclose(f);
 }
+
+} // namespace io
+} // namespace sdf_tools

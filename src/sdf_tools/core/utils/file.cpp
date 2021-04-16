@@ -2,6 +2,9 @@
 
 #include <sdf_tools/core/utils/error.h>
 
+namespace sdf_tools {
+namespace utils {
+
 FILE* safeOpen(const char *fname, const char *mode)
 {
     FILE *f = fopen(fname, mode);
@@ -11,3 +14,6 @@ FILE* safeOpen(const char *fname, const char *mode)
 
     return f;
 }
+
+} // namespace utils
+} // namespace sdf_tools

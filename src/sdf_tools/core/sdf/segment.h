@@ -4,6 +4,9 @@
 
 #include <sdf_tools/core/types.h>
 
+namespace sdf_tools {
+namespace sdf {
+
 class SdfSegment : public SdfImpl<SdfSegment>
 {
 public:
@@ -17,3 +20,6 @@ protected:
     real radius, invSegSq;
     int sign;
 };
+
+} // namespace sdf
+} // namespace sdf_tools

@@ -4,6 +4,8 @@
 
 #include <cmath>
 
+namespace sdf_tools {
+
 inline real3& operator+=(real3 &a, real3 b)
 {
     a.x += b.x;
@@ -97,3 +99,5 @@ inline real dot(real2 a, real2 b)
 
 inline real length(real3 a) { return sqrt(dot(a, a)); }
 inline real length(real2 a) { return sqrt(dot(a, a));}
+
+} // namespace sdf_tools
