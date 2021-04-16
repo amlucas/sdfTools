@@ -1,6 +1,5 @@
-pybind11_add_module(pysdftools
-  bindings.cpp
-  grid.cpp
-  sdf.cpp)
-
-target_link_libraries(pysdftools PUBLIC sdf_tools)
+target_sources(sdf_tools PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/bindings.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/grid.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/sdf.cpp
+  )

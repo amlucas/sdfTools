@@ -101,13 +101,13 @@ class CMakeBuild(build_ext):
         )
 
 setup(
-    name='pysdftools',
+    name='sdf_tools',
     version="0.0",
     author='Lucas Amoudruz',
     author_email='amlucas@ethz.ch',
     description='utilities for signed distance functions based geometry',
     long_description='',
-    ext_modules=[CMakeExtension("pysdftools")],
+    ext_modules=[CMakeExtension("sdf_tools")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
 )
