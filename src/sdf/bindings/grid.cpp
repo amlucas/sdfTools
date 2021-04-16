@@ -1,7 +1,7 @@
 #include "bindings.h"
 
-#include "core/grid.h"
-#include "core/io/write_bov.h"
+#include <sdf/core/grid.h>
+#include <sdf/core/io/write_bov.h>
 
 namespace py = pybind11;
 using namespace pybind11::literals;
@@ -28,7 +28,7 @@ void exportGrid(py::module& m)
         .def("get", (const std::vector<real>& (Grid::*)() const) &Grid::getData, R"(
             returns a list of all values in a flatten array (const).
         )")
-        
+
         .def("dumpBov", &Grid::dumpBov,
           "basename"_a, R"(
           Dump the data in ``bov`` format
@@ -46,27 +46,27 @@ void exportGrid(py::module& m)
 
         .def("applySdfComplement", &Grid::applySdfComplement,
           R"(
-          apply complement unary operation 
+          apply complement unary operation
         )")
         .def("applySdfInteriorUnion", &Grid::applySdfInteriorUnion,
              "other"_a, R"(
-          apply interior union between this grid and another given grid 
+          apply interior union between this grid and another given grid
 
           Args:
-              other: the other grid 
+              other: the other grid
         )")
         .def("applySdfInteriorIntersection", &Grid::applySdfInteriorIntersection,
              "other"_a, R"(
-          apply interior intersection between this grid and another given grid 
+          apply interior intersection between this grid and another given grid
 
           Args:
-              other: the other grid 
+              other: the other grid
         )")
         .def("applySdfSubtract", &Grid::applySdfSubtract,
              "other"_a, R"(
-          apply interior subtract between this grid and another given grid 
+          apply interior subtract between this grid and another given grid
           Args:
-              other: the other grid 
+              other: the other grid
         )")
 
         .def("flip", &Grid::flip,

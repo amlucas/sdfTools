@@ -1,12 +1,12 @@
 #include "bindings.h"
 
-#include <core/grid.h>
-#include <core/sdf/box.h>
-#include <core/sdf/edges.h>
-#include <core/sdf/interface.h>
-#include <core/sdf/plate.h>
-#include <core/sdf/segment.h>
-#include <core/sdf/sphere.h>
+#include <sdf/core/grid.h>
+#include <sdf/core/sdf/box.h>
+#include <sdf/core/sdf/edges.h>
+#include <sdf/core/sdf/interface.h>
+#include <sdf/core/sdf/plate.h>
+#include <sdf/core/sdf/segment.h>
+#include <sdf/core/sdf/sphere.h>
 
 namespace py = pybind11;
 using namespace pybind11::literals;
@@ -40,7 +40,7 @@ void exportSdf(py::module& m)
         Args:
             grid: the grid to apply the complement sdf to
     )");
-    
+
     pysdf.def("applyComplementPeriodic", &Sdf::applyComplementPeriodic,
               "grid"_a, R"(
         Compute the complement of the given sdf shape and its periodic images for each point
@@ -49,7 +49,7 @@ void exportSdf(py::module& m)
         Args:
             grid: the grid to apply the complement sdf to
     )");
-    
+
     pysdf.def("interiorUnion", &Sdf::interiorUnion,
               "grid"_a, R"(
         Compute the interior union of the given sdf with the given grid.
@@ -76,7 +76,7 @@ void exportSdf(py::module& m)
 
     pysdf.def("interiorIntersectionPeriodic", &Sdf::interiorIntersectionPeriodic,
               "grid"_a, R"(
-        Compute the interior intersection of the given sdf and its periodic images 
+        Compute the interior intersection of the given sdf and its periodic images
         with the given grid.
 
         Args:
@@ -93,7 +93,7 @@ void exportSdf(py::module& m)
 
     pysdf.def("interiorSubtractToGridPeriodic", &Sdf::interiorSubtractToGridPeriodic,
               "grid"_a, R"(
-        Compute the interior subtraction of the given grid by the given sdf and its 
+        Compute the interior subtraction of the given grid by the given sdf and its
         periodic images.
 
         Args:
@@ -118,7 +118,7 @@ void exportSdf(py::module& m)
     )");
 
 
-    
+
     py::class_<SdfBox> (m, "Box", pysdf, R"(
         Box aligned with axes
     )")
@@ -151,7 +151,7 @@ void exportSdf(py::module& m)
              "point"_a, "normal"_a, R"(
             Args:
                 point: one point on the plane
-                normal: the normal vector (not necessarily normalized, but must be non-zero) 
+                normal: the normal vector (not necessarily normalized, but must be non-zero)
                         pointing inside
         )");
 
