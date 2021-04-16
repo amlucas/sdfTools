@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
 import numpy as np
-import sdfTools
+import sdf_tools
 
 n = 5
 
@@ -9,11 +9,11 @@ offs = (0., 0., 0.)
 dims = (n, n, n)
 exts = (1.0, 1.0, 1.0)
 
-grid = sdfTools.Grid.Uniform(dims, offs, exts)
+grid = sdf_tools.Grid.Uniform(dims, offs, exts)
 
-box = sdfTools.Sdf.Box((0.2, 0.2, 0.2),
-                       (0.8, 0.8, 0.8),
-                       inside=True)
+box = sdf_tools.Sdf.Box((0.2, 0.2, 0.2),
+                        (0.8, 0.8, 0.8),
+                        inside=True)
 
 box.apply(grid)
 
@@ -24,4 +24,3 @@ np.savetxt("grid.txt", grid.get())
 # rm -rf *.txt
 # ./box.py
 # mv grid.txt grid.out.txt
-
