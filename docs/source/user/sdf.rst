@@ -3,7 +3,7 @@
 Sdf
 ###
 
-The :any:`Sdf.Sdf` object is the central maniupulator for the :any:`Grid.Uniform` data.
+The :any:`Sdf.Sdf` object represent signed distance function fields.
 It allows to create various shapes.
 
 Summary
@@ -11,7 +11,7 @@ Summary
 
 .. automodsumm:: _sdftools.Sdf
 
-		 
+
 Details
 =======
 
@@ -19,5 +19,3 @@ Details
    :members:
    :undoc-members:
    :special-members: __init__
-
- 

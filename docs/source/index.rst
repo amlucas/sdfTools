@@ -12,7 +12,7 @@ A simple tool to create complex geometries from simple shapes, with python bindi
    user/grid
    user/sdf
 
-.. literalinclude:: ../../tests/tuto/cheese.py
+.. literalinclude:: ../../tutorial/04_cheese.py
    :name: cheese-py
    :caption: `cheese.py`
 
