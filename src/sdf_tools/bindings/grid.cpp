@@ -51,6 +51,7 @@ void exportGrid(py::module& m)
         )")
 
         .def("evaluate_sdf", [](Grid *grid, const sdf::Sdf *sdf) {evaluateAtGridPoints(sdf, grid);})
+        .def("evaluate_sdf_periodic", [](Grid *grid, const sdf::Sdf *sdf) {evaluateAtGridPointsPeriodic(sdf, grid);})
 
         .def("flip", &Grid::flip,
              "map"_a, R"(
