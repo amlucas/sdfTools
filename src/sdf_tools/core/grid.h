@@ -32,11 +32,6 @@ public:
     std::vector<real>&       getData();
     const std::vector<real>& getData() const;
 
-    void applySdfComplement();
-    void applySdfInteriorUnion(const Grid *other);
-    void applySdfInteriorIntersection(const Grid *other);
-    void applySdfSubtract(const Grid *other);
-
     using FlipMap = std::string;
     void flip(const FlipMap& map);
     void extrude(real zoffset, real zextent, int nz);

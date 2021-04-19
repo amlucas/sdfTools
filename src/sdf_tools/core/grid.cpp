@@ -1,6 +1,5 @@
 #include "grid.h"
 
-#include <sdf_tools/core/sdf/operations.h>
 #include <sdf_tools/core/utils/error.h>
 
 #include <array>
@@ -63,73 +62,6 @@ std::vector<real>& Grid::getData()
 const std::vector<real>& Grid::getData() const
 {
     return field;
-}
-
-template <typename Op>
-inline void applyUnaryOperation(Grid *grid, Op op)
-{
-    for (auto& val : grid->getData())
-        val = op(val);
-}
-
-template <typename Op>
-inline void applyBinaryOperation(Grid *grid1, const Grid *grid2, Op op)
-{
-    auto dims = grid1->getDimensions();
-    real *data1 = grid1->data();
-    const real *data2 = grid2->data();
-
-    for (int iz = 0; iz < dims.z; ++iz)
-        for (int iy = 0; iy < dims.y; ++iy)
-            for (int ix = 0; ix < dims.x; ++ix) {
-                *data1 = op(*data1, *data2);
-                ++data1;
-                ++data2;
-            }
-}
-
-template <class T>
-inline bool equal3(T a, T b)
-{
-    return
-        a.x == b.x &&
-        a.y == b.y &&
-        a.z == b.z;
-}
-
-inline void checkCompatibility(const Grid *a, const Grid *b)
-{
-    if (!equal3(a->getDimensions(), b->getDimensions()))
-        error("Incompatible dimensions");
-
-    if (!equal3(a->getExtents(), b->getExtents()))
-        error("Incompatible extents");
-
-    if (!equal3(a->getOffsets(), b->getOffsets()))
-        error("Incompatible offsets");
-}
-
-void Grid::applySdfComplement()
-{
-    applyUnaryOperation(this, sdf::operations::Complement{});
-}
-
-void Grid::applySdfInteriorUnion(const Grid *other)
-{
-    checkCompatibility(this, other);
-    applyBinaryOperation(this, other, sdf::operations::Union{});
-}
-
-void Grid::applySdfInteriorIntersection(const Grid *other)
-{
-    checkCompatibility(this, other);
-    applyBinaryOperation(this, other, sdf::operations::Intersection{});
-}
-
-void Grid::applySdfSubtract(const Grid *other)
-{
-    checkCompatibility(this, other);
-    applyBinaryOperation(this, other, sdf::operations::Difference{});
 }
 
 static const Grid::FlipMap identityFlipMap = "xyz";

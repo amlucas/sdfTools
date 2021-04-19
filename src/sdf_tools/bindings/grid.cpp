@@ -35,14 +35,14 @@ void exportGrid(py::module& m)
             returns a list of all values in a flatten array (const).
         )")
 
-        .def("dumpBov", [](const Grid *g, std::string basename) {io::writeBov(std::move(basename), g);},
+        .def("dump_to_bov", [](const Grid *g, std::string basename) {io::writeBov(std::move(basename), g);},
           "basename"_a, R"(
           Dump the data in ``bov`` format
 
           Args:
               basename: base filename to dump to
         )")
-        .def("dumpSdf", [](const Grid *g, std::string basename) {io::writeSdf(std::move(basename), g);},
+        .def("dump_to_sdf", [](const Grid *g, std::string basename) {io::writeSdf(std::move(basename), g);},
           "basename"_a, R"(
           Dump data in custom ``.sdf`` format
 
@@ -50,33 +50,7 @@ void exportGrid(py::module& m)
               basename: base filename to dump to
         )")
 
-        .def("applySdfComplement", &Grid::applySdfComplement,
-          R"(
-          apply complement unary operation
-        )")
-        .def("applySdfInteriorUnion", &Grid::applySdfInteriorUnion,
-             "other"_a, R"(
-          apply interior union between this grid and another given grid
-
-          Args:
-              other: the other grid
-        )")
-        .def("applySdfInteriorIntersection", &Grid::applySdfInteriorIntersection,
-             "other"_a, R"(
-          apply interior intersection between this grid and another given grid
-
-          Args:
-              other: the other grid
-        )")
-        .def("applySdfSubtract", &Grid::applySdfSubtract,
-             "other"_a, R"(
-          apply interior subtract between this grid and another given grid
-          Args:
-              other: the other grid
-        )")
-
-        .def("applySdf", [](Grid *grid, const sdf::Sdf *sdf) {evaluateAtGridPoints(sdf, grid);})
-        .def("applySdfPeriodic", [](Grid *grid, const sdf::Sdf *sdf) {evaluateAtGridPointsPeriodic(sdf, grid);})
+        .def("evaluate_sdf", [](Grid *grid, const sdf::Sdf *sdf) {evaluateAtGridPoints(sdf, grid);})
 
         .def("flip", &Grid::flip,
              "map"_a, R"(
