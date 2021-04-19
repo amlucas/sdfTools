@@ -8,7 +8,7 @@
 namespace py = pybind11;
 using namespace pybind11::literals;
 
-using namespace sdf_tools;
+namespace sdf_tools {
 
 void exportGrid(py::module& m)
 {
@@ -95,3 +95,5 @@ void exportGrid(py::module& m)
               nz: resolution in new direction
         )");
 }
+
+} // namespace sdf_tools

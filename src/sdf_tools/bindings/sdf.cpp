@@ -10,8 +10,8 @@
 
 using namespace pybind11::literals;
 
-using namespace sdf_tools;
-using namespace sdf_tools::sdf;
+namespace sdf_tools {
+using namespace sdf;
 
 void exportSdf(py::module& m)
 {
@@ -186,3 +186,5 @@ void exportSdf(py::module& m)
 
 
 }
+
+} // namespace sdf_tools

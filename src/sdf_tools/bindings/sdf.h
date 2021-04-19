@@ -4,4 +4,8 @@
 
 namespace py = pybind11;
 
+namespace sdf_tools {
+
 void exportSdf(py::module& m);
+
+} // namespace sdf_tools
