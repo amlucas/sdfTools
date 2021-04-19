@@ -27,5 +27,5 @@ for i in range(50):
     sphere = sdf.Sphere(center.tolist(), radius, inside=True)
     my_sdf = sdf.Difference(my_sdf, sphere)
 
-grid.applySdf(my_sdf)
-grid.dumpBov("cheese")
+grid.evaluate_sdf(my_sdf)
+grid.dump_to_bov("cheese")

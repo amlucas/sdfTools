@@ -21,5 +21,5 @@ capsule1 = sdf_tools.Sdf.Capsule(start=(1.3, 0.5, 0.1),
 my_sdf = sdf_tools.Sdf.Difference(sdf_tools.Sdf.Union(sphere, capsule0),
                                   capsule1)
 
-grid.applySdf(my_sdf)
-grid.dumpBov("three")
+grid.evaluate_sdf(my_sdf)
+grid.dump_to_bov("three")

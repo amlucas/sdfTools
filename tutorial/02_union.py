@@ -19,5 +19,5 @@ capsule = sdf_tools.Sdf.Capsule(start=(0.3, 0.5, 0.5),
 my_sdf = sdf_tools.Sdf.Union(sphere, capsule)
 
 # evaluate on the grid and dump to file
-grid.applySdf(my_sdf)
-grid.dumpBov("union")
+grid.evaluate_sdf(my_sdf)
+grid.dump_to_bov("union")
