@@ -37,7 +37,7 @@ Binary operations
 *****************
 
 It is possible to apply operations between several shapes.
-Let us create the union of a ball and a capsule (see :any:`Segment`).
+Let us create the union of a ball and a capsule (see :any:`Capsule`).
 
 .. literalinclude:: ../../../tutorial/02_union.py
    :name: union-py
