@@ -47,7 +47,7 @@ void exportSdf(py::module& m)
     py::shared_class<SdfEdges> (m, "Edges", pysdf, R"(
         closed polygon defined from edges
     )")
-        .def(py::init <const std::vector<std::array<real, 2>>&, bool, int> (),
+        .def(py::init <std::vector<real2>&, bool, int> (),
              "edges"_a, "inside"_a, "nsamples"_a = 20, R"(
 
             Args:

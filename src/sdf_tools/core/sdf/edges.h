@@ -14,8 +14,7 @@ namespace sdf {
 class SdfEdges : public Sdf
 {
 public:
-    SdfEdges(const std::vector<real2>& edges, bool inside, int nsamples);
-    SdfEdges(const std::vector<std::array<real,2>>& edges, bool inside, int nsamples);
+    SdfEdges(std::vector<real2> edges, bool inside, int nsamples);
 
     real at(real3 r) const;
 
