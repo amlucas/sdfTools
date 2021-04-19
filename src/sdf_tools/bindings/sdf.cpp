@@ -8,6 +8,8 @@
 #include <sdf_tools/core/sdf/segment.h>
 #include <sdf_tools/core/sdf/sphere.h>
 
+#include <pybind11/stl.h>
+
 using namespace pybind11::literals;
 
 namespace sdf_tools {

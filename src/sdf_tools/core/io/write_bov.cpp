@@ -21,7 +21,7 @@ static std::string extractFilename(std::string basename)
 
 static void writeHeader(std::string basename, const Grid *grid)
 {
-    FILE *f = safeOpen((basename + ExtBov).c_str(), "w");
+    FILE *f = utils::safeOpen((basename + ExtBov).c_str(), "w");
 
     auto dim = grid->getDimensions();
     auto off = grid->getOffsets();
@@ -43,7 +43,7 @@ static void writeHeader(std::string basename, const Grid *grid)
 
 static void writeValues(std::string basename, const Grid *grid)
 {
-    FILE *f = safeOpen((basename + ExtVal).c_str(), "wb");
+    FILE *f = utils::safeOpen((basename + ExtVal).c_str(), "wb");
 
     auto n = grid->getDimensions();
 

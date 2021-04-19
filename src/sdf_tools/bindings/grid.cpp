@@ -1,9 +1,10 @@
 #include "grid.h"
 
 #include <sdf_tools/core/grid.h>
-
 #include <sdf_tools/core/io/write_bov.h>
 #include <sdf_tools/core/io/write_sdf.h>
+
+#include <pybind11/stl.h>
 
 namespace py = pybind11;
 using namespace pybind11::literals;

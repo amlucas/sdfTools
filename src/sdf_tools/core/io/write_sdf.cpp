@@ -26,7 +26,7 @@ void writeSdf(std::string basename, const Grid *grid)
 {
     const std::string fname = basename + ext;
 
-    FILE *f = safeOpen(fname.c_str(), "wb");
+    FILE *f = utils::safeOpen(fname.c_str(), "wb");
 
     std::stringstream ss;
 
