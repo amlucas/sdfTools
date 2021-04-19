@@ -4,7 +4,6 @@
 
 #include <sdf_tools/core/types.h>
 
-#include <array>
 #include <random>
 #include <vector>
 

@@ -2,7 +2,8 @@
 
 #include <sdf_tools/core/utils/error.h>
 #include <sdf_tools/core/utils/helper_math.h>
-#include <sdf_tools/core/grid.h>
+
+#include <algorithm>
 
 namespace sdf_tools {
 namespace sdf {
@@ -24,10 +25,10 @@ SdfSegment::SdfSegment(real3 start, real3 end, real radius, bool inside) :
 
 real SdfSegment::at(real3 r) const
 {
-    auto ar = r - start_;
+    const real3 ar = r - start_;
     real alpha = dot(seg_, ar) * invSegSq_;
     alpha = std::min(1.0_r, std::max(0.0_r, alpha));
-    auto p = start_ + alpha * seg_;
+    const real3 p = start_ + alpha * seg_;
 
     return sign_ * (length(r - p) - radius_);
 }

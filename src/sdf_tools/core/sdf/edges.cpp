@@ -1,6 +1,5 @@
 #include "edges.h"
 
-#include <sdf_tools/core/grid.h>
 #include <sdf_tools/core/utils/helper_math.h>
 
 namespace sdf_tools {

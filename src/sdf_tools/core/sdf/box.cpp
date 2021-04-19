@@ -1,7 +1,8 @@
 #include "box.h"
 
 #include <sdf_tools/core/utils/helper_math.h>
-#include <sdf_tools/core/grid.h>
+
+#include <algorithm>
 
 namespace sdf_tools {
 namespace sdf {

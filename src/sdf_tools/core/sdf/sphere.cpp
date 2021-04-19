@@ -1,7 +1,6 @@
 #include "sphere.h"
 
 #include <sdf_tools/core/utils/helper_math.h>
-#include <sdf_tools/core/grid.h>
 
 namespace sdf_tools {
 namespace sdf {
