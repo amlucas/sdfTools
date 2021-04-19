@@ -7,11 +7,11 @@ namespace sdf_tools {
 namespace sdf {
 
 SdfEdges::SdfEdges(const std::vector<real2>& edges, bool inside, int nsamples) :
-    edges(edges),
-    insideSign(inside ? 1 : -1),
-    nsamples(nsamples)
+    edges_(edges),
+    insideSign_(inside ? 1 : -1),
+    nsamples_(nsamples)
 {
-    origin = findOrigin();
+    origin_ = findOrigin_();
 }
 
 static std::vector<real2> convert(const std::vector<std::array<real,2>>& src)
@@ -123,9 +123,9 @@ real SdfEdges::at(real3 pos) const
     // TODO: for now assume xy plane
     const real2 r = {pos.x, pos.y};
 
-    const real distance = distanceToEdges(edges, r);
-    const int sign = getSignInsideEdges(edges, distance, r, origin, nsamples, gen);
-    return distance * sign * insideSign;
+    const real distance = distanceToEdges(edges_, r);
+    const int sign = getSignInsideEdges(edges_, distance, r, origin_, nsamples_, gen_);
+    return distance * sign * insideSign_;
 }
 
 static inline bool areColinear(real2 a, real2 b, real2 r, real tolerance)
@@ -152,7 +152,7 @@ static inline bool isColinearWithAnyEdge(const std::vector<real2>& edges, const 
     return false;
 }
 
-real2 SdfEdges::findOrigin()
+real2 SdfEdges::findOrigin_()
 {
     constexpr real tolerance = 1e-3_r;
 
@@ -168,8 +168,8 @@ real2 SdfEdges::findOrigin()
     real2 r;
     do
     {
-        r = generateRandomReal2(gen);
-    } while (isColinearWithAnyEdge(edges, origin, tolerance));
+        r = generateRandomReal2(gen_);
+    } while (isColinearWithAnyEdge(edges_, origin_, tolerance));
 
     return r;
 }

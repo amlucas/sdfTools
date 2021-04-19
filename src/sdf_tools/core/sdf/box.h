@@ -14,9 +14,10 @@ public:
 
     real at(real3 r) const;
 
-protected:
-    real3 center, halfExtents;
-    int sign;
+private:
+    real3 center_;
+    real3 halfExtents_;
+    int sign_;
 };
 
 } // namespace sdf

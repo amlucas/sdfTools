@@ -8,28 +8,28 @@ namespace sdf_tools {
 namespace sdf {
 
 SdfSegment::SdfSegment(real3 start, real3 end, real radius, bool inside) :
-    start(start),
-    seg(end - start),
-    radius(radius),
-    sign(inside ? 1 : -1)
+    start_(start),
+    seg_(end - start),
+    radius_(radius),
+    sign_(inside ? 1 : -1)
 {
     constexpr real eps = 1e-6;
-    real segSq = dot(seg, seg);
+    const real segSq = dot(seg_, seg_);
 
     if (segSq < eps)
         error("SdfSegment: Start and End points must be different");
 
-    invSegSq = 1.0_r / segSq;
+    invSegSq_ = 1.0_r / segSq;
 }
 
 real SdfSegment::at(real3 r) const
 {
-    auto ar = r - start;
-    real alpha = dot(seg, ar) * invSegSq;
+    auto ar = r - start_;
+    real alpha = dot(seg_, ar) * invSegSq_;
     alpha = std::min(1.0_r, std::max(0.0_r, alpha));
-    auto p = start + alpha * seg;
+    auto p = start_ + alpha * seg_;
 
-    return sign * (length(r - p) - radius);
+    return sign_ * (length(r - p) - radius_);
 }
 
 } // namespace sdf

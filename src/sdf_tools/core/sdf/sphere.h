@@ -14,10 +14,10 @@ public:
 
     real at(real3 r) const override;
 
-protected:
-    real3 center;
-    real radius;
-    int sign;
+private:
+    real3 center_;
+    real radius_;
+    int sign_;
 };
 
 } // namespace sdf

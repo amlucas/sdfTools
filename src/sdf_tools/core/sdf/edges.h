@@ -19,15 +19,15 @@ public:
 
     real at(real3 r) const;
 
-protected:
-    real2 findOrigin();
+private:
+    real2 findOrigin_();
 
-protected:
-    std::vector<real2> edges;
-    int insideSign;
-    int nsamples;
-    mutable std::mt19937 gen{424242L};
-    real2 origin;
+private:
+    std::vector<real2> edges_;
+    int insideSign_;
+    int nsamples_;
+    mutable std::mt19937 gen_{0xC0FFEE};
+    real2 origin_;
 };
 
 } // namespace sdf

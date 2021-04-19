@@ -7,14 +7,14 @@ namespace sdf_tools {
 namespace sdf {
 
 SdfSphere::SdfSphere(real3 center, real radius, bool inside) :
-    center(center),
-    radius(radius),
-    sign(inside ? 1 : -1)
+    center_(center),
+    radius_(radius),
+    sign_(inside ? 1 : -1)
 {}
 
 real SdfSphere::at(real3 r) const
 {
-    return sign * (length(r - center) - radius);
+    return sign_ * (length(r - center_) - radius_);
 }
 
 } // namespace sdf
