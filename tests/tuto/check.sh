@@ -18,12 +18,6 @@ rm -f exit.out.txt
 ./three.py
 echo $? > exit.out.txt
 
-# TEST: tuto.prism
-cd tuto
-rm -f exit.out.txt
-./prism.py
-echo $? > exit.out.txt
-
 # TEST: tuto.cheese
 cd tuto
 rm -f exit.out.txt

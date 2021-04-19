@@ -15,7 +15,7 @@ grid = sdf_tools.Grid.Uniform(dims, offs, exts)
 
 sphere = sdf_tools.Sdf.Sphere(center, radius, inside=True)
 
-sphere.applyPeriodic(grid)
+grid.applySdfPeriodic(sphere)
 
 np.savetxt("grid.txt", grid.get())
 

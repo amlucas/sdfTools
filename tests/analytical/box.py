@@ -15,7 +15,7 @@ box = sdf_tools.Sdf.Box((0.2, 0.2, 0.2),
                         (0.8, 0.8, 0.8),
                         inside=True)
 
-box.apply(grid)
+grid.applySdf(box)
 
 np.savetxt("grid.txt", grid.get())
 

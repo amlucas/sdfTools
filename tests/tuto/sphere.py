@@ -17,7 +17,7 @@ radius = 0.4
 sphere = sdf_tools.Sdf.Sphere(center, radius, inside=True)
 
 # apply the description to the grid
-sphere.apply(grid)
+grid.applySdf(sphere)
 
 # dump the grid to .bov format, can be open with visit
 grid.dumpBov("sphere")

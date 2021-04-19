@@ -11,14 +11,13 @@ grid = sdf_tools.Grid.Uniform(dims, offs, exts)
 sphere  = sdf_tools.Sdf.Sphere(center=(1.0, 0.5, 0.5),
                                radius=0.4, inside=True)
 
-segment = sdf_tools.Sdf.Segment(start=(0.3, 0.5, 0.5),
+capsule = sdf_tools.Sdf.Capsule(start=(0.3, 0.5, 0.5),
                                 end  =(1.7, 0.5, 0.5),
                                 radius = 0.2, inside=True)
 
-# create a union of the 2 shapes:
-# first apply one shape
-sphere.apply(grid)
-# then apply the other on the same grid, with union operation
-segment.interiorUnion(grid)
+# create a union of the 2 shapes
+my_sdf = sdf_tools.Sdf.Union(sphere, capsule)
 
+# evaluate on the grid and dump to file
+grid.applySdf(my_sdf)
 grid.dumpBov("union")

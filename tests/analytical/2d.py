@@ -15,7 +15,7 @@ grid = sdf_tools.Grid.Uniform(dims, offs, exts)
 
 sphere = sdf_tools.Sdf.Sphere(center, radius, inside=True)
 
-sphere.apply(grid)
+grid.applySdf(sphere)
 
 np.savetxt("grid.txt", grid.get())
 
