@@ -96,6 +96,35 @@ void exportSdf(py::module& m)
         )");
 
 
+    py::shared_class<SdfUnion> (m, "Union", pysdf, "Union between two SDF objects.")
+        .def(py::init<std::shared_ptr<Sdf>, std::shared_ptr<Sdf>>(),
+             "a"_a, "b"_a, R"(
+
+        Args:
+            a: The first sdf.
+            b: The second sdf.
+
+        )");
+
+    py::shared_class<SdfIntersection> (m, "Intersection", pysdf, "Intersection between two SDF objects.")
+        .def(py::init<std::shared_ptr<Sdf>, std::shared_ptr<Sdf>>(),
+            "a"_a, "b"_a, R"(
+
+        Args:
+            a: The first sdf.
+            b: The second sdf.
+
+        )");
+
+    py::shared_class<SdfDifference> (m, "Difference", pysdf, "Difference between two SDF objects.")
+        .def(py::init<std::shared_ptr<Sdf>, std::shared_ptr<Sdf>>(),
+            "a"_a, "b"_a, R"(
+
+        Args:
+            a: The original sdf.
+            b: The sdf of the object that should be removed from the original.
+
+        )");
 
 }
 

@@ -12,8 +12,8 @@ namespace sdf {
 class SdfComposed : public Sdf
 {
 public:
-    SdfComposed(std::unique_ptr<Sdf> sdfA,
-                std::unique_ptr<Sdf> sdfB,
+    SdfComposed(std::shared_ptr<Sdf> sdfA,
+                std::shared_ptr<Sdf> sdfB,
                 operations::SdfBinaryOperationVar operation);
 
     real at(real3 r) const override
@@ -24,9 +24,30 @@ public:
     }
 
 private:
-    std::unique_ptr<Sdf> sdfA_;
-    std::unique_ptr<Sdf> sdfB_;
+    std::shared_ptr<Sdf> sdfA_;
+    std::shared_ptr<Sdf> sdfB_;
     operations::SdfBinaryOperationVar operation_;
+};
+
+class SdfUnion : public SdfComposed
+{
+public:
+    SdfUnion(std::shared_ptr<Sdf> sdfA,
+             std::shared_ptr<Sdf> sdfB);
+};
+
+class SdfIntersection : public SdfComposed
+{
+public:
+    SdfIntersection(std::shared_ptr<Sdf> sdfA,
+                    std::shared_ptr<Sdf> sdfB);
+};
+
+class SdfDifference : public SdfComposed
+{
+public:
+    SdfDifference(std::shared_ptr<Sdf> sdfA,
+                  std::shared_ptr<Sdf> sdfB);
 };
 
 } // namespace sdf

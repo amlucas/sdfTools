@@ -34,14 +34,14 @@ struct Intersection
     inline real operator()(real a, real b) const {return std::max(a, b);}
 };
 
-struct Subtraction
+struct Difference
 {
     inline real operator()(real a, real b) const {return std::max(a, -b);}
 };
 
 
 using SdfUnaryOperationVar = std::variant<Identity, Complement>;
-using SdfBinaryOperationVar = std::variant<Union, Intersection, Subtraction>;
+using SdfBinaryOperationVar = std::variant<Union, Intersection, Difference>;
 
 
 
