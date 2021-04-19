@@ -12,12 +12,6 @@ SdfBox::SdfBox(real3 lowerBound, real3 upperBound, bool inside) :
     sign(inside ? 1 : -1)
 {}
 
-SdfBox::SdfBox(PyReal3 lowerBound, PyReal3 upperBound, bool inside) :
-    SdfBox(make_real3(lowerBound),
-           make_real3(upperBound),
-           inside)
-{}
-
 real SdfBox::at(real3 r) const
 {
     r -= center;

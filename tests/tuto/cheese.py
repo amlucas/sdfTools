@@ -29,7 +29,7 @@ sdf_tools.Sdf.Plate(point  = [0, 0, 0.9*exts[2]],
 for i in range(50):
     radius = np.random.uniform(0.02, 0.12)
     center = np.random.uniform(offs, exts)
-    sphere = sdf_tools.Sdf.Sphere(center, radius, inside=True)
+    sphere = sdf_tools.Sdf.Sphere(center.tolist(), radius, inside=True)
     sphere.interiorSubtractToGrid(grid)
 
 grid.dumpBov("cheese")

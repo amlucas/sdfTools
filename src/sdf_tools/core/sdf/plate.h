@@ -11,7 +11,6 @@ class SdfPlate : public SdfImpl<SdfPlate>
 {
 public:
     SdfPlate(real3 point, real3 normal);
-    SdfPlate(PyReal3 point, PyReal3 normal);
 
     real at(real3 r) const;
 

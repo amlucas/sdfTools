@@ -1,7 +1,5 @@
 #pragma once
 
-#include <tuple>
-
 namespace sdf_tools {
 
 typedef float real;
@@ -25,35 +23,5 @@ struct real3
 {
     real x, y, z;
 };
-
-using PyInt3 = std::tuple<int, int, int>;
-using PyReal2 = std::tuple<real, real>;
-using PyReal3 = std::tuple<real, real, real>;
-
-inline int3 make_int3(PyInt3 a)
-{
-    return {
-        std::get<0>(a),
-        std::get<1>(a),
-        std::get<2>(a)
-    };
-}
-
-inline real2 make_real2(PyReal2 a)
-{
-    return {
-        std::get<0>(a),
-        std::get<1>(a),
-    };
-}
-
-inline real3 make_real3(PyReal3 a)
-{
-    return {
-        std::get<0>(a),
-        std::get<1>(a),
-        std::get<2>(a)
-    };
-}
 
 } // namespace sdf_tools

@@ -13,10 +13,6 @@ SdfPlate::SdfPlate(real3 point, real3 normal) :
     normal *= (real(1.0) / nrm);
 }
 
-SdfPlate::SdfPlate(PyReal3 point, PyReal3 normal) :
-    SdfPlate(make_real3(point), make_real3(normal))
-{}
-
 real SdfPlate::at(real3 r) const
 {
     real3 dr = r - point;

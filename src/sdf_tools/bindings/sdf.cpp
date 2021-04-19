@@ -126,7 +126,7 @@ void exportSdf(py::module& m)
     py::class_<SdfBox> (m, "Box", pysdf, R"(
         Box aligned with axes
     )")
-        .def(py::init <PyReal3, PyReal3, bool> (),
+        .def(py::init <real3, real3, bool> (),
              "lower_bound"_a, "upper_bound"_a, "inside"_a, R"(
 
             Args:
@@ -151,7 +151,7 @@ void exportSdf(py::module& m)
         plate defined by one point and the normal vector
 
     )")
-        .def(py::init <PyReal3, PyReal3> (),
+        .def(py::init <real3, real3> (),
              "point"_a, "normal"_a, R"(
             Args:
                 point: one point on the plane
@@ -163,7 +163,7 @@ void exportSdf(py::module& m)
         segment defined by end points and radius
 
     )")
-        .def(py::init <PyReal3, PyReal3, real, bool> (),
+        .def(py::init <real3, real3, real, bool> (),
              "start"_a, "end"_a, "radius"_a, "inside"_a, R"(
 
             Args:
@@ -177,7 +177,7 @@ void exportSdf(py::module& m)
         sphere defined by center and radius
 
     )")
-        .def(py::init <PyReal3, real, bool> (),
+        .def(py::init <real3, real, bool> (),
              "center"_a, "radius"_a, "inside"_a, R"(
 
             Args:

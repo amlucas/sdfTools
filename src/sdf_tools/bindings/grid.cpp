@@ -17,7 +17,7 @@ void exportGrid(py::module& m)
         container to hold SDF grid data
 
     )")
-        .def(py::init <PyInt3, PyReal3, PyReal3> (),
+        .def(py::init <int3, real3, real3> (),
              "dimensions"_a, "offsets"_a, "extents"_a, R"(
             Create an empty uniform grid of given size.
 

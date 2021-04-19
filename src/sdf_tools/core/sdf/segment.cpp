@@ -22,12 +22,6 @@ SdfSegment::SdfSegment(real3 start, real3 end, real radius, bool inside) :
     invSegSq = 1.0_r / segSq;
 }
 
-SdfSegment::SdfSegment(PyReal3 start, PyReal3 end, real radius, bool inside) :
-    SdfSegment(make_real3(start),
-               make_real3(end),
-               radius, inside)
-{}
-
 real SdfSegment::at(real3 r) const
 {
     auto ar = r - start;
