@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sdf_impl.h"
+#include "sdf.h"
 
 #include <sdf_tools/core/types.h>
 
@@ -11,7 +11,7 @@
 namespace sdf_tools {
 namespace sdf {
 
-class SdfEdges : public SdfImpl<SdfEdges>
+class SdfEdges : public Sdf
 {
 public:
     SdfEdges(const std::vector<real2>& edges, bool inside, int nsamples);

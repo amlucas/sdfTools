@@ -1,13 +1,13 @@
 #pragma once
 
-#include "sdf_impl.h"
+#include "sdf.h"
 
 #include <sdf_tools/core/types.h>
 
 namespace sdf_tools {
 namespace sdf {
 
-class SdfBox : public SdfImpl<SdfBox>
+class SdfBox : public Sdf
 {
 public:
     SdfBox(real3 lowerBound, real3 upperBound, bool inside);

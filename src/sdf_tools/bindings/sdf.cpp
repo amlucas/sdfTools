@@ -1,14 +1,17 @@
 #include "sdf.h"
 
 #include <sdf_tools/core/grid.h>
-#include <sdf_tools/core/sdf/box.h>
-#include <sdf_tools/core/sdf/edges.h>
-#include <sdf_tools/core/sdf/interface.h>
-#include <sdf_tools/core/sdf/plate.h>
-#include <sdf_tools/core/sdf/segment.h>
-#include <sdf_tools/core/sdf/sphere.h>
+#include <sdf_tools/core/sdf/api.h>
 
 #include <pybind11/stl.h>
+#include <memory>
+
+namespace pybind11
+{
+    template <typename type_, typename... options>
+    using shared_class = class_< type_, std::shared_ptr<type_>, options... >;
+}
+
 
 using namespace pybind11::literals;
 
@@ -17,125 +20,31 @@ using namespace sdf;
 
 void exportSdf(py::module& m)
 {
-    py::class_<Sdf> pysdf(m, "Sdf", R"(
+    py::shared_class<Sdf> pysdf(m, "Sdf", R"(
         Base sdf class.
     )");
 
-    pysdf.def("apply", &Sdf::apply,
-              "grid"_a, R"(
-        Compute the given sdf shape for each point of the given grid.
+    pysdf.def("at", &Sdf::at,
+              "r"_a, R"(
+        Evaluate the SDF field at the given position.
 
-        Args:
-            grid: the grid to apply the sdf to
+            Args:
+                r: The position where to evaluate the SDF.
     )");
 
-    pysdf.def("applyPeriodic", &Sdf::applyPeriodic,
-              "grid"_a, R"(
-        Compute the given sdf shape and its periodic images for each point of the given grid.
-
-        Args:
-            grid: the grid to apply the sdf to
-    )");
-
-    pysdf.def("applyComplement", &Sdf::applyComplement,
-              "grid"_a, R"(
-        Compute the complement of the given sdf shape for each point of the given grid.
-
-        Args:
-            grid: the grid to apply the complement sdf to
-    )");
-
-    pysdf.def("applyComplementPeriodic", &Sdf::applyComplementPeriodic,
-              "grid"_a, R"(
-        Compute the complement of the given sdf shape and its periodic images for each point
-        of the given grid.
-
-        Args:
-            grid: the grid to apply the complement sdf to
-    )");
-
-    pysdf.def("interiorUnion", &Sdf::interiorUnion,
-              "grid"_a, R"(
-        Compute the interior union of the given sdf with the given grid.
-
-        Args:
-            grid: the grid to apply the union to
-    )");
-
-    pysdf.def("interiorUnionPeriodic", &Sdf::interiorUnionPeriodic,
-              "grid"_a, R"(
-        Compute the interior union of the given sdf and its periodic images with the given grid.
-
-        Args:
-            grid: the grid to apply the union to
-    )");
-
-    pysdf.def("interiorIntersection", &Sdf::interiorIntersection,
-              "grid"_a, R"(
-        Compute the interior intersection of the given sdf with the given grid.
-
-        Args:
-            grid: the grid to apply the intersection to
-    )");
-
-    pysdf.def("interiorIntersectionPeriodic", &Sdf::interiorIntersectionPeriodic,
-              "grid"_a, R"(
-        Compute the interior intersection of the given sdf and its periodic images
-        with the given grid.
-
-        Args:
-            grid: the grid to apply the intersection to
-    )");
-
-    pysdf.def("interiorSubtractToGrid", &Sdf::interiorSubtractToGrid,
-              "grid"_a, R"(
-        Compute the interior subtraction of the given grid by the given sdf.
-
-        Args:
-            grid: the grid to apply the subtraction to
-    )");
-
-    pysdf.def("interiorSubtractToGridPeriodic", &Sdf::interiorSubtractToGridPeriodic,
-              "grid"_a, R"(
-        Compute the interior subtraction of the given grid by the given sdf and its
-        periodic images.
-
-        Args:
-            grid: the grid to apply the subtraction to
-    )");
-
-    pysdf.def("interiorSubtractGrid", &Sdf::interiorSubtractGrid,
-              "grid"_a, R"(
-        Compute the interior subtraction of the given sdf by the given grid.
-
-        Args:
-            grid: the grid to subtract
-    )");
-
-    pysdf.def("interiorSubtractGridPeriodic", &Sdf::interiorSubtractGridPeriodic,
-              "grid"_a, R"(
-        Compute the interior subtraction of the given sdf and its periodic images by the given
-        grid.
-
-        Args:
-            grid: the grid to subtract
-    )");
-
-
-
-    py::class_<SdfBox> (m, "Box", pysdf, R"(
+    py::shared_class<SdfBox> (m, "Box", pysdf, R"(
         Box aligned with axes
     )")
         .def(py::init <real3, real3, bool> (),
-             "lower_bound"_a, "upper_bound"_a, "inside"_a, R"(
+             "low"_a, "high"_a, "inside"_a, R"(
 
             Args:
-                lower_bound: lower corner of the box
-                upper_bound: upper corner of the box
+                low: lower corner of the box
+                high: upper corner of the box
                 inside: ``True`` if the interior is inside the given shape
         )");
 
-    py::class_<SdfEdges> (m, "Edges", pysdf, R"(
+    py::shared_class<SdfEdges> (m, "Edges", pysdf, R"(
         closed polygon defined from edges
     )")
         .def(py::init <const std::vector<std::array<real, 2>>&, bool, int> (),
@@ -147,8 +56,8 @@ void exportSdf(py::module& m)
                 nsamples: number of samples to find the sign of the SDF (more is more accurate)
         )");
 
-    py::class_<SdfPlate> (m, "Plate", pysdf, R"(
-        plate defined by one point and the normal vector
+    py::shared_class<SdfPlate> (m, "Plate", pysdf, R"(
+        Plate defined by one point on the surface and the normal vector, pointing inside.
 
     )")
         .def(py::init <real3, real3> (),
@@ -159,8 +68,8 @@ void exportSdf(py::module& m)
                         pointing inside
         )");
 
-    py::class_<SdfSegment> (m, "Segment", pysdf, R"(
-        segment defined by end points and radius
+    py::shared_class<SdfSegment> (m, "Capsule", pysdf, R"(
+        Capsule defined by a segment and a radius.
 
     )")
         .def(py::init <real3, real3, real, bool> (),
@@ -169,11 +78,11 @@ void exportSdf(py::module& m)
             Args:
                 start: first end of the segment
                 end:  second end of the segment
-                radius: radius of the segment
-                inside: whether the domain is inside the sphere or outside of it
+                radius: radius of the capsule
+                inside: whether the domain is inside the capsule or outside of it
         )");
 
-    py::class_<SdfSphere> (m, "Sphere", pysdf, R"(
+    py::shared_class<SdfSphere> (m, "Sphere", pysdf, R"(
         sphere defined by center and radius
 
     )")
@@ -185,6 +94,7 @@ void exportSdf(py::module& m)
                 radius: radius of the sphere
                 inside: whether the domain is inside the sphere or outside of it
         )");
+
 
 
 }

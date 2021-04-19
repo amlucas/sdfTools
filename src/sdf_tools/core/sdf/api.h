@@ -1,6 +1,7 @@
 #pragma once
 
 #include "box.h"
+#include "composed.h"
 #include "edges.h"
 #include "plate.h"
 #include "segment.h"

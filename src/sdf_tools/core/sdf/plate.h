@@ -1,21 +1,22 @@
 #pragma once
 
-#include "sdf_impl.h"
+#include "sdf.h"
 
 #include <sdf_tools/core/types.h>
 
 namespace sdf_tools {
 namespace sdf {
 
-class SdfPlate : public SdfImpl<SdfPlate>
+class SdfPlate : public Sdf
 {
 public:
     SdfPlate(real3 point, real3 normal);
 
-    real at(real3 r) const;
+    real at(real3 r) const override;
 
-protected:
-    real3 point, normal;
+private:
+    real3 point_;
+    real3 normal_;
 };
 
 } // namespace sdf

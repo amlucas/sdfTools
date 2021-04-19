@@ -1,5 +1,7 @@
 #pragma once
 
+#include <sdf_tools/core/types.h>
+
 namespace sdf_tools {
 namespace sdf {
 
