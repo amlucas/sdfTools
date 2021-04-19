@@ -126,6 +126,16 @@ void exportSdf(py::module& m)
 
         )");
 
+
+    py::shared_class<SdfComplement> (m, "Complement", pysdf, "Reverse interior and exterior.")
+        .def(py::init<std::shared_ptr<Sdf>>(),
+            "sdf"_a, R"(
+
+        Args:
+            sdf: The original sdf.
+
+        )");
+
 }
 
 } // namespace sdf_tools

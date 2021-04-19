@@ -6,6 +6,7 @@
 #include "plate.h"
 #include "segment.h"
 #include "sphere.h"
+#include "transformed.h"
 
 #include <variant>
 

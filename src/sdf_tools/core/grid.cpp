@@ -129,7 +129,7 @@ void Grid::applySdfInteriorIntersection(const Grid *other)
 void Grid::applySdfSubtract(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, sdf::operations::SubtractGrid{});
+    applyBinaryOperation(this, other, sdf::operations::Difference{});
 }
 
 static const Grid::FlipMap identityFlipMap = "xyz";
