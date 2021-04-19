@@ -12,8 +12,7 @@ namespace operations {
 
 struct Complement
 {
-    inline real operator()(real s) const {return -s;}
-    inline real operator()(real s, real /* g */) const {return -s;}
+    real operator()(real s) const {return -s;}
 };
 
 using SdfUnaryOperationVar = std::variant<Complement>;
@@ -23,17 +22,17 @@ using SdfUnaryOperationVar = std::variant<Complement>;
 
 struct Union
 {
-    inline real operator()(real a, real b) const {return std::min(a, b);}
+    real operator()(real a, real b) const {return std::min(a, b);}
 };
 
 struct Intersection
 {
-    inline real operator()(real a, real b) const {return std::max(a, b);}
+    real operator()(real a, real b) const {return std::max(a, b);}
 };
 
 struct Difference
 {
-    inline real operator()(real a, real b) const {return std::max(a, -b);}
+    real operator()(real a, real b) const {return std::max(a, -b);}
 };
 
 using SdfBinaryOperationVar = std::variant<Union, Intersection, Difference>;
