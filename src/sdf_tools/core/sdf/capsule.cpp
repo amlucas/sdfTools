@@ -1,4 +1,4 @@
-#include "segment.h"
+#include "capsule.h"
 
 #include <sdf_tools/core/utils/error.h>
 #include <sdf_tools/core/utils/helper_math.h>
@@ -8,7 +8,7 @@
 namespace sdf_tools {
 namespace sdf {
 
-SdfSegment::SdfSegment(real3 start, real3 end, real radius, bool inside) :
+SdfCapsule::SdfCapsule(real3 start, real3 end, real radius, bool inside) :
     start_(start),
     seg_(end - start),
     radius_(radius),
@@ -23,7 +23,7 @@ SdfSegment::SdfSegment(real3 start, real3 end, real radius, bool inside) :
     invSegSq_ = 1.0_r / segSq;
 }
 
-real SdfSegment::at(real3 r) const
+real SdfCapsule::at(real3 r) const
 {
     const real3 ar = r - start_;
     real alpha = dot(seg_, ar) * invSegSq_;

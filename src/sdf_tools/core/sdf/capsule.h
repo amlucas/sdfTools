@@ -7,10 +7,10 @@
 namespace sdf_tools {
 namespace sdf {
 
-class SdfSegment : public Sdf
+class SdfCapsule : public Sdf
 {
 public:
-    SdfSegment(real3 start, real3 end, real radius, bool inside);
+    SdfCapsule(real3 start, real3 end, real radius, bool inside);
 
     real at(real3 r) const override;
 

@@ -44,6 +44,20 @@ void exportSdf(py::module& m)
                 inside: ``True`` if the interior is inside the given shape
         )");
 
+    py::shared_class<SdfCapsule> (m, "Capsule", pysdf, R"(
+        Capsule defined by a segment and a radius.
+
+    )")
+        .def(py::init <real3, real3, real, bool> (),
+             "start"_a, "end"_a, "radius"_a, "inside"_a, R"(
+
+            Args:
+                start: first end of the segment
+                end:  second end of the segment
+                radius: radius of the capsule
+                inside: whether the domain is inside the capsule or outside of it
+        )");
+
     py::shared_class<SdfEdges> (m, "Edges", pysdf, R"(
         closed polygon defined from edges
     )")
@@ -56,6 +70,19 @@ void exportSdf(py::module& m)
                 nsamples: number of samples to find the sign of the SDF (more is more accurate)
         )");
 
+    py::shared_class<SdfPiecewisePipe> (m, "PiecewisePipe", pysdf, R"(
+        The union of many connected capsules, forming a piecewise linear pipe with a constant radius.
+
+    )")
+        .def(py::init <std::vector<real3>, real, bool> (),
+             "vertices"_a, "radius"_a, "inside"_a, R"(
+
+            Args:
+                vertices: coordinates of the points forming the center line.
+                radius: radius of the capsule
+                inside: whether the domain is inside the capsule or outside of it
+        )");
+
     py::shared_class<SdfPlate> (m, "Plate", pysdf, R"(
         Plate defined by one point on the surface and the normal vector, pointing inside.
 
@@ -66,20 +93,6 @@ void exportSdf(py::module& m)
                 point: one point on the plane
                 normal: the normal vector (not necessarily normalized, but must be non-zero)
                         pointing inside
-        )");
-
-    py::shared_class<SdfSegment> (m, "Capsule", pysdf, R"(
-        Capsule defined by a segment and a radius.
-
-    )")
-        .def(py::init <real3, real3, real, bool> (),
-             "start"_a, "end"_a, "radius"_a, "inside"_a, R"(
-
-            Args:
-                start: first end of the segment
-                end:  second end of the segment
-                radius: radius of the capsule
-                inside: whether the domain is inside the capsule or outside of it
         )");
 
     py::shared_class<SdfSphere> (m, "Sphere", pysdf, R"(
