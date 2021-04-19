@@ -1,3 +1,4 @@
 *.bov
 *.sdf
 *.values
+__pycache__
