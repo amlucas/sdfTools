@@ -1,4 +1,4 @@
-#include "write_bov.h"
+#include "bov.h"
 
 #include <sdf_tools/core/utils/file.h>
 
