@@ -1,5 +1,6 @@
 #include "grid.h"
 
+#include <sdf_tools/core/apply_sdf.h>
 #include <sdf_tools/core/grid.h>
 #include <sdf_tools/core/io/bov.h>
 #include <sdf_tools/core/io/custom.h>
@@ -73,6 +74,9 @@ void exportGrid(py::module& m)
           Args:
               other: the other grid
         )")
+
+        .def("applySdf", [](Grid *grid, const sdf::Sdf *sdf) {evaluateAtGridPoints(sdf, grid);})
+        .def("applySdfPeriodic", [](Grid *grid, const sdf::Sdf *sdf) {evaluateAtGridPointsPeriodic(sdf, grid);})
 
         .def("flip", &Grid::flip,
              "map"_a, R"(
