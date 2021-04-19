@@ -1,4 +1,4 @@
-#include "bindings.h"
+#include "grid.h"
 
 #include <sdf_tools/core/grid.h>
 

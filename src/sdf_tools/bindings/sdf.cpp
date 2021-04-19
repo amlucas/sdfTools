@@ -1,4 +1,4 @@
-#include "bindings.h"
+#include "sdf.h"
 
 #include <sdf_tools/core/grid.h>
 #include <sdf_tools/core/sdf/box.h>
@@ -8,7 +8,6 @@
 #include <sdf_tools/core/sdf/segment.h>
 #include <sdf_tools/core/sdf/sphere.h>
 
-namespace py = pybind11;
 using namespace pybind11::literals;
 
 using namespace sdf_tools;
