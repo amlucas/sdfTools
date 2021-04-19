@@ -6,7 +6,7 @@
 
 namespace sdf_tools {
 namespace sdf {
-namespace SdfOperation {
+namespace operations {
 
 struct Identity
 {
@@ -40,6 +40,6 @@ struct SubtractGrid
     inline real operator()(real s, real g) const {return std::max(s, -g);}
 };
 
-} // namespace SdfOperation
+} // namespace operations
 } // namespace sdf
 } // namespace sdf_tools

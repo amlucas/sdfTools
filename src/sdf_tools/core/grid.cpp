@@ -117,25 +117,25 @@ inline void checkCompatibility(const Grid *a, const Grid *b)
 
 void Grid::applySdfComplement()
 {
-    applyUnaryOperation(this, sdf::SdfOperation::Complement{});
+    applyUnaryOperation(this, sdf::operations::Complement{});
 }
 
 void Grid::applySdfInteriorUnion(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, sdf::SdfOperation::Union{});
+    applyBinaryOperation(this, other, sdf::operations::Union{});
 }
 
 void Grid::applySdfInteriorIntersection(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, sdf::SdfOperation::Intersection{});
+    applyBinaryOperation(this, other, sdf::operations::Intersection{});
 }
 
 void Grid::applySdfSubtract(const Grid *other)
 {
     checkCompatibility(this, other);
-    applyBinaryOperation(this, other, sdf::SdfOperation::SubtractGrid{});
+    applyBinaryOperation(this, other, sdf::operations::SubtractGrid{});
 }
 
 static const Grid::FlipMap identityFlipMap = "xyz";

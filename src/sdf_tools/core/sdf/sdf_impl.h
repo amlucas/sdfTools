@@ -18,63 +18,63 @@ public:
 
     void apply(Grid *grid) const override
     {
-        applyOperation(grid, SdfOperation::Identity{});
+        applyOperation(grid, operations::Identity{});
     }
 
     void applyComplement (Grid *grid) const override
     {
-        applyOperation(grid, SdfOperation::Complement{});
+        applyOperation(grid, operations::Complement{});
     }
 
     void interiorUnion(Grid *grid) const override
     {
-        applyOperation(grid, SdfOperation::Union{});
+        applyOperation(grid, operations::Union{});
     }
 
     void interiorIntersection(Grid *grid) const override
     {
-        applyOperation(grid, SdfOperation::Intersection{});
+        applyOperation(grid, operations::Intersection{});
     }
 
     void interiorSubtractToGrid(Grid *grid) const override
     {
-        applyOperation(grid, SdfOperation::SubtractToGrid{});
+        applyOperation(grid, operations::SubtractToGrid{});
     }
 
     void interiorSubtractGrid(Grid *grid) const override
     {
-        applyOperation(grid, SdfOperation::SubtractGrid{});
+        applyOperation(grid, operations::SubtractGrid{});
     }
 
 
     void applyPeriodic(Grid *grid) const override
     {
-        applyOperationPeriodic(grid, SdfOperation::Identity{});
+        applyOperationPeriodic(grid, operations::Identity{});
     }
 
     void applyComplementPeriodic(Grid *grid) const override
     {
-        applyOperationPeriodic(grid, SdfOperation::Complement{});
+        applyOperationPeriodic(grid, operations::Complement{});
     }
 
     void interiorUnionPeriodic(Grid *grid) const override
     {
-        applyOperationPeriodic(grid, SdfOperation::Union{});
+        applyOperationPeriodic(grid, operations::Union{});
     }
 
     void interiorIntersectionPeriodic(Grid *grid) const override
     {
-        applyOperationPeriodic(grid, SdfOperation::Intersection{});
+        applyOperationPeriodic(grid, operations::Intersection{});
     }
 
     void interiorSubtractToGridPeriodic(Grid *grid) const override
     {
-        applyOperationPeriodic(grid, SdfOperation::SubtractToGrid{});
+        applyOperationPeriodic(grid, operations::SubtractToGrid{});
     }
 
     void interiorSubtractGridPeriodic(Grid *grid) const override
     {
-        applyOperationPeriodic(grid, SdfOperation::SubtractGrid{});
+        applyOperationPeriodic(grid, operations::SubtractGrid{});
     }
 
 protected:
@@ -141,7 +141,7 @@ protected:
                                 r.y += diry * exts.y;
                                 r.z += dirz * exts.z;
 
-                                val = SdfOperation::Union{}(self->at(r), val);
+                                val = operations::Union{}(self->at(r), val);
                             }
                         }
                     }

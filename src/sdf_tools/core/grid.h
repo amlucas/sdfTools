@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+
 namespace sdf_tools {
 
 class Grid
@@ -48,5 +49,30 @@ private:
     real3 offsets;
     real3 extents;
 };
+
+
+template <class PointwiseOperation>
+void gridForEachPoint(const PointwiseOperation& operation, Grid *grid)
+{
+    const auto dims = grid->getDimensions();
+    const auto h    = grid->getSpacing();
+    const auto offs = grid->getOffsets();
+    real *data = grid->data();
+
+    for (int iz = 0; iz < dims.z; ++iz) {
+        for (int iy = 0; iy < dims.y; ++iy) {
+            for (int ix = 0; ix < dims.x; ++ix) {
+                const real3 r {offs.x + ix * h.x,
+                               offs.y + iy * h.y,
+                               offs.z + iz * h.z};
+
+                const int i = ix + dims.x * (iy + dims.y * iz);
+
+                operation(r, data[i]);
+            }
+        }
+    }
+}
+
 
 } // namespace sdf_tools
