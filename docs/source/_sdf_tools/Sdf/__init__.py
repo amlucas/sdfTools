@@ -9,8 +9,8 @@ class Sdf:
 
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     
 
         """
@@ -41,8 +41,8 @@ class Box(Sdf):
 
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     
 
         """
@@ -75,8 +75,8 @@ class Capsule(Sdf):
 
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     
 
         """
@@ -104,8 +104,8 @@ class Complement(Sdf):
 
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     
 
         """
@@ -134,8 +134,8 @@ class Difference(Sdf):
 
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     
 
         """
@@ -166,8 +166,8 @@ class Edges(Sdf):
 
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     
 
         """
@@ -196,8 +196,8 @@ class Intersection(Sdf):
 
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     
 
         """
@@ -229,8 +229,8 @@ class PiecewisePipe(Sdf):
 
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     
 
         """
@@ -261,8 +261,8 @@ class Plate(Sdf):
 
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     
 
         """
@@ -294,8 +294,8 @@ class Sphere(Sdf):
 
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     
 
         """
@@ -324,8 +324,8 @@ class Union(Sdf):
 
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     
 
         """

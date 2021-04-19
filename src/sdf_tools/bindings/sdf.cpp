@@ -28,8 +28,8 @@ void exportSdf(py::module& m)
               "r"_a, R"(
         Evaluate the SDF field at the given position.
 
-            Args:
-                r: The position where to evaluate the SDF.
+        Args:
+            r: The position where to evaluate the SDF.
     )");
 
     py::shared_class<SdfBox> (m, "Box", pysdf, R"(

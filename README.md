@@ -2,7 +2,7 @@
 
 [![Documentation Status](https://readthedocs.org/projects/sdftools/badge/?version=latest)](https://sdftools.readthedocs.io/en/latest/?badge=latest)
 
-A simple tool with python interface to create signed distance function based geometries.
+A simple tool with python interface to create signed distance function fields.
 
 ## Installation
 
@@ -17,14 +17,12 @@ Installing the tool requires:
 ```bash
 git clone git@github.com:amlucas/sdfTools.git --recursive
 cd sdfTools
-make install
+python -m pip install .
 ```
 
 The installation can be tested by invoking
 
 ```bash
 cd tests
-make test
+./run.sh test_*.py
 ```
-
-This operation requires [atest](https://gitlab.ethz.ch/mavt-cse/atest).
