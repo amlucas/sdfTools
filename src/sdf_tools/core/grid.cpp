@@ -71,9 +71,7 @@ inline void checkMap(const Grid::FlipMap& map)
 {
     std::array<bool,3> valid {false, false, false};
 
-    if (map.size() != 3)
-        error("invalid map '%s': must be of size 3",
-              map.c_str());
+    sdfToolsExpect(map.size() == 3, "invalid map '%s': must be of size 3", map.c_str());
 
     for (auto c : map)
     {
@@ -81,14 +79,12 @@ inline void checkMap(const Grid::FlipMap& map)
         else if (c == 'y') valid[1] = true;
         else if (c == 'z') valid[2] = true;
         else
-            error("invalid map '%s': wrong character '%c' (must be 'x', 'y' or 'z')",
-                  map.c_str(), c);
+            sdfToolsDie("invalid map '%s': wrong character '%c' (must be 'x', 'y' or 'z')",
+                        map.c_str(), c);
     }
 
     for (size_t i = 0; i < map.size(); ++i)
-        if (!valid[i])
-            error("invalid map '%s': missing '%c'",
-                  map.c_str(), identityFlipMap[i]);
+        sdfToolsEnsure(valid[i], "invalid map '%s': missing '%c'", map.c_str(), identityFlipMap[i]);
 }
 
 inline IntFlipMap convertMap(const Grid::FlipMap& map)
@@ -146,8 +142,8 @@ void Grid::flip(const Grid::FlipMap& map)
 
 void Grid::extrude(real zoffset, real zextent, int nz)
 {
-    if (dimensions.z != 1)
-        error("can only extrude sdf from 'xy' plane (number of gridpoints along z must be 1)");
+    sdfToolsExpect(dimensions.z == 1,
+                   "can only extrude sdf from 'xy' plane (number of gridpoints along z must be 1)");
 
     extents.z = zextent;
     offsets.z = zoffset;

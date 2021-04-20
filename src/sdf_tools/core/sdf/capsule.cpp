@@ -17,8 +17,7 @@ SdfCapsule::SdfCapsule(real3 start, real3 end, real radius, bool inside) :
     constexpr real eps = 1e-6;
     const real segSq = dot(seg_, seg_);
 
-    if (segSq < eps)
-        error("SdfSegment: Start and End points must be different");
+    sdfToolsExpect(segSq > eps, "start and end points must be different");
 
     invSegSq_ = 1.0_r / segSq;
 }
