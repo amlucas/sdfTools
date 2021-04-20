@@ -11,9 +11,9 @@ class Uniform:
             Create an empty uniform grid of given size.
 
             Args:
-                dimensions: number of cells along each dimension
-                offsets: start of the domain
-                extents: size of the domain
+                dimensions: Number of cells along each dimension.
+                offsets: Start of the domain.
+                extents: Size of the domain.
         
 
         """
@@ -23,10 +23,10 @@ class Uniform:
         r"""dump_to_bov(self: sdf_tools.Grid.Uniform, basename: str) -> None
 
 
-          Dump the data in ``bov`` format
+          Dump the data in ``.bov`` format
 
           Args:
-              basename: base filename to dump to
+              basename: Base filename to dump to.
         
 
         """
@@ -39,7 +39,20 @@ class Uniform:
           Dump data in custom ``.sdf`` format
 
           Args:
-              basename: base filename to dump to
+              basename: Base filename to dump to.
+        
+
+        """
+        pass
+
+    def dump_to_vtk():
+        r"""dump_to_vtk(self: sdf_tools.Grid.Uniform, basename: str) -> None
+
+
+          Dump data in legacy ``vtk`` format
+
+          Args:
+              basename: Base filename to dump to.
         
 
         """
@@ -61,12 +74,12 @@ class Uniform:
         r"""extrude(self: sdf_tools.Grid.Uniform, zoffset: float, zextent: float, nz: int) -> None
 
 
-          extrude a SDF from 'xy' plane to 3 dimensions
+          Extrude a SDF from 'xy' plane to 3 dimensions.
 
           Args:
-              zoffset: offset in new direction
-              zextent: extent in new direction
-              nz: resolution in new direction
+              zoffset: Offset in the new direction.
+              zextent: Extent in the new direction.
+              nz: Resolution in new direction.
         
 
         """
@@ -76,10 +89,10 @@ class Uniform:
         r"""flip(self: sdf_tools.Grid.Uniform, map: str) -> None
 
 
-          flip axes of the grid according to map.
+          Flip axes of the grid according to map.
 
           Args:
-              map: flip map
+              map: The flip map description.
 
           examples:
               * map = 'xyz' does not flip anything
@@ -97,13 +110,13 @@ Overloaded function.
 1. get(self: sdf_tools.Grid.Uniform) -> List[float]
 
 
-            returns a list of all values in a flatten array.
+            Returns a list of all values in a flatten array.
         
 
 2. get(self: sdf_tools.Grid.Uniform) -> List[float]
 
 
-            returns a list of all values in a flatten array (const).
+            Returns a list of all values in a flatten array (const).
         
 
         """

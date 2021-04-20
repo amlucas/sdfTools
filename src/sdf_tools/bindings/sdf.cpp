@@ -39,9 +39,9 @@ void exportSdf(py::module& m)
              "low"_a, "high"_a, "inside"_a, R"(
 
             Args:
-                low: lower corner of the box
-                high: upper corner of the box
-                inside: ``True`` if the interior is inside the given shape
+                low: Lower corner of the box.
+                high: Upper corner of the box.
+                inside: ``True`` if the interior is inside the given shape.
         )");
 
     py::shared_class<SdfCapsule> (m, "Capsule", pysdf, R"(
@@ -52,22 +52,22 @@ void exportSdf(py::module& m)
              "start"_a, "end"_a, "radius"_a, "inside"_a, R"(
 
             Args:
-                start: first end of the segment
-                end:  second end of the segment
-                radius: radius of the capsule
-                inside: whether the domain is inside the capsule or outside of it
+                start: First end of the segment.
+                end:  Second end of the segment.
+                radius: Radius of the capsule.
+                inside: Whether the domain is inside the capsule or outside of it.
         )");
 
     py::shared_class<SdfEdges> (m, "Edges", pysdf, R"(
-        closed polygon defined from edges
+        Closed polygon defined from edges in the xy plane.
     )")
         .def(py::init <std::vector<real2>&, bool, int> (),
              "edges"_a, "inside"_a, "nsamples"_a = 20, R"(
 
             Args:
-                edges: list of vertices positions (2D)
-                inside: ``True`` if the interior is inside the given shape
-                nsamples: number of samples to find the sign of the SDF (more is more accurate)
+                edges: List of vertices positions (2D).
+                inside: ``True`` if the interior is inside the given shape.
+                nsamples: Number of samples to find the sign of the SDF (more is more accurate).
         )");
 
     py::shared_class<SdfPiecewisePipe> (m, "PiecewisePipe", pysdf, R"(
@@ -78,9 +78,9 @@ void exportSdf(py::module& m)
              "vertices"_a, "radius"_a, "inside"_a, R"(
 
             Args:
-                vertices: coordinates of the points forming the center line.
-                radius: radius of the capsule
-                inside: whether the domain is inside the capsule or outside of it
+                vertices: Coordinates of the points forming the center line.
+                radius: Radius of the capsule.
+                inside: Whether the domain is inside the capsule or outside of it.
         )");
 
     py::shared_class<SdfPlate> (m, "Plate", pysdf, R"(
@@ -90,22 +90,22 @@ void exportSdf(py::module& m)
         .def(py::init <real3, real3> (),
              "point"_a, "normal"_a, R"(
             Args:
-                point: one point on the plane
-                normal: the normal vector (not necessarily normalized, but must be non-zero)
-                        pointing inside
+                point: One point on the plane.
+                normal: The normal vector (not necessarily normalized, but must be non-zero)
+                        pointing inside.
         )");
 
     py::shared_class<SdfSphere> (m, "Sphere", pysdf, R"(
-        sphere defined by center and radius
+        Sphere defined by its center and radius.
 
     )")
         .def(py::init <real3, real, bool> (),
              "center"_a, "radius"_a, "inside"_a, R"(
 
             Args:
-                center: center of the sphere
-                radius: radius of the sphere
-                inside: whether the domain is inside the sphere or outside of it
+                center: Center of the sphere.
+                radius: Radius of the sphere.
+                inside: Whether the domain is inside the sphere or outside of it.
         )");
 
 
