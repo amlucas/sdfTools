@@ -9,8 +9,8 @@ A simple tool with python interface to create signed distance function fields.
 Installing the tool requires:
 
 - unix environment
-- compiler supporting `c++11` or higher
-- cmake 3.8 or higher
+- compiler supporting `c++17` or higher
+- cmake 3.12 or higher
 - python interpreter 3.6 or higher
 - pip
 
