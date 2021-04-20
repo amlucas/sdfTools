@@ -20,4 +20,4 @@ my_sdf = sdf_tools.Sdf.Union(sphere, capsule)
 
 # evaluate on the grid and dump to file
 grid.evaluate_sdf(my_sdf)
-grid.dump_to_bov("union")
+grid.dump("union.bov")

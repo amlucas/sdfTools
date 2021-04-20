@@ -22,4 +22,4 @@ my_sdf = sdf_tools.Sdf.Difference(sdf_tools.Sdf.Union(sphere, capsule0),
                                   capsule1)
 
 grid.evaluate_sdf(my_sdf)
-grid.dump_to_bov("three")
+grid.dump("three.bov")

@@ -2,9 +2,7 @@
 
 #include <sdf_tools/core/apply_sdf.h>
 #include <sdf_tools/core/grid.h>
-#include <sdf_tools/core/io/bov.h>
-#include <sdf_tools/core/io/custom.h>
-#include <sdf_tools/core/io/vtk.h>
+#include <sdf_tools/core/io/grid.h>
 
 #include <pybind11/stl.h>
 
@@ -36,26 +34,13 @@ void exportGrid(py::module& m)
             Returns a list of all values in a flatten array (const).
         )")
 
-        .def("dump_to_bov", [](const Grid *g, std::string basename) {io::writeBov(std::move(basename), g);},
-          "basename"_a, R"(
-          Dump the data in ``.bov`` format
+        .def("dump", [](const Grid *g, std::string name) {io::dumpGrid(std::move(name), g);},
+          "name"_a, R"(
+          Dump the data to a file.
+          Supported format: .bov, .vtk, .sdf
 
           Args:
-              basename: Base filename to dump to.
-        )")
-        .def("dump_to_sdf", [](const Grid *g, std::string basename) {io::writeSdf(std::move(basename), g);},
-          "basename"_a, R"(
-          Dump data in custom ``.sdf`` format
-
-          Args:
-              basename: Base filename to dump to.
-        )")
-        .def("dump_to_vtk", [](const Grid *g, std::string basename) {io::writeVtk(std::move(basename), g);},
-          "basename"_a, R"(
-          Dump data in legacy ``vtk`` format
-
-          Args:
-              basename: Base filename to dump to.
+              name: Filename (with the desired extension) to dump to.
         )")
 
         .def("evaluate_sdf", [](Grid *grid, const sdf::Sdf *sdf) {evaluateAtGridPoints(sdf, grid);})
