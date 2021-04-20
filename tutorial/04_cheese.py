@@ -28,4 +28,4 @@ for i in range(50):
     my_sdf = sdf.Difference(my_sdf, sphere)
 
 grid.evaluate_sdf(my_sdf)
-grid.dump_to_bov("cheese")
+grid.dump_to_vtk("cheese")
