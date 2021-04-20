@@ -107,6 +107,8 @@ setup(
     author_email='amlucas@ethz.ch',
     description='utilities for signed distance functions based geometry',
     long_description='',
+    licence='MIT',
+    url='https://sdftools.readthedocs.io/en/latest/',
     ext_modules=[CMakeExtension("sdf_tools")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
