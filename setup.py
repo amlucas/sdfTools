@@ -102,7 +102,7 @@ class CMakeBuild(build_ext):
 
 setup(
     name='sdf_tools',
-    version="0.0",
+    version="1.0",
     author='Lucas Amoudruz',
     author_email='amlucas@ethz.ch',
     description='utilities for signed distance functions based geometry',
