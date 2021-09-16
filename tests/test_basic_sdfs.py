@@ -53,3 +53,16 @@ class TestBasicSDFs(unittest.TestCase):
         self.assertEqual(sph.at([0, -1, 2]), 0)
         self.assertEqual(sph.at([0, -3, 0]), 0)
         self.assertEqual(sph.at([0, 3, 0]), 2)
+
+    def test_mesh(self):
+        import trimesh
+        mesh = trimesh.creation.icosphere(radius=1, subdivisions=3)
+
+        sph = sdf.FromMesh(faces=mesh.faces.tolist(),
+                           vertices=mesh.vertices.tolist(),
+                           inside=True)
+
+        self.assertAlmostEqual(sph.at([0, 0, 0]), -1, places=2)
+        self.assertAlmostEqual(sph.at([1, 0, 0]), 0, places=2)
+        self.assertAlmostEqual(sph.at([2, 0, 0]), 1, places=2)
+        self.assertAlmostEqual(sph.at([2, 2, 0]), 8**0.5-1, places=2)

@@ -1,5 +1,4 @@
 #include "sdf.h"
-
 #include <sdf_tools/core/grid.h>
 #include <sdf_tools/core/sdf/api.h>
 
@@ -68,6 +67,18 @@ void exportSdf(py::module& m)
                 edges: List of vertices positions (2D).
                 inside: ``True`` if the interior is inside the given shape.
                 nsamples: Number of samples to find the sign of the SDF (more is more accurate).
+        )");
+
+    py::shared_class<SdfFromMesh> (m, "FromMesh", pysdf, R"(
+        Closed triangle mesh.
+    )")
+        .def(py::init <std::vector<int3>, std::vector<real3>, bool> (),
+             "faces"_a, "vertices"_a, "inside"_a, R"(
+
+            Args:
+                faces: List of vertex indices forming each face.
+                vertices: List of vertices positions (3D).
+                inside: ``True`` if the interior is inside the given shape.
         )");
 
     py::shared_class<SdfPiecewisePipe> (m, "PiecewisePipe", pysdf, R"(

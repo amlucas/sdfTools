@@ -4,6 +4,7 @@
 #include "capsule.h"
 #include "composed.h"
 #include "edges.h"
+#include "from_mesh.h"
 #include "piecewise_pipe.h"
 #include "plate.h"
 #include "sphere.h"
@@ -19,7 +20,8 @@ using SdfVar = std::variant<SdfBox,
                             SdfEdges,
                             SdfPiecewisePipe,
                             SdfPlate,
-                            SdfSphere>;
+                            SdfSphere,
+                            SdfFromMesh>;
 
 } // namespace sdf
 } // namespace sdf_tools
