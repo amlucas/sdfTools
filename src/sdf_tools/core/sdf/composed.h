@@ -50,5 +50,13 @@ public:
                   std::shared_ptr<Sdf> sdfB);
 };
 
+class SdfSmoothUnion : public SdfComposed
+{
+public:
+    SdfSmoothUnion(std::shared_ptr<Sdf> sdfA,
+                   std::shared_ptr<Sdf> sdfB,
+                   real k);
+};
+
 } // namespace sdf
 } // namespace sdf_tools

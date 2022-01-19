@@ -150,6 +150,15 @@ void exportSdf(py::module& m)
 
         )");
 
+    py::shared_class<SdfSmoothUnion> (m, "SmoothUnion", pysdf, "Smooth Union between two SDF objects.")
+        .def(py::init<std::shared_ptr<Sdf>, std::shared_ptr<Sdf>, real>(),
+             "a"_a, "b"_a, "k"_a=32.0_r, R"(
+
+        Args:
+            a: The first sdf.
+            b: The second sdf.
+            k: The smoothing parameter. Must be positive.
+        )");
 
     py::shared_class<SdfComplement> (m, "Complement", pysdf, "Reverse interior and exterior.")
         .def(py::init<std::shared_ptr<Sdf>>(),

@@ -34,6 +34,14 @@ SdfDifference::SdfDifference(std::shared_ptr<Sdf> sdfA,
                 operations::Difference{})
 {}
 
+SdfSmoothUnion::SdfSmoothUnion(std::shared_ptr<Sdf> sdfA,
+                               std::shared_ptr<Sdf> sdfB,
+                               real k) :
+    SdfComposed(std::move(sdfA),
+                std::move(sdfB),
+                operations::SmoothUnion{k})
+{}
+
 
 } // namespace sdf
 } // namespace sdf_tools
